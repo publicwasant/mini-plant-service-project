@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/61011222001/mini-plant-service-project/issues"
   },
-  "homepage": "https://github.com/61011222001/mini-plant-service-project#readme"
+  "homepage": "https://github.com/61011222001/mini-plant-service-project#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "request": "^2.88.2"
+  }
 }
