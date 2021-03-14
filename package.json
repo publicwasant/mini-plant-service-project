@@ -1,0 +1,19 @@
+{
+  "name": "mini-plant-service-project",
+  "version": "1.0.0",
+  "description": "แอปพริเคชั่น ร้านขายต้นไม้เล็ก (เว็บเซอร์วิส)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/61011222001/mini-plant-service-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/61011222001/mini-plant-service-project/issues"
+  },
+  "homepage": "https://github.com/61011222001/mini-plant-service-project#readme"
+}
