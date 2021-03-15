@@ -6,7 +6,7 @@ const events = require('events');
 const request = require('request');
 
 // const JWTToken = require('./@@jwt_token');
-// const database = require('./@@database');
+const database = require('../../../database');
 
 const router = express.Router();
 
@@ -31,7 +31,7 @@ router.get('/', function (req, res) {
         return res.status(200).json(output);
     });
 
-    return emitter.emit('', {});
+    return emitter.emit('response', {});
 });
 
 router.post('/', function (req, res) {

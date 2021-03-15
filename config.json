@@ -7,11 +7,9 @@
         "host": "127.0.0.1",
         "user": "root",
         "password": "",
-        "database": "comsci_memehub"
+        "database": "comsci_mini-plant"
     }, "media": {
-        "full_path": "http://m-h.comsciproject.com",
-        "upload_path": "/media/pictures/"
-    }, "backdoor": {
-        "key": "tb5UjeVT2WFHsbjU"
+        "server": "http://m-h.comsciproject.com",
+        "path": "/media/images/"
     }
 }

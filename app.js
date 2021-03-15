@@ -2,7 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const root_route = require('./api/routes/root');
 const customer_route = require('./api/routes/customer/customer');
+const customer_login_route = require('./api/routes/customer/login/login');
+const customer_register_route = require('./api/routes/customer/register/register');
 
 const app = express();
 
@@ -16,7 +19,10 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use('/', root_route);
 app.use('/customer', customer_route);
+app.use('/customer/login', customer_login_route);
+app.use('/customer/register', customer_register_route);
 
 app.use(function (req, res) {
     res.status(400);
