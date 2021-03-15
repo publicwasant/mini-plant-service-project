@@ -9,7 +9,7 @@
         "password": "",
         "database": "comsci_mini-plant"
     }, "media": {
-        "server": "http://m-h.comsciproject.com",
+        "server": "http://mini-plant.comsciproject.com",
         "path": "/media/images/"
     }
 }

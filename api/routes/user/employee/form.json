@@ -1,12 +1,5 @@
 {
     "input": {
-        "cus_email": null,
-        "cus_name": null,
-        "cus_addr": null,
-        "cus_phone": null,
-        "cus_imgURL": null,
-        "cus_password": null,
-        "cus_password_confirm": null
     },
     "output": {
         "status": null,

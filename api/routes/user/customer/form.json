@@ -1,7 +1,5 @@
 {
     "input": {
-        "cus_email": null,
-        "cus_password": null
     },
     "output": {
         "status": null,
