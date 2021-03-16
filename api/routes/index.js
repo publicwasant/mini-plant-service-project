@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 

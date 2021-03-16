@@ -1,38 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function (req, res) {
+prep = (body) => {
+    let key = Object.keys(body);
+    console.log(key);
+};
+
+router.post('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    // code...
-
-    return res.json(form.output);
-});
-
-router.post('/', function (req, res) {
-    const form = env.form(__dirname + '/form.json');
-    const input = env.input(req);
-
-    // code...
-
-    return res.json(form.output);
-});
-
-router.put('/', function (req, res) {
-    const form = env.form(__dirname + '/form.json');
-    const input = env.input(req);
-
-    // code...
-
-    return res.json(form.output);
-});
-
-router.delete('/', function (req, res) {
-    const form = env.form(__dirname + '/form.json');
-    const input = env.input(req);
-
-    // code...
+    prep(input.body);
 
     return res.json(form.output);
 });

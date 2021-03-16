@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
     return res.json(form.output);
 });
 
-router.post('/', function (req, res) {
+router.post('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
@@ -19,7 +19,7 @@ router.post('/', function (req, res) {
     return res.json(form.output);
 });
 
-router.put('/', function (req, res) {
+router.put('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
@@ -28,7 +28,7 @@ router.put('/', function (req, res) {
     return res.json(form.output);
 });
 
-router.delete('/', function (req, res) {
+router.delete('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 

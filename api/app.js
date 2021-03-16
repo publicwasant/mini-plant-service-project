@@ -11,7 +11,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
     res.header("Access-Control-Allow-Headers", "Content-Type");
@@ -21,10 +21,10 @@ app.use(function(req, res, next) {
 
 app.use('/', index_route);
 app.use('/user/customer', customer_route);
-app.use('/user/customer/login', customer_login_route);
-app.use('/user/customer/register', customer_register_route);
+app.use('/user/login', customer_login_route);
+app.use('/user/register', customer_register_route);
 
-app.use(function (req, res) {
+app.use((req, res) => {
     res.status(400);
     res.send('400 Bad request, service not found!');
 });

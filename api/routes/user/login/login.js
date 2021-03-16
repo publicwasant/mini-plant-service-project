@@ -1,40 +1,70 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function (req, res) {
-    const form = env.form(__dirname + '/form.json');
-    const input = env.input(req);
+let validate = (body) => {
+    for (let [key, val] of Object.entries(body)) {
+        if (val == null || val == '') {
+            return {
+                valid: false,
+                message: 'กรุณากรอกข้อมูลให้ครบ'
+            };
+        }
+    }
 
-    // code...
-
-    return res.json(form.output);
-});
+    return {
+        valid: true,
+        message: 'ข้อมูลถูกต้อง'
+    };
+};
 
 router.post('/', function (req, res) {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    // code...
+    const vat = validate(input.body);
 
-    return res.json(form.output);
-});
+    if (vat.valid) {
+        let sql = "SELECT cus_id, cus_name, cus_password FROM customers WHERE cus_email=?";
 
-router.put('/', function (req, res) {
-    const form = env.form(__dirname + '/form.json');
-    const input = env.input(req);
+        env.database.query(sql, [input.body.cus_email], (err, result) => {
+            if (err) {
+                form.output.status = 0;
+                form.output.descript = 'เข้าสู่ระบบไม่สำเร็จ';
+                form.output.error.message = err.message
 
-    // code...
+                return res.json(form.output);
+            }
 
-    return res.json(form.output);
-});
+            if (result.length == 1) {
+                if (env.password_hash.verify(input.body.cus_password, result[0].cus_password)) {
+                    form.output.status = 1;
+                    form.output.descript = 'เข้าสู่ระบบสำเร็จแล้ว';
+                    form.output.data = {
+                        cus_id: result[0].cus_id,
+                        cus_name: result[0].cus_name
+                    };
 
-router.delete('/', function (req, res) {
-    const form = env.form(__dirname + '/form.json');
-    const input = env.input(req);
+                    return res.json(form.output);
+                } else {
+                    form.output.status = 0;
+                    form.output.descript = 'รหัสผ่านไม่ถูกต้อง';
 
-    // code...
+                    return res.json(form.output);
+                }
+            } else {
+                form.output.status = 0;
+                form.output.descript = 'ไม่พบที่อยู่อีเมลนี้';
 
-    return res.json(form.output);
+                return res.json(form.output);
+            }
+        });
+
+    } else {
+        form.output.status = 0;
+        form.output.descript = vat.message;
+
+        return res.json(form.output);
+    }
 });
 
 module.exports = router;
