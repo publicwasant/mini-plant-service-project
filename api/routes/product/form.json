@@ -1,0 +1,28 @@
+{
+    "input": {
+        "id": null,
+        "id_example": "http://mini-plant.comsciproject.com/product?id=4",
+        "key": null,
+        "key_example": "http://mini-plant.comsciproject.com/product?key=Hot.."
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": {
+            "state": null,
+            "message": null
+        },
+        "data": [{
+            "pr_id": null,
+            "pr_title": null,
+            "pr_detail": null,
+            "pr_type": null,
+            "pr_total": null,
+            "pr_size": null,
+            "pr_price": null,
+            "pr_discount": null,
+            "pr_status": null,
+            "pr_imgsURL": null
+        }]
+    }
+}

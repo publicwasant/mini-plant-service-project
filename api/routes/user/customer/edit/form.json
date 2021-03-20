@@ -1,7 +1,11 @@
 {
     "input": {
-        "id_search": "http://mini-plant.comsciproject.com?id=12",
-        "key_search": "http://mini-plant.comsciproject.com?key=test.."
+        "cus_id": null,
+        "cus_email": null,
+        "cus_name": null,
+        "cus_addr": null,
+        "cus_phone": null,
+        "cus_imgURL": null
     },
     "output": {
         "status": null,
@@ -10,12 +14,13 @@
             "state": null,
             "message": null
         },
-        "data": [{
+        "data": {
+            "cus_id": null,
             "cus_email": null,
             "cus_name": null,
             "cus_addr": null,
             "cus_phone": null,
             "cus_imgURL": null
-        }]
+        }
     }
 }

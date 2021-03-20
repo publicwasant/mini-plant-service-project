@@ -3,9 +3,20 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const index_route = require('./routes/index');
-const customer_route = require('./routes/user/customer/customer');
-const customer_login_route = require('./routes/user/login/login');
-const customer_register_route = require('./routes/user/register/register');
+
+const user_login_route = require('./routes/user/login/login');
+const user_register_route = require('./routes/user/register/register');
+
+const user_customer_route = require('./routes/user/customer/customer');
+const user_customer_edit_route = require('./routes/user/customer/edit/edit');
+
+const user_employee_route = require('./routes/user/employee/employee');
+const user_employee_add_route = require('./routes/user/employee/add/add');
+const user_employee_edit_roure = require('./routes/user/employee/edit/edit');
+
+const product_route = require('./routes/product/product');
+const product_add_route = require('./routes/product/add/add');
+const product_edit_route = require('./routes/product/edit/edit');
 
 const app = express();
 
@@ -20,9 +31,21 @@ app.use((req, res, next) => {
 });
 
 app.use('/', index_route);
-app.use('/user/customer', customer_route);
-app.use('/user/login', customer_login_route);
-app.use('/user/register', customer_register_route);
+
+app.use('/user/login', user_login_route);
+app.use('/user/register', user_register_route);
+
+app.use('/user/customer', user_customer_route);
+app.use('/user/customer/edit', user_customer_edit_route);
+
+app.use('/user/employee', user_employee_route);
+app.use('/user/employee/add', user_employee_add_route);
+app.use('/user/employee/edit', user_employee_edit_roure);
+
+app.use('/product', product_route);
+app.use('/product/add', product_add_route);
+app.use('/product/edit', product_edit_route);
+
 
 app.use((req, res) => {
     res.status(400);
