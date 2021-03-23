@@ -1,5 +1,7 @@
 {
     "input": {
+        "id_search": "http://mini-plant.comsciproject.com/user/employee?id=1",
+        "key_search": "http://mini-plant.comsciproject.com/user/employee?key=asd"
     },
     "output": {
         "status": null,
@@ -8,7 +10,15 @@
             "state": null,
             "message": null
         },
-        "data": {
-        }
+        "data": [{
+            "emp_id": null,
+            "emp_username": null,
+            "emp_email": null,
+            "emp_name": null,
+            "emp_addr": null,
+            "emp_phone": null,
+            "emp_imgURL": null,
+            "emp_status": null
+        }]
     }
 }

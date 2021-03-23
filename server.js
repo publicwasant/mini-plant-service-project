@@ -8,7 +8,7 @@ const mysql = require('mysql');
 const express = require('express');
 
 const app = require('./api/app');
-const config = JSON.parse(fs.readFileSync('./config.json'))['deploy'];
+const config = JSON.parse(fs.readFileSync('./config.json'))['debug'];
 
 global.env = {
     fs: fs,

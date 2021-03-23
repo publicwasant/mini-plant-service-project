@@ -17,6 +17,35 @@ let validate = (body) => {
     };
 };
 
+let classifier = (body, then) => {
+    let sql_customer = "SELECT cus_id, cus_password FROM customers WHERE cus_email=?";
+    let sql_employee = "SELECT emp_id, emp_password FROM employees WHERE emp_username=?";
+
+    let value = [body.username];
+
+    env.database.query(sql_customer, value, (err, result) => {
+        if (result.length == 1) {
+            return then({
+                user_status: 1,
+                id: result[0]['cus_id'],
+                password: result[0]['cus_password']
+            });
+        } else {
+            env.database.query(sql_employee, value, (err, result) => {
+                if (result.length == 1) {
+                    return then({
+                        user_status: 0,
+                        id: result[0]['emp_id'],
+                        password: result[0]['emp_password']
+                    });
+                } else {
+                    return then(null);
+                }
+            });
+        }
+    });
+};
+
 router.post('/', function (req, res) {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -24,24 +53,14 @@ router.post('/', function (req, res) {
     const vat = validate(input.body);
 
     if (vat.valid) {
-        let sql = "SELECT cus_id, cus_name, cus_password FROM customers WHERE cus_email=?";
-
-        env.database.query(sql, [input.body.cus_email], (err, result) => {
-            if (err) {
-                form.output.status = 0;
-                form.output.descript = 'เข้าสู่ระบบไม่สำเร็จ';
-                form.output.error.message = err.message
-
-                return res.json(form.output);
-            }
-
-            if (result.length == 1) {
-                if (env.password_hash.verify(input.body.cus_password, result[0].cus_password)) {
+        classifier(input.body, (result) => {
+            if (result != null) {
+                if (env.password_hash.verify(input.body.password, result.password)) {
                     form.output.status = 1;
                     form.output.descript = 'เข้าสู่ระบบสำเร็จแล้ว';
                     form.output.data = {
-                        cus_id: result[0].cus_id,
-                        cus_name: result[0].cus_name
+                        user_status: result.user_status,
+                        id: result.id
                     };
 
                     return res.json(form.output);
@@ -53,12 +72,11 @@ router.post('/', function (req, res) {
                 }
             } else {
                 form.output.status = 0;
-                form.output.descript = 'ไม่พบที่อยู่อีเมลนี้';
+                form.output.descript = 'ไม่พบผู้ใช้';
 
                 return res.json(form.output);
             }
         });
-
     } else {
         form.output.status = 0;
         form.output.descript = vat.message;

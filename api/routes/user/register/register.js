@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
         env.database.query(sql, [values], (err, result) => {
             if (err) {
                 form.output.status = 0;
-                form.output.descript = 'บันทึกข้อมูลไม่สำเร็จ';
+                form.output.descript = 'อีเมลนี้ถูกใช้ไปแล้ว';
                 form.output.error.message = err.message
 
                 return res.json(form.output);
