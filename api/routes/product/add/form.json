@@ -1,12 +1,10 @@
 {
     "input": {
-        "pr_title": null,
+        "pr_name": null,
         "pr_detail": null,
         "pr_type": null,
-        "pr_total": null,
         "pr_size": null,
         "pr_price": null,
-        "pr_discount": null,
         "pr_status": null,
         "pr_imgsURL": null
     },
@@ -18,14 +16,11 @@
             "message": null
         },
         "data": {
-            "pr_id": null,
-            "pr_title": null,
+            "pr_name": null,
             "pr_detail": null,
             "pr_type": null,
-            "pr_total": null,
             "pr_size": null,
             "pr_price": null,
-            "pr_discount": null,
             "pr_status": null,
             "pr_imgsURL": null
         }

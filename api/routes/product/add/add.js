@@ -4,7 +4,6 @@ const router = express.Router();
 let validate = (body) => {
     for (let [key, val] of Object.entries(body)) {
         if (key == 'pr_detail') continue;
-        if (key == 'pr_total') continue;
         if (key == 'pr_size') continue;
         if (key == 'pr_price') continue;
         if (key == 'pr_discount') continue;
@@ -34,17 +33,15 @@ router.post('/', (req, res) => {
 
     if (vat.valid) {
         let sql = "INSERT INTO products "
-            + "(pr_title, pr_detail, pr_type, pr_total, pr_size, pr_price, pr_discount, pr_status, pr_imgsURL) "
+            + "(pr_name, pr_detail, pr_type, pr_size, pr_price, pr_status, pr_imgsURL) "
             + "VALUES ?";
 
         let values = [[
-            input.body.pr_title,
+            input.body.pr_name,
             input.body.pr_detail,
-            input.body.pr_total,
             input.body.pr_type,
             JSON.stringify(input.body.pr_size),
             input.body.pr_price, 
-            input.body.pr_discount,
             input.body.pr_status,
             JSON.stringify(input.body.pr_imgsURL)
         ]];
@@ -53,7 +50,7 @@ router.post('/', (req, res) => {
             if (err) {
                 form.output.status = 0;
                 form.output.descript = 'บันทึกข้อมูลไม่สำเร็จ';
-                form.error.message = err.message;
+                form.output.error.message = err.message;
 
                 return res.json(form.output);
             }
@@ -63,13 +60,11 @@ router.post('/', (req, res) => {
                 form.output.descript = 'บันทึกข้อมูสำเร็จแล้ว';
                 form.output.data = {
                     pr_id: result.insertId,
-                    pr_title: input.body.pr_title,
+                    pr_title: input.body.pr_name,
                     pr_detail: input.body.pr_detail,
-                    pr_total: input.body.pr_total,
                     pr_type: input.body.pr_type,
                     pr_size: input.body.pr_size,
                     pr_price: input.body.pr_price, 
-                    pr_discount: input.body.pr_discount,
                     pr_status: input.body.pr_status,
                     pr_imgsURL: input.body.pr_imgsURL
                 };
