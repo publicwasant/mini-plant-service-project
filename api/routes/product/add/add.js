@@ -4,6 +4,7 @@ const router = express.Router();
 let validate = (body) => {
     for (let [key, val] of Object.entries(body)) {
         if (key == 'pr_detail') continue;
+        if (key == 'pr_type') continue;
         if (key == 'pr_size') continue;
         if (key == 'pr_price') continue;
         if (key == 'pr_discount') continue;
