@@ -1,0 +1,25 @@
+{
+    "input": {
+        "order_type": null,
+        "order_date": null,
+        "order_totalPrice": null,
+        "cus_id": null,
+        "emp_id": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": {
+            "state": null,
+            "message": null
+        },
+        "data": {
+            "order_id": null,
+            "order_type": null,
+            "order_date": null,
+            "order_totalPrice": null,
+            "cus_id": null,
+            "emp_id": null
+        }
+    }
+}

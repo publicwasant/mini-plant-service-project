@@ -1,0 +1,21 @@
+{
+    "input": {
+        "order_id": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": {
+            "state": null,
+            "message": null
+        },
+        "data": {
+            "order": {
+                "order_id": null
+            },
+            "details": [{
+                "od_id": null
+            }]
+        }
+    }
+}

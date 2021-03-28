@@ -1,0 +1,21 @@
+{
+    "input": {
+        "id_search_example": "http://mini-plant.comsciproject.com/order/detail?id=0",
+        "order_id_search_example": "http://mini-plant.comsciproject.com/order/detail?order_id=0"
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": {
+            "state": null,
+            "message": null
+        },
+        "data": [{
+            "od_id": null,
+            "pr_id": null,
+            "pr_amount": null,
+            "pr_price": null,
+            "order_id": null
+        }]
+    }
+}

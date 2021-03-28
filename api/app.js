@@ -18,6 +18,12 @@ const product_route = require('./routes/product/product');
 const product_add_route = require('./routes/product/add/add');
 const product_edit_route = require('./routes/product/edit/edit');
 
+const order_route = require('./routes/order/order');
+const order_add_route = require('./routes/order/add/add');
+const order_detail_route = require('./routes/order/detail/detail');
+const order_detail_add_route = require('./routes/order/detail/add/add');
+const order_detail_connectToOrder_route = require('./routes/order/detail/connectToOrder/connectToOrder');
+
 const app = express();
 
 app.use(cors());
@@ -46,6 +52,11 @@ app.use('/product', product_route);
 app.use('/product/add', product_add_route);
 app.use('/product/edit', product_edit_route);
 
+app.use('/order', order_route);
+app.use('/order/add', order_add_route);
+app.use('/order/detail', order_detail_route);
+app.use('/order/detail/add', order_detail_add_route);
+app.use('/order/detail/connectToOrder', order_detail_connectToOrder_route);
 
 app.use((req, res) => {
     res.status(400);

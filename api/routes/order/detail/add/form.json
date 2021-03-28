@@ -1,0 +1,23 @@
+{
+    "input": {
+        "pr_id": null,
+        "pr_amount": null,
+        "pr_price": null,
+        "order_id": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": {
+            "state": null,
+            "message": null
+        },
+        "data": {
+            "od_id": null,
+            "pr_id": null,
+            "pr_amount": null,
+            "pr_price": null,
+            "order_id": null
+        }
+    }
+}
