@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Document</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <style>
+            div.side {
+                position: fixed;
+                left: 0px;
+                width: 250px;
+                height: 100%;
+                padding: 10px;
+                overflow: auto;
+            }
+
+            div.read {
+                position: absolute;
+                left: 250px;
+                height: 100%;
+                padding: 10px;
+            }
+
+            div.docs {
+                display: none;
+            }
+
+            ul {
+                list-style-type:none;
+            }
+
+            code.get {color:green;}
+            code.post {color:darkorange;}
+            code.del {color:red;}
+            code.put {color:blue;}
+        </style>
+
+        <div class="side">
+            <h3>Services</h3>
+            <p>
+                <a href="#" class="side-link" onclick="tog('user-customer')">./user/customer</a><br>
+                <a href="#" class="side-link" onclick="tog('user-customer-reset_password')">./user/customer/reset_password</a><br>
+                <a href="#" class="side-link" onclick="tog('user-customer-edit')">./user/customer/edit</a><br>
+                <a href="#" class="side-link" onclick="tog('user-employee')">./user/employee/</a><br>
+                <a href="#" class="side-link" onclick="tog('user-employee-add')">./user/employee/add</a><br>
+                <a href="#" class="side-link" onclick="tog('user-employee-edit')">./user/employee/edit</a><br>
+                <a href="#" class="side-link" onclick="tog('user-login')">./user/login</a><br>
+                <a href="#" class="side-link" onclick="tog('user-register')">./user/register</a><br>
+                <a href="#" class="side-link" onclick="tog('order')">./order</a><br>
+                <a href="#" class="side-link" onclick="tog('order-add')">./order/add</a><br>
+                <a href="#" class="side-link" onclick="tog('order-detail')">./order/detail</a><br>
+                <a href="#" class="side-link" onclick="tog('order-detail-add')">./order/detail/add</a><br>
+                <a href="#" class="side-link" onclick="tog('order-detail-connectToOrder')">./order/detail/connectToOrder</a><br>
+                <a href="#" class="side-link" onclick="tog('product')">./product</a><br>
+                <a href="#" class="side-link" onclick="tog('product-add')">./product/add</a><br>
+                <a href="#" class="side-link" onclick="tog('product-edit')">./product/edit</a><br>
+            </p>
+        </div>
+
+        <div class="read">
+            <div class="docs" id="user-customer">
+                <h3><code class="get">GET</code> ./user/customer</h3>
+                <hr>
+
+                <b>Input:</b>
+                <br>
+                <code>http://mini-plant.comsciproject.com/user/customer</code><br>
+                <code>http://mini-plant.comsciproject.com/user/customer?id=XX</code><br>
+                <code>http://mini-plant.comsciproject.com/user/customer?key=XX</code><br>
+                <br>
+
+                <b>Output:</b> 
+                <pre>
+                    <code>
+{
+    "status": null,
+    "descript": null,
+    "error": {
+        "state": null,
+        "message": null
+    },
+    "data": [{
+        "cus_email": null,
+        "cus_name": null,
+        "cus_addr": null,
+        "cus_phone": null,
+        "cus_imgURL": null
+    }]
+}
+                    </code>
+                </pre>
+            </div>
+
+            <div class="docs" id="user-customer-reset_password">
+                <h3><code class="post">POST</code> ./user/customer/reset_password</h3>
+                <hr>
+    
+                <b>Input:</b>
+                <br>
+                <code>http://mini-plant.comsciproject.com/user/customer/reset_password</code>
+                    
+                <pre>
+                    <code>
+    {
+        "cus_id": null,
+        "cus_email": null,
+        "cus_old_password": null,
+        "cus_new_password": null
+    }
+                    </code>
+                </pre>
+    
+                <br>
+    
+                <b>Output:</b> 
+                <pre>
+                    <code>
+    {
+        "status": null,
+        "descript": null,
+        "error": {
+            "state": null,
+            "message": null
+        },
+        "data": {
+            "cus_id": null,
+            "cus_email": null
+        }
+    }
+                    </code>
+                </pre>
+            </div>
+
+        <div class="docs" id="user-customer-edit">
+            <h3><code class="put">PUT</code> ./user/customer/edit</h3>
+            <hr>
+
+            <b>Input:</b>
+            <br>
+            <code>http://mini-plant.comsciproject.com/user/customer/edit</code>
+                
+            <pre>
+                <code>
+{
+    "cus_id": null,
+    "cus_email": null,
+    "cus_name": null,
+    "cus_addr": null,
+    "cus_phone": null,
+    "cus_imgURL": null
+}
+                </code>
+            </pre>
+
+            <br>
+
+            <b>Output:</b> 
+            <pre>
+                <code>
+{
+    "status": null,
+    "descript": null,
+    "error": {
+        "state": null,
+        "message": null
+    },
+    "data": {
+        "cus_id": null,
+        "cus_email": null,
+        "cus_name": null,
+        "cus_addr": null,
+        "cus_phone": null,
+        "cus_imgURL": null
+    }
+}
+                </code>
+            </pre>
+        </div>
+        
+            <div class="docs" id="order">
+                <h3>./order</h3>
+                <hr>
+                
+                <b>Input:</b>
+                <br>
+                <code class="get">GET</code> <code>http://mini-plant.comsciproject.com/order</code><br>
+                <code class="get">GET</code> <code>http://mini-plant.comsciproject.com/order?id=XX</code><br>
+                <code class="get">GET</code> <code>http://mini-plant.comsciproject.com/order?cus_id=XX</code><br>
+
+                <br>
+
+                <b>Output:</b>
+                <pre>
+                <code>
+{
+    "status": null,
+    "descript": null,
+    "error": {
+        "state": null,
+        "message": null
+    },
+    "data": [{
+        "order_id": null,
+        "order_type": null,
+        "order_date": null,
+        "order_totalPrice": null,
+        "cus_id": null,
+        "emp_id": null
+    }]
+}
+                </code>
+                </pre>
+            </div>
+
+        <script>
+            var tog = (id) => {
+                var target = document.getElementById(id);
+                
+                hide("docs");
+                target.style.display = "block";
+            }
+
+            var hide = (className) => {
+                var docs = document.getElementsByClassName(className);
+
+                for (const [key, value] of Object.entries(docs)) {
+                    value.style.display = "none";
+                }
+            }
+
+            tog("user-customer");
+        </script>
+    </body>
+</html>

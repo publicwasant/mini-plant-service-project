@@ -1,0 +1,20 @@
+{
+    "input": {
+        "cus_id": null,
+        "cus_email": null,
+        "cus_old_password": null,
+        "cus_new_password": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": {
+        "state": null,
+        "message": null
+        },
+        "data": {
+            "cus_id": null,
+            "cus_email": null
+        }
+    }
+}

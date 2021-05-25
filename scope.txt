@@ -1,0 +1,20 @@
+order
+    - add 
+    - detail
+        - add
+        - connectToOrder
+product
+    - add
+    - edit
+user
+    - customer
+        - edit
+    - employee
+        - add
+        - edit
+    - login
+    - register
+
+** Global
+    - image
+        - upload
