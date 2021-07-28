@@ -3,13 +3,11 @@ const router = express.Router();
 
 let validate = (body) => {
     for (let [key, val] of Object.entries(body)) {
-        if (key == 'pr_detail') continue;
-        if (key == 'pr_type') continue;
-        if (key == 'pr_size') continue;
-        if (key == 'pr_price') continue;
-        if (key == 'pr_discount') continue;
-        if (key == 'pr_status') continue;
-        if (key == 'pr_imgsURL') continue;
+        if (key == 'shop_imgs') continue;
+        if (key == 'shop_bk_name') continue;
+        if (key == 'shop_bk_owner') continue;
+        if (key == 'shop_bk_number') continue;
+        if (key == 'shop_bk_promptpay') continue;
 
         if (val == null || val == '') {
             return {
@@ -32,29 +30,35 @@ router.put('/', (req, res) => {
     let vat = validate(input.body);
     
     if (vat.valid) {
-        let sql = "UPDATE products SET "
-            + "pr_name=?, "
-            + "pr_detail=?, "
-            + "pr_type=?, "
-            + "pr_size=?, "
-            + "pr_price=?, "
-            + "pr_status=?, "
-            + "pr_imgsURL=? "
-            + "WHERE pr_id=?";
+        let sql = "UPDATE shop SET "
+            + "shop_name=?, " 
+            + "shop_emp_id=?, "
+            + "shop_imgs=?, "
+            + "shop_addr=?, "
+            + "shop_email=?, "
+            + "shop_phone=?, "
+            + "shop_bk_name=?, "
+            + "shop_bk_owner=?, "
+            + "shop_bk_number=?, "
+            + "shop_bk_promptpay=? "
+            + "WHERE shop_id=?";
 
         let values = [
-            input.body.pr_name,
-            input.body.pr_detail,
-            input.body.pr_type,
-            input.body.pr_size,
-            input.body.pr_price,
-            input.body.pr_status,
-            input.body.pr_imgsURL,
-            input.body.pr_id
+            input.body.shop_name,
+            input.body.shop_emp_id,
+            input.body.shop_imgs,
+            input.body.shop_addr,
+            input.body.shop_email,
+            input.body.shop_phone,
+            input.body.shop_bk_name,
+            input.body.shop_bk_owner,
+            input.body.shop_bk_number,
+            input.body.shop_bk_promptpay,
+            input.body.shop_id
         ];
 
         env.database.query(sql, values, (err, result) => {
-            if (result.affectedRows > 0) {
+            if (!err && result.affectedRows > 0) {
                 form.output.status = 1;
                 form.output.descript = "แก้ไขข้อมูลสำเร็จแล้ว";
                 form.output.data = input.body;
@@ -63,6 +67,7 @@ router.put('/', (req, res) => {
             } else {
                 form.output.status = 0;
                 form.output.descript = "แก้ไขข้อมูลไม่สำเร็จ!";
+                form.output.error.message = err;
 
                 return res.json(form.output);
             }

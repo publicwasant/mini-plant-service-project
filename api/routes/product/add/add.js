@@ -14,7 +14,7 @@ let validate = (body) => {
         if (val == null || val == '') {
             return {
                 valid: false,
-                message: 'กรุณากรอกข้อมูลที่จำเป็นให้ครบ'
+                message: 'กรุณากรอกข้อมูลที่จำเป็นให้ครบ!'
             };
         }
     }
@@ -41,10 +41,10 @@ router.post('/', (req, res) => {
             input.body.pr_name,
             input.body.pr_detail,
             input.body.pr_type,
-            JSON.stringify(input.body.pr_size),
+            JSON.stringify(input.body.pr_size == null ? [] : input.body.pr_size),
             input.body.pr_price, 
             input.body.pr_status,
-            JSON.stringify(input.body.pr_imgsURL)
+            JSON.stringify(input.body.pr_imgsURL == null ? [] : input.body.pr_imgsURL)
         ]];
         
         env.database.query(sql, [values], (err, result) => {
@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
                     pr_size: input.body.pr_size,
                     pr_price: input.body.pr_price, 
                     pr_status: input.body.pr_status,
-                    pr_imgsURL: input.body.pr_imgsURL
+                    pr_imgsURL: input.body.pr_imgsURL == null ? [] : input.body.pr_imgsURL
                 };
             } else {
                 form.output.status = 0;

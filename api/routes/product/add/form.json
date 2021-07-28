@@ -16,6 +16,7 @@
             "message": null
         },
         "data": {
+            "pr_id": null,
             "pr_name": null,
             "pr_detail": null,
             "pr_type": null,

@@ -2,30 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const index_route = require('./routes/index');
-
-const user_login_route = require('./routes/user/login/login');
-const user_register_route = require('./routes/user/register/register');
-
-const user_customer_route = require('./routes/user/customer/customer');
-const user_customer_reset_password_route = require('./routes/user/customer/reset_password/reset_password');
-const user_customer_edit_route = require('./routes/user/customer/edit/edit');
-
-const user_employee_route = require('./routes/user/employee/employee');
-const user_employee_reset_password_route = require('./routes/user/employee/reset_password/reset_password');
-const user_employee_add_route = require('./routes/user/employee/add/add');
-const user_employee_edit_roure = require('./routes/user/employee/edit/edit');
-
-const product_route = require('./routes/product/product');
-const product_add_route = require('./routes/product/add/add');
-const product_edit_route = require('./routes/product/edit/edit');
-
-const order_route = require('./routes/order/order');
-const order_add_route = require('./routes/order/add/add');
-const order_detail_route = require('./routes/order/detail/detail');
-const order_detail_add_route = require('./routes/order/detail/add/add');
-const order_detail_connectToOrder_route = require('./routes/order/detail/connectToOrder/connectToOrder');
-
 const app = express();
 
 app.use(cors());
@@ -38,29 +14,38 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/', index_route);
+app.use('/', require('./routes/index'));
 
-app.use('/user/login', user_login_route);
-app.use('/user/register', user_register_route);
+app.use('/user/login', require('./routes/user/login/login'));
+app.use('/user/register', require('./routes/user/register/register'));
 
-app.use('/user/customer', user_customer_route);
-app.use('/user/customer/reset_password', user_customer_reset_password_route);
-app.use('/user/customer/edit', user_customer_edit_route);
+app.use('/user/customer', require('./routes/user/customer/customer'));
+app.use('/user/customer/reset_password', require('./routes/user/customer/reset_password/reset_password'));
+app.use('/user/customer/edit', require('./routes/user/employee/employee'));
 
-app.use('/user/employee', user_employee_route);
-app.use('/user/employee/reset_password', user_employee_reset_password_route);
-app.use('/user/employee/add', user_employee_add_route);
-app.use('/user/employee/edit', user_employee_edit_roure);
+app.use('/user/employee', require('./routes/user/employee/employee'));
+app.use('/user/employee/reset_password', require('./routes/user/employee/reset_password/reset_password'));
+app.use('/user/employee/add', require('./routes/user/employee/add/add'));
+app.use('/user/employee/edit', require('./routes/user/employee/edit/edit'));
 
-app.use('/product', product_route);
-app.use('/product/add', product_add_route);
-app.use('/product/edit', product_edit_route);
+app.use('/shop', require('./routes/shop/shop'));
+app.use('/shop/rating', require('./routes/shop/rating/rating'))
+app.use('/shop/add', require('./routes/shop/add/add'));
+app.use('/shop/edit', require('./routes/shop/edit/edit'));
 
-app.use('/order', order_route);
-app.use('/order/add', order_add_route);
-app.use('/order/detail', order_detail_route);
-app.use('/order/detail/add', order_detail_add_route);
-app.use('/order/detail/connectToOrder', order_detail_connectToOrder_route);
+app.use('/product', require('./routes/product/product'));
+app.use('/product/add', require('./routes/product/add/add'));
+app.use('/product/edit', require('./routes/product/edit/edit'));
+
+app.use('/promotion', require('./routes/promotion/promotion'));
+app.use('/promotion/add', require('./routes/promotion/add/add'));
+app.use('/promotion/edit', require('./routes/promotion/edit/edit'));
+
+app.use('/order', require('./routes/order/order'));
+app.use('/order/add', require('./routes/order/add/add'));
+app.use('/order/detail', require('./routes/order/detail/detail'));
+app.use('/order/detail/add', require('./routes/order/detail/add/add'));
+app.use('/order/detail/connectToOrder', require('./routes/order/detail/connectToOrder/connectToOrder'));
 
 app.use((req, res) => {
     res.status(400);

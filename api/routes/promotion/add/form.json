@@ -1,0 +1,27 @@
+{
+    "input": {
+        "product_id": null,
+        "promo_start": null,
+        "promo_end": null,
+        "promo_discount": null,
+        "promo_details": null,
+        "promo_imgURL": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": {
+            "state": null,
+            "message": null
+        },
+        "data": {
+            "product_id": null,
+            "promo_id": null,
+            "promo_start": null,
+            "promo_end": null,
+            "promo_discount": null,
+            "promo_details": null,
+            "promo_imgURL": null
+        }
+    }
+}

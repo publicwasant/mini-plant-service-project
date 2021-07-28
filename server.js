@@ -23,6 +23,23 @@ global.env = {
         url: url.parse(req.url, true).query,
         body: req.body
     }; },
+    validate: (body, except, doneMsg, errMsg) => {
+        for (let [key, val] of Object.entries(body)) {
+            if (except.includes(key)) continue;
+    
+            if (val == null || val == '') {
+                return {
+                    valid: false,
+                    message: doneMsg
+                };
+            }
+        }
+    
+        return {
+            valid: true,
+            message: errMsg
+        };
+    },
 };
 
 http.createServer(app).listen(process.env.port || env.config.server.port);
