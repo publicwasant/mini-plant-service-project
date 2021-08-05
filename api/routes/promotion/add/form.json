@@ -10,18 +10,14 @@
     "output": {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "product_id": null,
-            "promo_id": null,
-            "promo_start": null,
-            "promo_end": null,
-            "promo_discount": null,
-            "promo_details": null,
-            "promo_imgURL": null
+            "id": null,
+            "detail": null,
+            "discount": null,
+            "start": null,
+            "end": null,
+            "images": []
         }
     }
 }

@@ -1,27 +1,27 @@
 {
     "input": {
-        "cus_email": null,
-        "cus_name": null,
-        "cus_addr": null,
-        "cus_phone": null,
-        "cus_imgURL": null,
-        "cus_password": null,
-        "cus_repassword": null
+        "id": null,
+        "name": null,
+        "email": null,
+        "addr": null,
+        "phone": null,
+        "status": null,
+        "image": null,
+        "password": null,
+        "retype_password": null
     },
     "output": {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "cus_id": null,
-            "cus_email": null,
-            "cus_name": null,
-            "cus_addr": null,
-            "cus_phone": null,
-            "cus_imgURL": null
+            "id": null,
+            "name": null,
+            "email": null,
+            "addr": null,
+            "phone": null,
+            "status": null,
+            "image": null
         }
     }
 }

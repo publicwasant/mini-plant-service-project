@@ -1,20 +1,16 @@
 {
     "input": {
-        "emp_id": null,
-        "emp_username": null,
-        "emp_old_password": null,
-        "emp_new_password": null
+        "id": null,
+        "username": null,
+        "verify": {
+            "my_password": null,
+            "new_password": null
+        }
     },
     "output": {
         "status": null,
         "descript": null,
-        "error": {
-        "state": null,
-        "message": null
-        },
-        "data": {
-            "emp_id": null,
-            "emp_username": null
-        }
+        "error": null,
+        "data": []
     }
 }

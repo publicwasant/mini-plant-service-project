@@ -1,5 +1,10 @@
 {
-    "input": {},
+    "input": {
+        "type": null,
+        "date": null,
+        "customer_id": null,
+        "employee_id": null
+    },
     "output": {
         "status": null,
         "descript": null,

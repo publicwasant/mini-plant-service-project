@@ -1,29 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-let validate = (body) => {
-    for (let [key, val] of Object.entries(body)) {
-        if (key == 'promo_imgURL') continue;
-
-        if (val == null || val == '') {
-            return {
-                valid: false,
-                message: 'กรุณากรอกข้อมูลที่จำเป็นให้ครบ!'
-            };
-        }
-    }
-
-    return {
-        valid: true,
-        message: 'ข้อมูลถูกต้อง'
-    };
-};
-
 router.post('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    let vat = validate(input.body);
+    let vat = env.validate(input.body, ["promo_imgURL"]);
 
     if (vat.valid) {
         let sql = "INSERT INTO promotions "
@@ -42,7 +24,8 @@ router.post('/', (req, res) => {
             if (err) {
                 form.output.status = 0;
                 form.output.descript = "บันทึกข้อมูลไม่สำเร็จ!";
-                form.output.error.message = err.message;
+                form.output.error = err;
+                form.output.data = [];
                 
                 return res.json(form.output);
             }
@@ -55,29 +38,36 @@ router.post('/', (req, res) => {
                 if (err) {
                     form.output.status = 0;
                     form.output.descript = "บันทึกข้อมูลไม่สำเร็จ!";
-                    form.output.error.message = err.message;
+                    form.output.error = err;
+                    form.output.data = [];
                     
                     return res.json(form.output);
                 }
 
-                form.output.status = 1;
-                form.output.descript = "บันทึกข้อมูลสำเร็จแล้ว";
-                form.output.data = {
-                    product_id: input.body.product_id,
-                    promo_id: promo_id,
-                    promo_start: input.body.promo_start,
-                    promo_end: input.body.promo_end,
-                    promo_discount: input.body.promo_discount,
-                    promo_detail: input.body.promo_details,
-                    promo_imgURL: input.body.promo_imgURL == null ? [] : input.body.promo_imgURL
-                };
-
-                return res.json(form.output);
+                if (result.affectedRows > 0) {
+                    env.get("/promotion?id=*", [promo_id], (p) => {
+                        form.output.status = 1;
+                        form.output.descript = "บันทึกข้อมูลสำเร็จแล้ว";
+                        form.output.error = null;
+                        form.output.data = p.data[0];
+    
+                        return res.json(form.output);
+                    });
+                } else {
+                    form.output.status = 0;
+                    form.output.descript = "บันทึกข้อมูลไม่สำเร็จ!";
+                    form.output.error = null;
+                    form.output.data = [];
+                    
+                    return res.json(form.output);
+                }
             });
         });
     } else {
         form.output.status = 0;
         form.output.descript = vat.message;
+        form.output.error = null;
+        form.output.data = [];
 
         return res.json(form.output);
     }

@@ -1,29 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-let validate = (body) => {
-    for (let [key, val] of Object.entries(body)) {
-        if (key == 'promo_imgURL') continue;
-
-        if (val == null || val == '') {
-            return {
-                valid: false,
-                message: 'กรุณากรอกข้อมูลที่จำเป็นให้ครบ!'
-            };
-        }
-    }
-
-    return {
-        valid: true,
-        message: 'ข้อมูลถูกต้อง'
-    };
-};
-
 router.put('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    let vat = validate(input.body);
+    const vat = env.validate(input.body, ["promo_imgURL"]);
 
     if (vat.valid) {
         let sql = "UPDATE promotions SET "
@@ -47,20 +29,26 @@ router.put('/', (req, res) => {
             if (err) {
                 form.output.status = 0;
                 form.output.descript = "แก้ไขข้อมูลไม่สำเร็จ!";
-                form.output.error.message = err.message;
+                form.output.error = err;
+                form.output.data = [];
                 
                 return res.json(form.output);
             }
 
             if (result.affectedRows > 0) {
-                form.output.status = 1;
-                form.output.descript = "แก้ไขข้อมูลสำเร็จแล้ว";
-                form.output.data = input.body;
+                env.get("/promotion?id=*", [input.body.promo_id], (p) => {
+                    form.output.status = 1;
+                    form.output.descript = "แก้ไขข้อมูลสำเร็จแล้ว";
+                    form.output.error = null;
+                    form.output.data = p.data[0];
 
-                return res.json(form.output);
+                    return res.json(form.output);
+                });
             } else {
                 form.output.status = 0;
                 form.output.descript = "แก้ไขข้อมูลไม่สำเร็จ!";
+                form.output.error = null;
+                form.output.data = [];
 
                 return res.json(form.output);
             }
@@ -68,6 +56,8 @@ router.put('/', (req, res) => {
     } else {
         form.output.status = 0;
         form.output.descript = vat.message;
+        form.output.error = null;
+        form.output.data = [];
 
         return res.json(form.output);
     }

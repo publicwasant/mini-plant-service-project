@@ -1,0 +1,51 @@
+{
+    "input": {
+        "id": null,
+        "amount": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "order_id": null,
+            "amount": null,
+            "total_price": null,
+            "product": {
+                "id": null,
+                "name": null,
+                "detail": null,
+                "type": null,
+                "status": null,
+                "size": [],
+                "images": [],
+                "promotion": {
+                    "id": null,
+                    "detail": null,
+                    "discount": null,
+                    "start": null,
+                    "end": null,
+                    "images": []
+                },
+                "price": {
+                    "original": null,
+                    "actual": null,
+                    "discount": {
+                        "percent": null,
+                        "difference": null
+                    }
+                }
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            }
+        }
+    }
+}

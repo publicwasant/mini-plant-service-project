@@ -2,24 +2,39 @@ const express = require('express');
 const router = express.Router();
 
 let alternate = (param) => {
-    let result = {
-        sql: null,
-        values: null
-    };
-
     if (param.id) {
-        result.sql = "SELECT emp_id, emp_username, emp_email, emp_name, emp_addr, emp_phone, emp_imgURL, emp_status FROM employees WHERE emp_id=?";
-        result.values = [param.id];
+        return {
+            sql: "SELECT * FROM employees WHERE emp_id=?",
+            values: [param.id]
+        };
     } else if (param.key) {
-        result.sql = "SELECT emp_id, emp_username, emp_email, emp_name, emp_addr, emp_phone, emp_imgURL, emp_status "
-            + "FROM employees WHERE emp_username LIKE '%" + param.key + "%' OR emp_name LIKE '%" + param.key + "%'";
-        result.values = [];
+        return {
+            sql: "SELECT * FROM employees WHERE emp_username LIKE ? OR emp_name LIKE ?",
+            values: ["%" + param.key + "%", "%" + param.key + "%"]
+        };
     } else {
-        result.sql = "SELECT emp_id, emp_username, emp_email, emp_name, emp_addr, emp_phone, emp_imgURL, emp_status FROM employees";
-        result.values = [];
+        return {
+            sql: "SELECT * FROM employees",
+            values: []
+        };
+    }
+};
+
+let reorganize = (items) => {
+    for (let [key, val] of Object.entries(items)) {
+        items[key] = {
+            id: val.emp_id,
+            username: val.emp_username,
+            name: val.emp_name,
+            email: val.emp_email,
+            addr: val.emp_addr,
+            phone: val.emp_phone,
+            status: val.emp_status,
+            image: val.emp_imgURL
+        };
     }
 
-    return result;
+    return items;
 };
 
 router.get('/', function (req, res) {
@@ -32,35 +47,26 @@ router.get('/', function (req, res) {
         if (err) {
             form.output.status = 0;
             form.output.descript = 'ไม่สามารถค้นหาข้อมูลพนักงานได้';
-            form.output.error.message = err.message;
+            form.output.error = err;
+            form.output.data = [];
 
             return res.json(form.output);
         }
 
-        let employees = result;
-
-        if (employees.length > 0) {
+        if (result.length > 0) {
             form.output.status = 1;
-            form.output.descript = 'พบข้อมูลพนักงานแล้ว ' + employees.length + ' รายการ';
-            form.output.data = employees;
+            form.output.descript = 'พบข้อมูลพนักงานแล้ว ' + result.length + ' รายการ';
+            form.output.data = reorganize(result);
 
             return res.json(form.output);
         } else {
             form.output.status = 0;
             form.output.descript = 'ไม่พบข้อมูลพนักงาน';
+            form.output.data = [];
             
             return res.json(form.output);
         }
     });
-});
-
-router.post('/', function (req, res) {
-    const form = env.form(__dirname + '/form.json');
-    const input = env.input(req);
-
-    // code...
-
-    return res.json(form.output);
 });
 
 module.exports = router;

@@ -1,31 +1,28 @@
 {
     "input": {
-        "emp_username": null,
-        "emp_email": null,
-        "emp_name": null,
-        "emp_addr": null,
-        "emp_phone": null,
-        "emp_imgURL": null,
-        "emp_status": null,
-        "emp_password": null,
-        "emp_repassword": null
+        "username": null,
+        "name": null,
+        "email": null,
+        "addr": null,
+        "phone": null,
+        "status": null,
+        "image": null,
+        "password": null,
+        "retype_password": null
     },
     "output": {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "emp_id": null,
-            "emp_username": null,
-            "emp_email": null,
-            "emp_name": null,
-            "emp_addr": null,
-            "emp_phone": null,
-            "emp_imgURL": null,
-            "emp_status": null
+            "id": null,
+            "username": null,
+            "name": null,
+            "email": null,
+            "addr": null,
+            "phone": null,
+            "status": null,
+            "image": null
         }
     }
 }

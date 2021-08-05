@@ -10,10 +10,7 @@
     "output": {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
             "promo_id": null,
             "promo_start": null,

@@ -8,20 +8,31 @@
     "output": {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": [{
-            "pr_id": null,
-            "pr_name": null,
-            "pr_detail": null,
-            "pr_type": null,
-            "pr_size": null,
-            "pr_promo_id": null,
-            "pr_price": null,
-            "pr_status": null,
-            "pr_imgsURL": null
+            "id": null,
+            "name": null,
+            "detail": null,
+            "type": null,
+            "status": null,
+            "size": [],
+            "images": [],
+            "promotion": {
+                "id": null,
+                "detail": null,
+                "discount": null,
+                "start": null,
+                "end": null,
+                "images": []
+            },
+            "price": {
+                "original": null,
+                "actual": null,
+                "discount": {
+                    "percent": null,
+                    "difference": null
+                }
+            }
         }]
     }
 }

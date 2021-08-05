@@ -21,7 +21,7 @@ app.use('/user/register', require('./routes/user/register/register'));
 
 app.use('/user/customer', require('./routes/user/customer/customer'));
 app.use('/user/customer/reset_password', require('./routes/user/customer/reset_password/reset_password'));
-app.use('/user/customer/edit', require('./routes/user/employee/employee'));
+app.use('/user/customer/edit', require('./routes/user/customer/edit/edit'));
 
 app.use('/user/employee', require('./routes/user/employee/employee'));
 app.use('/user/employee/reset_password', require('./routes/user/employee/reset_password/reset_password'));
@@ -42,10 +42,15 @@ app.use('/promotion/add', require('./routes/promotion/add/add'));
 app.use('/promotion/edit', require('./routes/promotion/edit/edit'));
 
 app.use('/order', require('./routes/order/order'));
-app.use('/order/add', require('./routes/order/add/add'));
-app.use('/order/detail', require('./routes/order/detail/detail'));
-app.use('/order/detail/add', require('./routes/order/detail/add/add'));
-app.use('/order/detail/connectToOrder', require('./routes/order/detail/connectToOrder/connectToOrder'));
+app.use('/order/confirm', require('./routes/order/confirm/confirm'));
+app.use('/order/item', require('./routes/order/item/item'));
+app.use('/order/item/add', require('./routes/order/item/add/add'));
+app.use('/order/item/edit', require('./routes/order/item/edit/edit'));
+app.use('/order/item/remove', require('./routes/order/item/remove/remove'));
+// app.use('/order/add', require('./routes/order/add/add'));
+// app.use('/order/detail', require('./routes/order/detail/detail'));
+// app.use('/order/detail/add', require('./routes/order/detail/add/add'));
+// app.use('/order/detail/connectToOrder', require('./routes/order/detail/connectToOrder/connectToOrder'));
 
 app.use((req, res) => {
     res.status(400);

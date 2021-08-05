@@ -22,6 +22,21 @@ let alternate = (param) => {
     return result;
 };
 
+let reorganize = (items) => {
+    for (let [key, val] of Object.entries(items)) {
+        items[key] = {
+            id: val.promo_id,
+            detail: val.promo_details,
+            discount: val.promo_discount,
+            start: val.promo_start,
+            end: val.promo_end,
+            images: JSON.parse(val.promo_imgURL)
+        };
+    }
+
+    return items;
+};
+
 router.get('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -40,7 +55,7 @@ router.get('/', (req, res) => {
         if (result.length > 0) {
             form.output.status = 1;
             form.output.descript = "พบข้อมูลแล้ว " + result.length + " รายการ";
-            form.output.data = result;
+            form.output.data = reorganize(result);
 
             return res.json(form.output);
         } else {

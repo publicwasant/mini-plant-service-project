@@ -9,16 +9,15 @@
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": [{
-            "cus_email": null,
-            "cus_name": null,
-            "cus_addr": null,
-            "cus_phone": null,
-            "cus_imgURL": null
+            "id": null,
+            "name": null,
+            "email": null,
+            "addr": null,
+            "phone": null,
+            "status": null,
+            "image": null
         }]
     }
 
@@ -27,24 +26,20 @@
 
     INPUT:  http://mini-plant.comsciproject.com/user/customer/reset_password
     {
-        "cus_id": null,
-        "cus_email": null,
-        "cus_old_password": null,
-        "cus_new_password": null
+        "id": null,
+        "email": null,
+        "verify": {
+            "my_password": null,
+            "new_password": null
+        }
     }
 
     OUTPUT:
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
-        "data": {
-            "cus_id": null,
-            "cus_email": null
-        }
+        "error": null,
+        "data": []
     }
 
 ** 3. แก้ไขข้อมูลลูกค้า
@@ -52,29 +47,28 @@
 
     INPUT:  http://mini-plant.comsciproject.com/user/customer/edit
     {
-        "cus_id": null,
-        "cus_email": null,
-        "cus_name": null,
-        "cus_addr": null,
-        "cus_phone": null,
-        "cus_imgURL": null
+        "id": null,
+        "name": null,
+        "email": null,
+        "addr": null,
+        "phone": null,
+        "status": null,
+        "image": null
     }
 
     OUTPUT:
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "cus_id": null,
-            "cus_email": null,
-            "cus_name": null,
-            "cus_addr": null,
-            "cus_phone": null,
-            "cus_imgURL": null
+            "id": null,
+            "name": null,
+            "email": null,
+            "addr": null,
+            "phone": null,
+            "status": null,
+            "image": null
         }
     }
 
@@ -89,19 +83,16 @@
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": [{
-            "emp_id": null,
-            "emp_username": null,
-            "emp_email": null,
-            "emp_name": null,
-            "emp_addr": null,
-            "emp_phone": null,
-            "emp_imgURL": null,
-            "emp_status": null
+            "id": null,
+            "username": null,
+            "name": null,
+            "email": null,
+            "addr": null,
+            "phone": null,
+            "status": null,
+            "image": null
         }]
     }
 
@@ -110,24 +101,20 @@
 
     INPUT:  http://mini-plant.comsciproject.com/user/employee/reset_password
     {
-        "emp_id": null,
-        "emp_username": null,
-        "emp_old_password": null,
-        "emp_new_password": null
+        "id": null,
+        "username": null,
+        "verify": {
+            "my_password": null,
+            "new_password": null
+        }
     }
 
     OUTPUT:
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
-        "data": {
-            "emp_id": null,
-            "emp_username": null
-        }
+        "error": null,
+        "data": []
     }
 
 ** 6. เพิ่มข้อมูลพนักงาน
@@ -135,34 +122,31 @@
 
     INPUT:  http://mini-plant.comsciproject.com/user/employee/add
     {
-        "emp_username": null,
-        "emp_email": null,
-        "emp_name": null,
-        "emp_addr": null,
-        "emp_phone": null,
-        "emp_imgURL": null,
-        "emp_status": null,
-        "emp_password": null,
-        "emp_repassword": null
+        "username": null,
+        "name": null,
+        "email": null,
+        "addr": null,
+        "phone": null,
+        "status": null,
+        "image": null,
+        "password": null,
+        "retype_password": null
     }
 
     OUTPUT:
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "emp_id": null,
-            "emp_username": null,
-            "emp_email": null,
-            "emp_name": null,
-            "emp_addr": null,
-            "emp_phone": null,
-            "emp_imgURL": null,
-            "emp_status": null
+            "id": null,
+            "username": null,
+            "name": null,
+            "email": null,
+            "addr": null,
+            "phone": null,
+            "status": null,
+            "image": null
         }
     }
 
@@ -171,33 +155,30 @@
 
     INPUT:  http://mini-plant.comsciproject.com/user/employee/edit
     {
-        "emp_id": null,
-        "emp_username": null,
-        "emp_email": null,
-        "emp_name": null,
-        "emp_addr": null,
-        "emp_phone": null,
-        "emp_imgURL": null,
-        "emp_status": null
+        "id": null,
+        "username": null,
+        "name": null,
+        "email": null,
+        "addr": null,
+        "phone": null,
+        "status": null,
+        "image": null
     }
 
     OUTPUT:
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "emp_id": null,
-            "emp_username": null,
-            "emp_email": null,
-            "emp_name": null,
-            "emp_addr": null,
-            "emp_phone": null,
-            "emp_imgURL": null,
-            "emp_status": null
+            "id": null,
+            "username": null,
+            "name": null,
+            "email": null,
+            "addr": null,
+            "phone": null,
+            "status": null,
+            "image": null
         }
     }
 
@@ -229,30 +210,30 @@
 
     INPUT:  http://mini-plant.comsciproject.com/user/register
     {
-        "cus_email": null,
-        "cus_name": null,
-        "cus_addr": null,
-        "cus_phone": null,
-        "cus_imgURL": null,
-        "cus_password": null,
-        "cus_repassword": null
+        "id": null,
+        "name": null,
+        "email": null,
+        "addr": null,
+        "phone": null,
+        "status": null,
+        "image": null,
+        "password": null,
+        "retype_password": null
     }
     
     OUTPUT:
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "cus_id": null,
-            "cus_email": null,
-            "cus_name": null,
-            "cus_addr": null,
-            "cus_phone": null,
-            "cus_imgURL": null
+            "id": null,
+            "name": null,
+            "email": null,
+            "addr": null,
+            "phone": null,
+            "status": null,
+            "image": null
         }
     }
 
@@ -275,20 +256,31 @@
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": [{
-            "pr_id": null,
-            "pr_name": null,
-            "pr_detail": null,
-            "pr_type": null,
-            "pr_size": null,
-            "pr_promo_id": null,
-            "pr_price": null,
-            "pr_status": null,
-            "pr_imgsURL": null
+            "id": null,
+            "name": null,
+            "detail": null,
+            "type": null,
+            "status": null,
+            "size": [],
+            "images": [],
+            "promotion": {
+                "id": null,
+                "detail": null,
+                "discount": null,
+                "start": null,
+                "end": null,
+                "images": []
+            },
+            "price": {
+                "original": null,
+                "actual": null,
+                "discount": {
+                    "percent": null,
+                    "difference": null
+                }
+            }
         }]
     }
 
@@ -310,82 +302,528 @@
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
-        "data": {
-            "pr_id": null,
-            "pr_name": null,
-            "pr_detail": null,
-            "pr_type": null,
-            "pr_size": null,
-            "pr_price": null,
-            "pr_status": null,
-            "pr_imgsURL": null
-        }
+        "error": null,
+        "data": [{
+            "id": null,
+            "name": null,
+            "detail": null,
+            "type": null,
+            "status": null,
+            "size": [],
+            "images": [],
+            "promotion": {
+                "id": null,
+                "detail": null,
+                "discount": null,
+                "start": null,
+                "end": null,
+                "images": []
+            },
+            "price": {
+                "original": null,
+                "actual": null,
+                "discount": {
+                    "percent": null,
+                    "difference": null
+                }
+            }
+        }]
     }
 
 ** 20. แก้ไขข้อมูลสินค้า
+    [PUT] ./product/edit
+
+    INPUT:  http://mini-plant.comsciproject.com/product/edit 
+    {
+        "pr_name": null,
+        "pr_detail": null,
+        "pr_type": null,
+        "pr_size": null,
+        "pr_price": null,
+        "pr_status": null,
+        "pr_imgsURL": null
+    }
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": [{
+            "id": null,
+            "name": null,
+            "detail": null,
+            "type": null,
+            "status": null,
+            "size": [],
+            "images": [],
+            "promotion": {
+                "id": null,
+                "detail": null,
+                "discount": null,
+                "start": null,
+                "end": null,
+                "images": []
+            },
+            "price": {
+                "original": null,
+                "actual": null,
+                "discount": {
+                    "percent": null,
+                    "difference": null
+                }
+            }
+        }]
+    }
+
+
+[orderItem A] --------->|
+                        |
+[orderItem B] --------->|
+                        | ---------> [orders 1]
+[orderItem C] --------->|
+                        |
+[orderItem D] --------->|
+
+** กดเพิ่มสินค้าลงในตะกร้าระบบจะสร้าง orderItem A, B, C, D, ... ขึ้น
+** กดยืนยันการสั่งซื้อระบบจะร้าง orders 1 ขึ้นแล้ว update order_id ใน orderItem ของแต่ละอัน
+
+Functions
+    1. ./order
+    2. ./order/confirm
+    3. ./order/item
+    4. ./order/item/add
+    5. ./order/item/edit
+    6. ./order/item/remove
+
 
 ** 21. ค้นหาข้อมูลการสั่งซื้อ
     [GET]   ./order
     
     INPUT:  http://mini-plant.comsciproject.com/order?id=XX
-             http://mini-plant.comsciproject.com/order?cus_id=XX
+             http://mini-plant.comsciproject.com/order?customer_id=XX
+             http://mini-plant.comsciproject.com/order?employee_id=XX
     
     OUTPUT: 
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
-        "data": [{
-            "order_id": null,
-            "order_type": null,
-            "order_date": null,
-            "order_totalPrice": null,
-            "cus_id": null,
-            "emp_id": null
-        }]
+        "error": null,
+        "data": {
+            "id": null,
+            "type": null,
+            "date": null,
+            "total_price": null,
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "order_items": [{
+                "id": null,
+                "order_id": null,
+                "amount": null,
+                "price": null,
+                "product": {
+                    "id": null,
+                    "name": null,
+                    "detail": null,
+                    "type": null,
+                    "status": null,
+                    "size": [],
+                    "images": [],
+                    "promotion": {
+                        "id": null,
+                        "detail": null,
+                        "discount": null,
+                        "start": null,
+                        "end": null,
+                        "images": []
+                    },
+                    "price": {
+                        "original": null,
+                        "actual": null,
+                        "discount": {
+                            "percent": null,
+                            "difference": null
+                        }
+                    }
+                },
+                "customer": {
+                    "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
+                }
+            }] 
+        }
     }
 
 ** 22. เพิ่มข้อมูลการสั่งซื้อ
-    [POST]  ./order/add 
+    [POST]  ./order/confirm 
     
-    INPUT:  http://mini-plant.comsciproject.com/order/add
+    INPUT:  http://mini-plant.comsciproject.com/order/confirm
     {
-        "order_type": null,
-        "order_date": null,
-        "order_totalPrice": null,
-        "cus_id": null,
-        "emp_id": null
+        "type": null,
+        "date": null,
+        "customer_id": null,
+        "employee_id": null
     }
 
     OUTPUT:
     {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "order_id": null,
-            "order_type": null,
-            "order_date": null,
-            "order_totalPrice": null,
-            "cus_id": null,
-            "emp_id": null
+            "id": null,
+            "type": null,
+            "date": null,
+            "total_price": null,
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "order_items": [{
+                "id": null,
+                "order_id": null,
+                "amount": null,
+                "price": null,
+                "product": {
+                    "id": null,
+                    "name": null,
+                    "detail": null,
+                    "type": null,
+                    "status": null,
+                    "size": [],
+                    "images": [],
+                    "promotion": {
+                        "id": null,
+                        "detail": null,
+                        "discount": null,
+                        "start": null,
+                        "end": null,
+                        "images": []
+                    },
+                    "price": {
+                        "original": null,
+                        "actual": null,
+                        "discount": {
+                            "percent": null,
+                            "difference": null
+                        }
+                    }
+                },
+                "customer": {
+                    "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
+                }
+            }] 
         }
     }
 
-** 23. แก้ไขข้อมูลการสั่งซื้อ
-** 24. ค้นหาข้อมูลโปรโมชั่น
-** 25. เพิ่มข้อมูลโปรโมชั่น
-** 26. แก้ไขข้อมูลโปรโมชั่น
+** 23. ค้นหาข้อมูลรายละเอียดการสั่งซื้อ
+    [GET] ./order/item
+
+    INPUT:  http://mini-plant.comsciproject.com/order/item
+            http://mini-plant.comsciproject.com/order/item?id=XX
+            http://mini-plant.comsciproject.com/order/item?order_id=XX
+            http://mini-plant.comsciproject.com/order/item?customer_id=XX
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": [{
+            "id": null,
+            "order_id": null,
+            "amount": null,
+            "price": null,
+            "product": {
+                "id": null,
+                "name": null,
+                "detail": null,
+                "type": null,
+                "status": null,
+                "size": [],
+                "images": [],
+                "promotion": {
+                    "id": null,
+                    "detail": null,
+                    "discount": null,
+                    "start": null,
+                    "end": null,
+                    "images": []
+                },
+                "price": {
+                    "original": null,
+                    "actual": null,
+                    "discount": {
+                        "percent": null,
+                        "difference": null
+                    }
+                }
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            }
+        }]
+    }
+
+** 24. เพิ่มข้อมูลรายละเอียดการสั่งซื้อ
+    [POST] ./order/item/add
+
+    INPUT:  http://mini-plant.comsciproject.com/order/item/add
+    {
+        "product_id": null,
+        "customer_id": null,
+        "amount": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "order_id": null,
+            "amount": null,
+            "total_price": null,
+            "product": {
+                "id": null,
+                "name": null,
+                "detail": null,
+                "type": null,
+                "status": null,
+                "size": [],
+                "images": [],
+                "promotion": {
+                    "id": null,
+                    "detail": null,
+                    "discount": null,
+                    "start": null,
+                    "end": null,
+                    "images": []
+                },
+                "price": {
+                    "original": null,
+                    "actual": null,
+                    "discount": {
+                        "percent": null,
+                        "difference": null
+                    }
+                }
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            }
+        }
+    }
+
+** 25. แก้ไขข้อมูลรายละเอียดการสั่งซื้อ
+    [PUT] ./order/item/edit
+
+    INPUT:  http://mini-plant.comsciproject.com/order/item/edit
+    {
+        "id": null,
+        "amount": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "order_id": null,
+            "amount": null,
+            "total_price": null,
+            "product": {
+                "id": null,
+                "name": null,
+                "detail": null,
+                "type": null,
+                "status": null,
+                "size": [],
+                "images": [],
+                "promotion": {
+                    "id": null,
+                    "detail": null,
+                    "discount": null,
+                    "start": null,
+                    "end": null,
+                    "images": []
+                },
+                "price": {
+                    "original": null,
+                    "actual": null,
+                    "discount": {
+                        "percent": null,
+                        "difference": null
+                    }
+                }
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            }
+        }
+    }
+
+** 26. ลบข้อมูลรายละเอียดการสั่งซื้อ
+    [POST] ./order/item/remove
+
+    INPUT:  http://mini-plant.comsciproject.com/order/item/remove
+    {
+        "id": null
+    }
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": []
+    }
+
+** 27. ค้นหาข้อมูลโปรโมชั่น
+    [GET] ./promotion
+
+    INPUT:  https://mini-plant.comsciproject.com/promotion **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
+            https://mini-plant.comsciproject.com/promotion?id=XX
+            https://mini-plmat.comsciproject.com/promotion?product_id=XX
+
+    OUPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": [{
+            "id": null,
+            "detail": null,
+            "discount": null,
+            "start": null,
+            "end": null,
+            "images": []
+        }]
+    }
+
+
+** 28. เพิ่มข้อมูลโปรโมชั่น
+    [POST] ./promotion/add
+
+    INPUT:
+    {
+        "product_id": null,
+        "promo_start": null,
+        "promo_end": null,
+        "promo_discount": null,
+        "promo_details": null,
+        "promo_imgURL": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "detail": null,
+            "discount": null,
+            "start": null,
+            "end": null,
+            "images": []
+        }
+    }
+
+
+** 29. แก้ไขข้อมูลโปรโมชั่น
+    [PUT] ./promotion/edit
+
+    INPUT: 
+    {
+        "promo_id": null,
+        "promo_start": null,
+        "promo_end": null,
+        "promo_discount": null,
+        "promo_details": null,
+        "promo_imgURL": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "promo_id": null,
+            "promo_start": null,
+            "promo_end": null,
+            "promo_discount": null,
+            "promo_details": null,
+            "promo_imgURL": null
+        }
+    }
+
+
 ** 27. ค้นหาข้อมูลการจัดส่ง
 ** 28. เพิ่มข้อมูลการจัดส่ง
 ** 29. แก้ไขข้อมูลการจัดส่ง
