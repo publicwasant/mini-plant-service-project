@@ -1,0 +1,14 @@
+{
+    "input": {
+        "type": null,
+        "base64": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "url": null
+        }
+    }
+}

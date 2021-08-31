@@ -30,21 +30,27 @@ let reorganize = (items, then) => {
         env.get("/order/item?order_id=*", [items[ind].order_id], (orderitems) => {
             env.get("/user/customer?id=*", [items[ind].cus_id], (customers) => {
                 env.get("/user/employee?id=*", [items[ind].emp_id], (employees) => {
-                    items[ind] = {
-                        id: items[ind].order_id,
-                        type: items[ind].order_type,
-                        date: items[ind].order_date,
-                        total_price: items[ind].order_totalPrice,
-                        customer: customers.status == 1 ? customers.data[0] : null,
-                        employee: employees.status == 1 ? employees.data[0] : null,
-                        order_items: orderitems.data
-                    };
-
-                    if (ind + 1 < items.length) {
-                        fetch (ind + 1);
-                    } else {
-                        then(items);
-                    }
+                    env.get("/shipment?order_id=*", [items[ind].order_id], (shipments) => {
+                        env.get("/payment?order_id=*", [items[ind].order_id], (payments) => {
+                            items[ind] = {
+                                id: items[ind].order_id,
+                                type: items[ind].order_type,
+                                date: items[ind].order_date,
+                                total_price: items[ind].order_totalPrice,
+                                customer: customers.status == 1 ? customers.data[0] : null,
+                                employee: employees.status == 1 ? employees.data[0] : null,
+                                order_items: orderitems.data,
+                                shipment: shipments.data[0],
+                                payment: payments.data[0]
+                            };
+        
+                            if (ind + 1 < items.length) {
+                                fetch (ind + 1);
+                            } else {
+                                then(items);
+                            }
+                        });
+                    });
                 });
             });
         });

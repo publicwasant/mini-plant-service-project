@@ -210,7 +210,6 @@
 
     INPUT:  http://mini-plant.comsciproject.com/user/register
     {
-        "id": null,
         "name": null,
         "email": null,
         "addr": null,
@@ -746,9 +745,9 @@ Functions
 ** 27. ค้นหาข้อมูลโปรโมชั่น
     [GET] ./promotion
 
-    INPUT:  https://mini-plant.comsciproject.com/promotion **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
-            https://mini-plant.comsciproject.com/promotion?id=XX
-            https://mini-plmat.comsciproject.com/promotion?product_id=XX
+    INPUT:  http://mini-plant.comsciproject.com/promotion **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
+            http://mini-plant.comsciproject.com/promotion?id=XX
+            http://mini-plmat.comsciproject.com/promotion?product_id=XX
 
     OUPUT:
     {
@@ -824,11 +823,155 @@ Functions
     }
 
 
-** 27. ค้นหาข้อมูลการจัดส่ง
-** 28. เพิ่มข้อมูลการจัดส่ง
-** 29. แก้ไขข้อมูลการจัดส่ง
-** 30. ค้นหาข้อมูลการชำระ
-** 31. เพิ่มข้อมูลการชำระ
-** 32. ค้นหาข้อมูลประวัติการสั่งซื้อของลูกค้า
-** 33. ออกรายงานประวัติการสั่งซื้อแบบรายวัน
-** 34. ออกรายงานประวัติการสั่งซื้อแบบรายเดือน
+** 30. ค้นหาข้อมูลการจัดส่ง
+    [GET] ./shipment
+
+    INPUT:  http://mini-plant.comsciproject.com/shipment
+            http://mini-plant.comsciproject.com/shipment?id=XX
+            http://mini-plant.comsciproject.com/shipment?order_id=XX
+
+    OUPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": [{
+            "id": null,
+            "order_id": null,
+            "date": null,
+            "status": null
+        }]
+    }
+
+** 31. เพิ่มข้อมูลการจัดส่ง
+    [POST]  ./shipment/add
+
+    INPUT:
+    {
+        "order_id": null,
+        "bill": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "order_id": null,
+            "date": null,
+            "status": null
+        }
+    }
+
+** 32. แก้ไขข้อมูลการจัดส่ง
+    [PUT]   ./shipment/edit
+
+    INPUT:
+    {
+        "id": null,
+        "date": null,
+        "status": null,
+        "bill": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "order_id": null,
+            "date": null,
+            "status": null
+        }
+    }
+
+** 33. ค้นหาข้อมูลการชำระ
+    [GET]   ./payment
+
+    INPUT:  http://mini-plant.comsciproject.com/payment
+            http://mini-plant.comsciproject.com/payment?id=XX
+            http://mini-plant.comsciproject.com/payment?order_id=XX
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": [{
+            "id": null,
+            "order_id": null,
+            "date": null,
+            "status": null
+        }]
+    }
+
+** 34. เพิ่มข้อมูลการชำระ
+    [POST]  ./payment/add
+
+    INPUT:
+    {
+        "order_id": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "order_id": null,
+            "date": null,
+            "status": null
+        }
+    }
+
+** 35. แก้ไขข้อมูลการชำระ
+    [PUT]  ./payment/edit
+
+    INPUT:
+    {
+        "id": null,
+        "status": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "order_id": null,
+            "date": null,
+            "status": null
+        }
+    }
+
+** 36. ค้นหาข้อมูลประวัติการสั่งซื้อของลูกค้า
+** 37. ออกรายงานประวัติการสั่งซื้อแบบรายวัน
+** 38. ออกรายงานประวัติการสั่งซื้อแบบรายเดือน
+
+** 39. ค้นหารูปภาพ
+    [GIT]   ./media/image
+
+    INPUT:  http://mini-plant.comsciproject.com/media/image?p=XXX.jpg
+    OUPUT:  <image>
+
+** 40. เพิ่มรูปภาพ
+    [POST]  ./media/image/add
+
+    INPUT: 
+    {
+        "type": null,
+        "base64": null
+    }
+
+    OUPUT:
+    {
+        "url": null
+    }

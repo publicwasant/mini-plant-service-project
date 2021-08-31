@@ -57,12 +57,34 @@ router.post('/', (req, res) => {
                             }
 
                             if (result.affectedRows > 0) {
-                                env.get("/order?id=*", [order_id], (o) => {
-                                    form.output.status = 1;
-                                    form.output.descript = "ทำรายการสำเร็จแล้ว";
-                                    form.output.data = o.data[0];
+                                env.post("/shipment/add", {order_id: order_id, bill: null}, (body) => {
+                                    if (body.status == 0) {
+                                        form.output.status = 0;
+                                        form.output.descript = "ทำรายการไม่สำเร็จ!";
+                                        form.output.error = "shipment insertion.";
+                                        form.output.data = [];
 
-                                    return res.json(form.output);
+                                        return res.json(form.output);
+                                    }
+                                    
+                                    env.post("/payment/add", {order_id: order_id}, (body) => {
+                                        if (body.status == 0) {
+                                            form.output.status = 0;
+                                            form.output.descript = "ทำรายการไม่สำเร็จ!";
+                                            form.output.error = "payment insertion.";
+                                            form.output.data = [];
+
+                                            return res.json(form.output);
+                                        }
+
+                                        env.get("/order?id=*", [order_id], (o) => {
+                                            form.output.status = 1;
+                                            form.output.descript = "ทำรายการสำเร็จแล้ว";
+                                            form.output.data = o.data[0];
+        
+                                            return res.json(form.output);
+                                        });
+                                    });
                                 });
                             } else {
                                 form.output.status = 0;

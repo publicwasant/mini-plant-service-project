@@ -8,7 +8,7 @@ const mysql = require('mysql');
 const express = require('express');
 
 const app = require('./api/app');
-const config = JSON.parse(fs.readFileSync('./config.json'))['deploy'];
+const config = JSON.parse(fs.readFileSync('./config.json'))['debug'];
 
 global.env = {
     fs: fs,
@@ -20,6 +20,17 @@ global.env = {
     config: config,
     form: (path) => { return JSON.parse(fs.readFileSync(path)) },
     input: (req) => { return {url: url.parse(req.url, true).query, body: req.body} },
+    date: () => {
+        const ts = Date.now();
+        const d = new Date(ts);
+        
+        return {
+            date: d.getDate(),
+            month: d.getMonth(),
+            year: d.getFullYear(),
+            current: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate()
+        };
+    },
     validate: (body, except) => {
         for (let [key, val] of Object.entries(body)) {
             if (except.includes(key)) continue;
@@ -43,6 +54,16 @@ global.env = {
         request.get({
             headers: {'content-type': 'application/json'},
             url: config.server.host + url,
+        }, (err, response, body) => {
+            if (!err)
+                then(JSON.parse(body));
+        });
+    },
+    post: (url, body, then) => {
+        request.post({
+            headers: {'content-type': 'application/json'},
+            url: config.server.host + url,
+            body: JSON.stringify(body)
         }, (err, response, body) => {
             if (!err)
                 then(JSON.parse(body));

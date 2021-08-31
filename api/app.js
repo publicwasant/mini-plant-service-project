@@ -4,6 +4,9 @@ const cors = require('cors');
 
 const app = express();
 
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -47,10 +50,17 @@ app.use('/order/item', require('./routes/order/item/item'));
 app.use('/order/item/add', require('./routes/order/item/add/add'));
 app.use('/order/item/edit', require('./routes/order/item/edit/edit'));
 app.use('/order/item/remove', require('./routes/order/item/remove/remove'));
-// app.use('/order/add', require('./routes/order/add/add'));
-// app.use('/order/detail', require('./routes/order/detail/detail'));
-// app.use('/order/detail/add', require('./routes/order/detail/add/add'));
-// app.use('/order/detail/connectToOrder', require('./routes/order/detail/connectToOrder/connectToOrder'));
+
+app.use('/shipment/', require('./routes/shipment/shipment'));
+app.use('/shipment/add', require('./routes/shipment/add/add'));
+app.use('/shipment/edit', require('./routes/shipment/edit/edit'));
+
+app.use('/payment', require('./routes/payment/payment'));
+app.use('/payment/add', require('./routes/payment/add/add'));
+app.use('/payment/edit', require('./routes/payment/edit/edit'));
+
+app.use('/media/image', require('./routes/media/image/image'));
+app.use('/media/image/add', require('./routes/media/image/add/add'));
 
 app.use((req, res) => {
     res.status(400);

@@ -9,9 +9,12 @@
             "user": "root",
             "password": "",
             "database": "comsci_mini-plant"
-        }, "media": {
-            "server": "http://mini-plant.comsciproject.com",
-            "path": "/media/images/"
+        }, "paths": {
+            "storage": {
+                "media": {
+                    "image": "/storage/media/images/"
+                }
+            }
         }
     }, 
     "deploy": {
@@ -24,9 +27,12 @@
             "user": "mini-plant",
             "password": "Pb3%5ez8",
             "database": "comsci_mini-plant"
-        }, "media": {
-            "server": "http://mini-plant.comsciproject.com",
-            "path": "/media/images/"
+        }, "paths": {
+            "storage": {
+                "media": {
+                    "image": "/storage/media/images/"
+                }
+            }
         }
     } 
 }

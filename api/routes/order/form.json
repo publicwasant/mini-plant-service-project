@@ -4,7 +4,7 @@
         "status": null,
         "descript": null,
         "error": null,
-        "data": {
+        "data": [{
             "id": null,
             "type": null,
             "date": null,
@@ -67,7 +67,15 @@
                     "status": null,
                     "image": null
                 }
-            }] 
-        }
+            }],
+            "shipment": {
+                "id": null,
+                "order_id": null,
+                "date": null,
+                "status": null
+            },
+            "payment": {
+            }
+        }]
     }
 }
