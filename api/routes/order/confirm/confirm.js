@@ -22,13 +22,16 @@ router.post('/', (req, res) => {
 
             if (result.length > 0) {
                 let total_price = result[0].total_price;
-                let sql = "INSERT INTO orders (order_type, order_date, order_totalPrice, cus_id, emp_id) VALUES ?";
+                let sql = "INSERT INTO orders (order_type, order_date, order_totalPrice, cus_id, emp_id, ship_bill, ship_status, pay_status) VALUES ?";
                 let values = [[
                     input.body.type,
                     input.body.date,
                     total_price,
                     input.body.customer_id,
-                    input.body.employee_id
+                    input.body.employee_id,
+                    null,
+                    0,
+                    0
                 ]];
 
                 env.database.query(sql, [values], (err, result) => {
@@ -57,34 +60,12 @@ router.post('/', (req, res) => {
                             }
 
                             if (result.affectedRows > 0) {
-                                env.post("/shipment/add", {order_id: order_id, bill: null}, (body) => {
-                                    if (body.status == 0) {
-                                        form.output.status = 0;
-                                        form.output.descript = "ทำรายการไม่สำเร็จ!";
-                                        form.output.error = "shipment insertion.";
-                                        form.output.data = [];
+                                env.get("/order?id=*", [order_id], (o) => {
+                                    form.output.status = 1;
+                                    form.output.descript = "ทำรายการสำเร็จแล้ว";
+                                    form.output.data = o.data[0];
 
-                                        return res.json(form.output);
-                                    }
-                                    
-                                    env.post("/payment/add", {order_id: order_id}, (body) => {
-                                        if (body.status == 0) {
-                                            form.output.status = 0;
-                                            form.output.descript = "ทำรายการไม่สำเร็จ!";
-                                            form.output.error = "payment insertion.";
-                                            form.output.data = [];
-
-                                            return res.json(form.output);
-                                        }
-
-                                        env.get("/order?id=*", [order_id], (o) => {
-                                            form.output.status = 1;
-                                            form.output.descript = "ทำรายการสำเร็จแล้ว";
-                                            form.output.data = o.data[0];
-        
-                                            return res.json(form.output);
-                                        });
-                                    });
+                                    return res.json(form.output);
                                 });
                             } else {
                                 form.output.status = 0;

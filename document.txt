@@ -952,17 +952,84 @@ Functions
         }
     }
 
-** 36. ค้นหาข้อมูลประวัติการสั่งซื้อของลูกค้า
-** 37. ออกรายงานประวัติการสั่งซื้อแบบรายวัน
-** 38. ออกรายงานประวัติการสั่งซื้อแบบรายเดือน
+** 36. ค้นหาข้อมูลประวัติการสั่งซื้อ
+    [GET]   ./history
 
-** 39. ค้นหารูปภาพ
-    [GIT]   ./media/image
+    INPUT:  
+            1. ค้นหาข้อมูลประวัติการสั่งซื้อของลูกค้า
+                *ดูประวัติการสั่งซื้อทั้งหมด, c=รหัสลูกค้า
+                http://mini-plant.comsciproject.com/history?c=XX
+                
+                *ดูประวัติการสั่งซื้อทั้งหมดตาม วัน-เดือน-ปี, c=รหัสลูกค้า, d=วันที่, m=เดือน, y=ปี
+                http://mini-plant.comsciproject.com/history?c=XX&d=XX&m=XX&y=XX
+                
+                *ดูประวัติการสั่งซื้อทั้งหมดตาม ช่วง วัน-เดือน-ปี, c=รหัสลูกค้า, s=วัน-เดือน-ปี เริ่ม, e=วัน-เดือน-ปี สิ้นสุด
+                http://mini-plant.comsciproject.com/history?c=XX&d=XX&s=XX-XX-XXXX&e=XX-XX-XXXX
+            
+            2. ค้นหาข้อมูลประวัติการสั่งซื้อของสินค้า
+                *ดูประวัติการสั่งซื้อทั้งหมด, p=รหัสสินค้า
+                http://mini-plant.comsciproject.com/history?p=XX
+                
+                *ดูประวัติการสั่งซื้อทั้งหมดตาม วัน-เดือน-ปี, p=รหัสสินค้า, d=วันที่, m=เดือน, y=ปี
+                http://mini-plant.comsciproject.com/history?p=XX&d=XX&m=XX&y=XX
+                
+                *ดูประวัติการสั่งซื้อทั้งหมดตาม ช่วง วัน-เดือน-ปี, p=รหัสสินค้า, s=วัน-เดือน-ปี เริ่ม, e=วัน-เดือน-ปี สิ้นสุด
+                http://mini-plant.comsciproject.com/history?p=XX&d=XX&s=XX-XX-XXXX&e=XX-XX-XXXX
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": [{
+            "id": null,
+            "order_id": null,
+            "amount": null,
+            "price": null,
+            "product": {
+                "id": null,
+                "name": null,
+                "detail": null,
+                "type": null,
+                "status": null,
+                "size": [],
+                "images": [],
+                "promotion": {
+                    "id": null,
+                    "detail": null,
+                    "discount": null,
+                    "start": null,
+                    "end": null,
+                    "images": []
+                },
+                "price": {
+                    "original": null,
+                    "actual": null,
+                    "discount": {
+                        "percent": null,
+                        "difference": null
+                    }
+                }
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            }
+        }]
+    }
+
+** 37. ค้นหารูปภาพ
+    [GET]   ./media/image
 
     INPUT:  http://mini-plant.comsciproject.com/media/image?p=XXX.jpg
     OUPUT:  <image>
 
-** 40. เพิ่มรูปภาพ
+** 38. เพิ่มรูปภาพ
     [POST]  ./media/image/add
 
     INPUT: 
@@ -973,5 +1040,10 @@ Functions
 
     OUPUT:
     {
-        "url": null
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "url": null
+        }
     }

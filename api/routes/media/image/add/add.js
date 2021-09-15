@@ -2,12 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const preparation_data = (type, base64) => {
-    var matches = base64.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
     var invent_name = Math.random().toString(36).replace("0.", "");
-        
+    
     return {
         name: invent_name + "." + type,
-        data: Buffer.from(matches[2], "base64")
+        data: Buffer.from(base64, "base64")
     };
 };
 

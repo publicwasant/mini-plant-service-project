@@ -28,7 +28,7 @@ global.env = {
             date: d.getDate(),
             month: d.getMonth(),
             year: d.getFullYear(),
-            current: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate()
+            current:  d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear()
         };
     },
     validate: (body, except) => {

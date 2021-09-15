@@ -59,6 +59,8 @@ app.use('/payment', require('./routes/payment/payment'));
 app.use('/payment/add', require('./routes/payment/add/add'));
 app.use('/payment/edit', require('./routes/payment/edit/edit'));
 
+app.use('/history', require('./routes/history/history'));
+
 app.use('/media/image', require('./routes/media/image/image'));
 app.use('/media/image/add', require('./routes/media/image/add/add'));
 
