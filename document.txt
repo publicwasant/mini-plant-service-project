@@ -1,5 +1,5 @@
 ** 1. ค้นหาข้อมูลลูกค้า
-    [GET]   ./user/customer
+    [GET]   http://mini-plant.comsciproject.com/user/customer
 
     INPUT:  http://mini-plant.comsciproject.com/user/customer
             http://mini-plant.comsciproject.com/user/customer?id=XX
@@ -17,12 +17,13 @@
             "addr": null,
             "phone": null,
             "status": null,
-            "image": null
+            "image": null,
+            "shoprated": null
         }]
     }
 
 ** 2. เปลี่ยนรหัสผ่านลูกค้า
-    [PUT]   ./user/customer/reset_password
+    [PUT]   http://mini-plant.comsciproject.com/user/customer/reset_password
 
     INPUT:  http://mini-plant.comsciproject.com/user/customer/reset_password
     {
@@ -43,7 +44,7 @@
     }
 
 ** 3. แก้ไขข้อมูลลูกค้า
-    [PUT]   ./user/customer/edit
+    [PUT]   http://mini-plant.comsciproject.com/user/customer/edit
 
     INPUT:  http://mini-plant.comsciproject.com/user/customer/edit
     {
@@ -53,7 +54,8 @@
         "addr": null,
         "phone": null,
         "status": null,
-        "image": null
+        "image": null,
+        "shoprated": null
     }
 
     OUTPUT:
@@ -73,7 +75,7 @@
     }
 
 ** 4. ค้นหาข้อมูลพนักงาน
-    [GET]   ./user/employee 
+    [GET]   http://mini-plant.comsciproject.com/user/employee 
     
     INPUT:  http://mini-plant.comsciproject.com/user/employee 
             http://mini-plant.comsciproject.com/user/employee?id=XX
@@ -97,7 +99,7 @@
     }
 
 ** 5. เปลี่ยนรหัสผ่านพนักงาน
-    [PUT]   ./user/employee/reset_password
+    [PUT]   http://mini-plant.comsciproject.com/user/employee/reset_password
 
     INPUT:  http://mini-plant.comsciproject.com/user/employee/reset_password
     {
@@ -118,7 +120,7 @@
     }
 
 ** 6. เพิ่มข้อมูลพนักงาน
-    [POST]  ./user/employee/add 
+    [POST]  http://mini-plant.comsciproject.com/user/employee/add 
 
     INPUT:  http://mini-plant.comsciproject.com/user/employee/add
     {
@@ -151,7 +153,7 @@
     }
 
 ** 7. แก้ไขข้อมูลพนักงาน
-    [POST]  ./user/employee/edit
+    [POST]  http://mini-plant.comsciproject.com/user/employee/edit
 
     INPUT:  http://mini-plant.comsciproject.com/user/employee/edit
     {
@@ -183,7 +185,7 @@
     }
 
 ** 8. เข้าสู่ระบบ
-    [POST]  ./user/login
+    [POST]  http://mini-plant.comsciproject.com/user/login
 
     INPUT:  http://mini-plant.comsciproject.com/user/login
     {
@@ -206,7 +208,7 @@
 ** 9. ออกจากระบบ
 
 ** 10. สมัครสมาชิก
-    [POST]  ./user/register
+    [POST]  http://mini-plant.comsciproject.com/user/register
 
     INPUT:  http://mini-plant.comsciproject.com/user/register
     {
@@ -237,15 +239,242 @@
     }
 
 ** 11. ค้นหาข้อมูลร้านค้า
-** 12. ค้นหาข้อมูลแสดงความคิดของร้าน
-** 13. เพิ่มการแสดงความคิดเห็นต่อร้านของลูกค้า
-** 14. เพิ่มการตอบความคิดเห็นต่อร้านของพนักงาน
-** 15. เพิ่มคะแนนต่อร้าน
-** 16. เพิ่มข้อมูลร้าน
-** 17. แก้ไขข้อมูลร้าน
+    [GET]   http://mini-plant.comsciproject.com/shop
+
+    INPUT: http://mini-plant.comsciproject.com/shop
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "shop": {
+                "email": null,
+                "phone": null,
+                "images": []
+            }, 
+            "bank": {
+                "name": null,
+                "owner": null,
+                "number": null,
+                "prompay": null
+            }
+        }
+    }
+
+** 12. แก้ไขข้อมูลร้าน
+    [PUT]   http://mini-plant.comsciproject.com/shop/edit
+
+    input: 
+    {
+        "shop": {
+            "email": null,
+            "phone": null,
+            "images": []
+        }, 
+        "bank": {
+            "name": null,
+            "owner": null,
+            "number": null,
+            "prompay": null
+        }
+    }
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "shop": {
+                "email": null,
+                "phone": null,
+                "images": []
+            }, 
+            "bank": {
+                "name": null,
+                "owner": null,
+                "number": null,
+                "prompay": null
+            }
+        }
+    }
+
+** 13. ค้นหาข้อมูลการแสดงความคิดเห็นของร้าน
+    [GET]   http://mini-plant.comsciproject.com/shop/comment
+
+    INPUT:  http://mini-plant.comsciproject.com/shop/comment
+            http://mini-plant.comsciproject.com/shop/comment?id=XX
+            http://mini-plant.comsciproject.com/shop/comment?previous_id=XX
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": [{
+            "id": null,
+            "previous_id": null,
+            "date": null,
+            "text": null,
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null,
+                "shoprated": null
+            },
+            "replier": [{
+                "id": null,
+                "previous_id": null,
+                "date": null,
+                "text": null,
+                "employee": {
+                    "id": null,
+                    "username": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
+                },
+                "customer": {
+                    "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null,
+                    "shoprated": null             
+                }
+            }]
+        }]
+    }
+
+** 14. เพิ่มการแสดงความคิดเห็นต่อร้าน
+    [POST]  http://mini-plant.comsciproject.com/shop/comment/add
+
+    INPUT: 
+    {
+        "previous_id": null,
+        "employee_id": null,
+        "customer_id": null,
+        "text": null
+    }
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "previous_id": null,
+            "date": null,
+            "text": null,
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null,
+                "shoprated": null       
+            }
+        }
+    }
+
+** 15. ลบการแสดงความคิดเห็นต่อร้าน
+    [POST]  http://mini-plant.comsciproject.com/shop/comment/delete
+
+    INPUT: 
+    {
+        "id": null,
+        "employee_id": null,
+        "customer_id": null
+    }
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+        }
+    }
+
+** 16. แก้ไขการแสดงความคิดเห็นต่อร้าน
+    [PUT]   http://mini-plant.comsciproject.com/shop/comment/edit
+
+    INPUT: 
+    {
+        "id": null,
+        "text": null
+    }
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "previous_id": null,
+            "date": null,
+            "text": null,
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null,
+                "shoprated": null       
+            }
+        }
+    }
+
 
 ** 18. ค้นหาข้อมูลสินค้า
-    [GET]   ./product
+    [GET]   http://mini-plant.comsciproject.com/product
 
     INPUT:  http://mini-plant.comsciproject.com/product
             http://mini-plant.comsciproject.com/product?id=XX
@@ -284,7 +513,7 @@
     }
 
 ** 19. เพิ่มข้อมูลสินค้า
-    [POST]  ./product/add
+    [POST]  http://mini-plant.comsciproject.com/product/add
     
     INPUT:  http://mini-plant.comsciproject.com/product/add 
     {
@@ -330,7 +559,7 @@
     }
 
 ** 20. แก้ไขข้อมูลสินค้า
-    [PUT] ./product/edit
+    [PUT] http://mini-plant.comsciproject.com/product/edit
 
     INPUT:  http://mini-plant.comsciproject.com/product/edit 
     {
@@ -397,7 +626,7 @@ Functions
 
 
 ** 21. ค้นหาข้อมูลการสั่งซื้อ
-    [GET]   ./order
+    [GET]   http://mini-plant.comsciproject.com/order
     
     INPUT:  http://mini-plant.comsciproject.com/order?id=XX
              http://mini-plant.comsciproject.com/order?customer_id=XX
@@ -476,7 +705,7 @@ Functions
     }
 
 ** 22. เพิ่มข้อมูลการสั่งซื้อ
-    [POST]  ./order/confirm 
+    [POST]  http://mini-plant.comsciproject.com/order/confirm 
     
     INPUT:  http://mini-plant.comsciproject.com/order/confirm
     {
@@ -559,7 +788,7 @@ Functions
     }
 
 ** 23. ค้นหาข้อมูลรายละเอียดการสั่งซื้อ
-    [GET] ./order/item
+    [GET] http://mini-plant.comsciproject.com/order/item
 
     INPUT:  http://mini-plant.comsciproject.com/order/item
             http://mini-plant.comsciproject.com/order/item?id=XX
@@ -614,7 +843,7 @@ Functions
     }
 
 ** 24. เพิ่มข้อมูลรายละเอียดการสั่งซื้อ
-    [POST] ./order/item/add
+    [POST] http://mini-plant.comsciproject.com/order/item/add
 
     INPUT:  http://mini-plant.comsciproject.com/order/item/add
     {
@@ -671,7 +900,7 @@ Functions
     }
 
 ** 25. แก้ไขข้อมูลรายละเอียดการสั่งซื้อ
-    [PUT] ./order/item/edit
+    [PUT] http://mini-plant.comsciproject.com/order/item/edit
 
     INPUT:  http://mini-plant.comsciproject.com/order/item/edit
     {
@@ -727,7 +956,7 @@ Functions
     }
 
 ** 26. ลบข้อมูลรายละเอียดการสั่งซื้อ
-    [POST] ./order/item/remove
+    [POST] http://mini-plant.comsciproject.com/order/item/remove
 
     INPUT:  http://mini-plant.comsciproject.com/order/item/remove
     {
@@ -743,7 +972,7 @@ Functions
     }
 
 ** 27. ค้นหาข้อมูลโปรโมชั่น
-    [GET] ./promotion
+    [GET] http://mini-plant.comsciproject.com/promotion
 
     INPUT:  http://mini-plant.comsciproject.com/promotion **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
             http://mini-plant.comsciproject.com/promotion?id=XX
@@ -766,7 +995,7 @@ Functions
 
 
 ** 28. เพิ่มข้อมูลโปรโมชั่น
-    [POST] ./promotion/add
+    [POST] http://mini-plant.comsciproject.com/promotion/add
 
     INPUT:
     {
@@ -795,7 +1024,7 @@ Functions
 
 
 ** 29. แก้ไขข้อมูลโปรโมชั่น
-    [PUT] ./promotion/edit
+    [PUT] http://mini-plant.comsciproject.com/promotion/edit
 
     INPUT: 
     {
@@ -824,7 +1053,7 @@ Functions
 
 
 ** 30. ค้นหาข้อมูลการจัดส่ง
-    [GET] ./shipment
+    [GET] http://mini-plant.comsciproject.com/shipment
 
     INPUT:  http://mini-plant.comsciproject.com/shipment
             http://mini-plant.comsciproject.com/shipment?id=XX
@@ -844,7 +1073,7 @@ Functions
     }
 
 ** 31. เพิ่มข้อมูลการจัดส่ง
-    [POST]  ./shipment/add
+    [POST]  http://mini-plant.comsciproject.com/shipment/add
 
     INPUT:
     {
@@ -866,7 +1095,7 @@ Functions
     }
 
 ** 32. แก้ไขข้อมูลการจัดส่ง
-    [PUT]   ./shipment/edit
+    [PUT]   http://mini-plant.comsciproject.com/shipment/edit
 
     INPUT:
     {
@@ -890,7 +1119,7 @@ Functions
     }
 
 ** 33. ค้นหาข้อมูลการชำระ
-    [GET]   ./payment
+    [GET]   http://mini-plant.comsciproject.com/payment
 
     INPUT:  http://mini-plant.comsciproject.com/payment
             http://mini-plant.comsciproject.com/payment?id=XX
@@ -910,7 +1139,7 @@ Functions
     }
 
 ** 34. เพิ่มข้อมูลการชำระ
-    [POST]  ./payment/add
+    [POST]  http://mini-plant.comsciproject.com/payment/add
 
     INPUT:
     {
@@ -931,7 +1160,7 @@ Functions
     }
 
 ** 35. แก้ไขข้อมูลการชำระ
-    [PUT]  ./payment/edit
+    [PUT]  http://mini-plant.comsciproject.com/payment/edit
 
     INPUT:
     {
@@ -953,7 +1182,7 @@ Functions
     }
 
 ** 36. ค้นหาข้อมูลประวัติการสั่งซื้อ
-    [GET]   ./history
+    [GET]   http://mini-plant.comsciproject.com/history
 
     INPUT:  
             1. ค้นหาข้อมูลประวัติการสั่งซื้อของลูกค้า
@@ -1024,13 +1253,13 @@ Functions
     }
 
 ** 37. ค้นหารูปภาพ
-    [GET]   ./media/image
+    [GET]   http://mini-plant.comsciproject.com/media/image
 
     INPUT:  http://mini-plant.comsciproject.com/media/image?p=XXX.jpg
     OUPUT:  <image>
 
 ** 38. เพิ่มรูปภาพ
-    [POST]  ./media/image/add
+    [POST]  http://mini-plant.comsciproject.com/media/image/add
 
     INPUT: 
     {

@@ -29,7 +29,8 @@ let reorganize = (items) => {
             addr: val.cus_addr,
             phone: val.cus_phone,
             status: val.cus_status,
-            image: val.cus_imgURL 
+            image: val.cus_imgURL,
+            shoprated: val.cus_shoprated
         };
     }
 

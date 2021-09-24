@@ -1,7 +1,6 @@
 {
     "input": {
         "type": null,
-        "date": null,
         "customer_id": null,
         "employee_id": null
     },
@@ -21,7 +20,8 @@
                 "addr": null,
                 "phone": null,
                 "status": null,
-                "image": null
+                "image": null,
+                "shoprated": null
             },
             "employee": {
                 "id": null,

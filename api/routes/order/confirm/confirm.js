@@ -22,16 +22,12 @@ router.post('/', (req, res) => {
 
             if (result.length > 0) {
                 let total_price = result[0].total_price;
-                let sql = "INSERT INTO orders (order_type, order_date, order_totalPrice, cus_id, emp_id, ship_bill, ship_status, pay_status) VALUES ?";
+                let sql = "INSERT INTO orders (order_type, order_totalPrice, cus_id, emp_id) VALUES ?";
                 let values = [[
                     input.body.type,
-                    input.body.date,
                     total_price,
                     input.body.customer_id,
                     input.body.employee_id,
-                    null,
-                    0,
-                    0
                 ]];
 
                 env.database.query(sql, [values], (err, result) => {

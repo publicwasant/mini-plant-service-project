@@ -20,16 +20,38 @@ global.env = {
     config: config,
     form: (path) => { return JSON.parse(fs.readFileSync(path)) },
     input: (req) => { return {url: url.parse(req.url, true).query, body: req.body} },
-    date: () => {
-        const ts = Date.now();
-        const d = new Date(ts);
-        
-        return {
-            date: d.getDate(),
-            month: d.getMonth(),
-            year: d.getFullYear(),
-            current:  d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear()
-        };
+    date: {
+        simple: () => {
+            const date = new Date();
+
+            const d = ("0" + date.getDate()).slice(-2);
+            const m = ("0" + (date.getMonth() + 1)).slice(-2);
+            const y = date.getFullYear();
+
+            return y + "-" + m + "-" + d;
+        },
+        full: () => {
+            const date = new Date();
+
+            const d = ("0" + date.getDate()).slice(-2);
+            const m = ("0" + (date.getMonth() + 1)).slice(-2);
+            const y = date.getFullYear();
+
+            let h = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+
+            return y + "-" + m + "-" + d + " " + h + ":" + min + ":" + sec;
+        },
+        time: () => {
+            const date = new Date();
+
+            let h = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+
+            return h + ":" + min + ":" + sec;
+        }
     },
     validate: (body, except) => {
         for (let [key, val] of Object.entries(body)) {
@@ -68,7 +90,7 @@ global.env = {
             if (!err)
                 then(JSON.parse(body));
         });
-    }
+    },
 };
 
 http.createServer(app).listen(process.env.port || env.config.server.port);

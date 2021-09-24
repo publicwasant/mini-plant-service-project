@@ -4,11 +4,58 @@
     "output": {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
-        "data": {
-        }
+        "error": null,
+        "data": [{
+            "id": null,
+            "previous_id": null,
+            "date": null,
+            "text": null,
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null,
+                "shoprated": null
+            },
+            "replier": [{
+                "id": null,
+                "previous_id": null,
+                "date": null,
+                "text": null,
+                "employee": {
+                    "id": null,
+                    "username": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
+                },
+                "customer": {
+                    "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null,
+                    "shoprated": null             
+                }
+            }]
+        }]
     }
 }

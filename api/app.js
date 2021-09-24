@@ -32,9 +32,11 @@ app.use('/user/employee/add', require('./routes/user/employee/add/add'));
 app.use('/user/employee/edit', require('./routes/user/employee/edit/edit'));
 
 app.use('/shop', require('./routes/shop/shop'));
-app.use('/shop/rating', require('./routes/shop/rating/rating'))
-app.use('/shop/add', require('./routes/shop/add/add'));
 app.use('/shop/edit', require('./routes/shop/edit/edit'));
+app.use('/shop/comment', require('./routes/shop/comment/comment'));
+app.use('/shop/comment/add', require('./routes/shop/comment/add/add'));
+app.use('/shop/comment/delete', require('./routes/shop/comment/delete/delete'));
+app.use('/shop/comment/edit', require('./routes/shop/comment/edit/edit'));
 
 app.use('/product', require('./routes/product/product'));
 app.use('/product/add', require('./routes/product/add/add'));
@@ -50,14 +52,8 @@ app.use('/order/item', require('./routes/order/item/item'));
 app.use('/order/item/add', require('./routes/order/item/add/add'));
 app.use('/order/item/edit', require('./routes/order/item/edit/edit'));
 app.use('/order/item/remove', require('./routes/order/item/remove/remove'));
-
-app.use('/shipment/', require('./routes/shipment/shipment'));
-app.use('/shipment/add', require('./routes/shipment/add/add'));
-app.use('/shipment/edit', require('./routes/shipment/edit/edit'));
-
-app.use('/payment', require('./routes/payment/payment'));
-app.use('/payment/add', require('./routes/payment/add/add'));
-app.use('/payment/edit', require('./routes/payment/edit/edit'));
+app.use('/order/shipment/edit', require('./routes/order/shipment/edit/edit'));
+app.use('/order/payment/edit', require('./routes/order/payment/edit/edit'));
 
 app.use('/history', require('./routes/history/history'));
 

@@ -1,0 +1,39 @@
+{
+    "input": {
+        "previous_id": null,
+        "employee_id": null,
+        "customer_id": null,
+        "text": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "previous_id": null,
+            "date": null,
+            "text": null,
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null,
+                "shoprated": null       
+            }
+        }
+    }
+}

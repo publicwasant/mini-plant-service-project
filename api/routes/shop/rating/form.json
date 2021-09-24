@@ -1,21 +1,13 @@
 {
     "input": {
-        "srate_cus_id": null,
-        "srate_shop_id": null,
-        "srate_points": null
+        "customer_id": null,
+        "rate": null
     },
     "output": {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "srate_id": null,
-            "srate_cus_id": null,
-            "srate_shop_id": null,
-            "srate_points": null
         }
     }
 }

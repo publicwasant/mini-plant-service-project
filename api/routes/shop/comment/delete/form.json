@@ -1,0 +1,14 @@
+{
+    "input": {
+        "id": null,
+        "employee_id": null,
+        "customer_id": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+        }
+    }
+}

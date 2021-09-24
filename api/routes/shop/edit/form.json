@@ -1,36 +1,33 @@
 {
     "input": {
-        "shop_id": null,
-        "shop_name": null,
-        "shop_emp_id": null,
-        "shop_imgs": null,
-        "shop_addr": null,
-        "shop_email": null,
-        "shop_phone": null,
-        "shop_bk_name": null,
-        "shop_bk_owner": null,
-        "shop_bk_number": null,
-        "shop_bk_promptpay": null
+        "shop": {
+            "email": null,
+            "phone": null,
+            "images": []
+        }, 
+        "bank": {
+            "name": null,
+            "owner": null,
+            "number": null,
+            "prompay": null
+        }
     },
     "output": {
         "status": null,
         "descript": null,
-        "error": {
-            "state": null,
-            "message": null
-        },
+        "error": null,
         "data": {
-            "shop_id": null,
-            "shop_name": null,
-            "shop_emp_id": null,
-            "shop_imgs": null,
-            "shop_addr": null,
-            "shop_email": null,
-            "shop_phone": null,
-            "shop_bk_name": null,
-            "shop_bk_owner": null,
-            "shop_bk_number": null,
-            "shop_bk_promptpay": null
+            "shop": {
+                "email": null,
+                "phone": null,
+                "images": []
+            }, 
+            "bank": {
+                "name": null,
+                "owner": null,
+                "number": null,
+                "prompay": null
+            }
         }
     }
 }
