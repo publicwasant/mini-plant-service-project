@@ -33,6 +33,7 @@ app.use('/user/employee/edit', require('./routes/user/employee/edit/edit'));
 
 app.use('/shop', require('./routes/shop/shop'));
 app.use('/shop/edit', require('./routes/shop/edit/edit'));
+app.use('/shop/rating', require('./routes/shop/rating/rating'));
 app.use('/shop/comment', require('./routes/shop/comment/comment'));
 app.use('/shop/comment/add', require('./routes/shop/comment/add/add'));
 app.use('/shop/comment/delete', require('./routes/shop/comment/delete/delete'));

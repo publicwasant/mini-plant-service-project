@@ -301,7 +301,34 @@
         }
     }
 
-** 13. ค้นหาข้อมูลการแสดงความคิดเห็นของร้าน
+** 13. แก้ไขข้อมูลการให้คะแนนร้าน
+    [PUT]   http://mini-plant.comsciproject.com/shop/rating
+
+    INPUT: 
+    {
+        "customer_id": null,
+        "rate": null
+    }
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "name": null,
+            "email": null,
+            "addr": null,
+            "phone": null,
+            "status": null,
+            "image": null,
+            "shoprated": null
+        }
+    }
+}
+
+** 14. ค้นหาข้อมูลการแสดงความคิดเห็นของร้าน
     [GET]   http://mini-plant.comsciproject.com/shop/comment
 
     INPUT:  http://mini-plant.comsciproject.com/shop/comment
@@ -367,7 +394,7 @@
         }]
     }
 
-** 14. เพิ่มการแสดงความคิดเห็นต่อร้าน
+** 15. เพิ่มการแสดงความคิดเห็นต่อร้าน
     [POST]  http://mini-plant.comsciproject.com/shop/comment/add
 
     INPUT: 
@@ -411,7 +438,7 @@
         }
     }
 
-** 15. ลบการแสดงความคิดเห็นต่อร้าน
+** 16. ลบการแสดงความคิดเห็นต่อร้าน
     [POST]  http://mini-plant.comsciproject.com/shop/comment/delete
 
     INPUT: 
@@ -430,7 +457,7 @@
         }
     }
 
-** 16. แก้ไขการแสดงความคิดเห็นต่อร้าน
+** 17. แก้ไขการแสดงความคิดเห็นต่อร้าน
     [PUT]   http://mini-plant.comsciproject.com/shop/comment/edit
 
     INPUT: 

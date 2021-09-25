@@ -10,7 +10,7 @@ router.put('/', (req, res) => {
     if (vat.valid) {
         if (input.body.rate >= 0 && input.body.rate <= 5) {
             const sql = "UPDATE customers SET cus_shoprated=? WHERE cus_id=?";
-            const values = [input.body.rate, input.body.id];
+            const values = [input.body.rate, input.body.customer_id];
 
             env.database.query(sql, values, (err, result) => {
                 if (err) {
@@ -23,10 +23,10 @@ router.put('/', (req, res) => {
                 }
 
                 if (result.affectedRows > 0) {
-                    env.get("/user/customers?id=*", [input.body.customer_id], (c) => {
+                    env.get("/user/customer?id=*", [input.body.customer_id], (c) => {
                         form.output.status = 1;
                         form.output.descript = "ทำรายการสำเร็จแล้ว";
-                        form.output.data = c.data[0];
+                        form.output.data = c.data;
 
                         return res.json(form.output);
                     });
