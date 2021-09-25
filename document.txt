@@ -1212,69 +1212,85 @@ Functions
     [GET]   http://mini-plant.comsciproject.com/history
 
     INPUT:  
-            1. ค้นหาข้อมูลประวัติการสั่งซื้อของลูกค้า
-                *ดูประวัติการสั่งซื้อทั้งหมด, c=รหัสลูกค้า
-                http://mini-plant.comsciproject.com/history?c=XX
+            1. ค้นหาข้อมูลประวัติการสั่งซื้อทั้งหมด
+                *ดูประวัติการสั่งซื้อทั้งหมด
+                http://mini-plant.comsciproject.com/history
                 
-                *ดูประวัติการสั่งซื้อทั้งหมดตาม วัน-เดือน-ปี, c=รหัสลูกค้า, d=วันที่, m=เดือน, y=ปี
-                http://mini-plant.comsciproject.com/history?c=XX&d=XX&m=XX&y=XX
+                *ดูประวัติการสั่งซื้อทั้งหมดตามวันที่ (YY-MM-DD)
+                http://mini-plant.comsciproject.com/history&&date=2021-09-25
                 
-                *ดูประวัติการสั่งซื้อทั้งหมดตาม ช่วง วัน-เดือน-ปี, c=รหัสลูกค้า, s=วัน-เดือน-ปี เริ่ม, e=วัน-เดือน-ปี สิ้นสุด
-                http://mini-plant.comsciproject.com/history?c=XX&d=XX&s=XX-XX-XXXX&e=XX-XX-XXXX
-            
-            2. ค้นหาข้อมูลประวัติการสั่งซื้อของสินค้า
-                *ดูประวัติการสั่งซื้อทั้งหมด, p=รหัสสินค้า
-                http://mini-plant.comsciproject.com/history?p=XX
-                
-                *ดูประวัติการสั่งซื้อทั้งหมดตาม วัน-เดือน-ปี, p=รหัสสินค้า, d=วันที่, m=เดือน, y=ปี
-                http://mini-plant.comsciproject.com/history?p=XX&d=XX&m=XX&y=XX
-                
-                *ดูประวัติการสั่งซื้อทั้งหมดตาม ช่วง วัน-เดือน-ปี, p=รหัสสินค้า, s=วัน-เดือน-ปี เริ่ม, e=วัน-เดือน-ปี สิ้นสุด
-                http://mini-plant.comsciproject.com/history?p=XX&d=XX&s=XX-XX-XXXX&e=XX-XX-XXXX
+                *ดูประวัติการสั่งซื้อทั้งหมดตามช่วงวันที่ (YY-MM-DD)
+                http://mini-plant.comsciproject.com/history&&from=2021-05-25&&to=2021-10-10
 
-    OUTPUT:
+            2. ค้นหาข้อมูลประวัติการสั่งซื้อของลูกค้า
+                *ดูประวัติการสั่งซื้อทั้งหมด
+                http://mini-plant.comsciproject.com/history?customer_id=13
+                
+                *ดูประวัติการสั่งซื้อทั้งหมดตามวันที่ (YY-MM-DD)
+                http://mini-plant.comsciproject.com/history?customer_id=13&&date=2021-09-25
+                
+                *ดูประวัติการสั่งซื้อทั้งหมดตามช่วงวันที่ (YY-MM-DD)
+                http://mini-plant.comsciproject.com/history?customer_id=13&&from=2021-05-25&&to=2021-10-10
+            
+            3. ค้นหาข้อมูลประวัติการสั่งซื้อของสินค้า
+                *ดูประวัติการสั่งซื้อทั้งหมด
+                http://mini-plant.comsciproject.com/history?product_id=16
+                
+                *ดูประวัติการสั่งซื้อทั้งหมดตามวันที่ (YY-MM-DD)
+                http://mini-plant.comsciproject.com/history?product_id=16&&date=2021-09-25
+                
+                *ดูประวัติการสั่งซื้อทั้งหมดตามช่วงวันที่ (YY-MM-DD)
+                http://mini-plant.comsciproject.com/history?product_id=16&&from=2021-05-25&&to=2021-10-10
+
+    OUTPUT: 
     {
         "status": null,
         "descript": null,
         "error": null,
         "data": [{
-            "id": null,
-            "order_id": null,
-            "amount": null,
-            "price": null,
-            "product": {
+            "order": {
                 "id": null,
-                "name": null,
-                "detail": null,
                 "type": null,
-                "status": null,
-                "size": [],
-                "images": [],
-                "promotion": {
-                    "id": null,
-                    "detail": null,
-                    "discount": null,
-                    "start": null,
-                    "end": null,
-                    "images": []
-                },
-                "price": {
-                    "original": null,
-                    "actual": null,
-                    "discount": {
-                        "percent": null,
-                        "difference": null
-                    }
-                }
+                "date": null
             },
-            "customer": {
+            "item": {
                 "id": null,
-                "name": null,
-                "email": null,
-                "addr": null,
-                "phone": null,
-                "status": null,
-                "image": null
+                "amount": null,
+                "product": {
+                    "id": null,
+                    "name": null,
+                    "detail": null,
+                    "type": null,
+                    "status": null,
+                    "size": [],
+                    "images": [],
+                    "promotion": {
+                        "id": null,
+                        "detail": null,
+                        "discount": null,
+                        "start": null,
+                        "end": null,
+                        "images": []
+                    },
+                    "price": {
+                        "original": null,
+                        "actual": null,
+                        "discount": {
+                            "percent": null,
+                            "difference": null
+                        }
+                    }
+                },
+                "customer": {
+                    "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null,
+                    "shoprated": null
+                }
             }
         }]
     }
