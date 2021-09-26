@@ -20,6 +20,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 
 app.use('/user/login', require('./routes/user/login/login'));
+app.use('/user/logout', require('./routes/user/logout/logout'));
 app.use('/user/register', require('./routes/user/register/register'));
 
 app.use('/user/customer', require('./routes/user/customer/customer'));
