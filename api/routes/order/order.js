@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const token = require('./../../../jwt_token');
+
 let alternate = (param) => {
     if (param.id) {
         return {
@@ -60,7 +62,11 @@ let reorganize = (items, then) => {
     fetch(0);
 };
 
-router.get('/', (req, res) => {
+router.get('/', token.auth((payload, done) => {
+    token.verify(payload, (result) => {
+        return done(null, result);
+    });
+}), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 

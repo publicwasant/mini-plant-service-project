@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const token = require('./../../../jwt_token');
+
 const alternate = (param) => {
     if (param.customer_id) {
         return {
@@ -81,7 +83,11 @@ const inDate = (date1, date2) => {
         && (d1.getDate() == d2.getDate());
 };
 
-router.get('/', (req, res) => {
+router.get('/', token.auth((payload, done) => {
+    token.verify(payload, (result) => {
+        return done(null, result);
+    });
+}), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 

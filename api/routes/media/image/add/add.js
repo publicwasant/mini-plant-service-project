@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const token = require('./../../../../../jwt_token');
+
 const preparation_data = (type, base64) => {
     var invent_name = Math.random().toString(36).replace("0.", "");
     
@@ -10,7 +12,11 @@ const preparation_data = (type, base64) => {
     };
 };
 
-router.post('/', (req, res) => {
+router.post('/', token.auth((payload, done) => {
+    token.verify(payload, (result) => {
+        return done(null, result);
+    });
+}), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 

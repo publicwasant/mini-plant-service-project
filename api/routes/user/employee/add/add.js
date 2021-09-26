@@ -1,7 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/', (req, res) => {
+const token = require('./../../../../../jwt_token');
+
+router.post('/', token.auth((payload, done) => {
+    if (payload.status != 0)
+        return done(null, false);
+
+    token.verify(payload, (result) => {
+        return done(null, result);
+    });
+}), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
@@ -35,10 +44,12 @@ router.post('/', (req, res) => {
                 }
 
                 if (result.affectedRows > 0) {
-                    env.get("/user/employee?id=*", [result.insertId], (e) => {
+                    token.generate(0, result.insertId, (token) => {
                         form.output.status = 1;
                         form.output.descript = 'บันทึกข้อมูลสำเร็จแล้ว';
-                        form.output.data = e.data[0];
+                        form.output.data = {
+                            token: token
+                        };
                         
                         return res.json(form.output);
                     });

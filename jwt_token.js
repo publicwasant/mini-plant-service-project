@@ -73,7 +73,7 @@ const generate = (status, id, then) => {
 
 const deny = (status, id, then) => {
     edit(status, id, "-", (result) => {
-        then(result);
+        return then(result);
     });
 };
 

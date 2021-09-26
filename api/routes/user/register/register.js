@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const token = require('./../../../../jwt_token');
+
 router.post('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -9,11 +11,11 @@ router.post('/', (req, res) => {
 
     if (vat.valid) {
         if (input.body.password == input.body.retype_password) {
-            let sql = "INSERT INTO customers"
+            const sql = "INSERT INTO customers"
                 + "(cus_email, cus_name, cus_addr, cus_phone, cus_imgURL, cus_password)"
                 + "VALUES ?";
 
-            let values = [[
+            const values = [[
                 input.body.email,
                 input.body.name,
                 input.body.addr,
@@ -33,10 +35,12 @@ router.post('/', (req, res) => {
                 }
 
                 if (result.affectedRows > 0) {
-                    env.get("/user/customer?id=*", [result.insertId], (c) => {
+                    token.generate(1, result.insertId, (token) => {
                         form.output.status = 1;
                         form.output.descript = 'บันทึกข้อมูลสำเร็จแล้ว';
-                        form.output.data = c.data[0];
+                        form.output.data = {
+                            token: token
+                        };
                         
                         return res.json(form.output);
                     });

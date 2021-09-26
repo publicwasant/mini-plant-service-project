@@ -15,14 +15,7 @@
         "descript": null,
         "error": null,
         "data": {
-            "id": null,
-            "username": null,
-            "name": null,
-            "email": null,
-            "addr": null,
-            "phone": null,
-            "status": null,
-            "image": null
+            "token": null
         }
     }
 }

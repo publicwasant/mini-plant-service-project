@@ -141,14 +141,7 @@
         "descript": null,
         "error": null,
         "data": {
-            "id": null,
-            "username": null,
-            "name": null,
-            "email": null,
-            "addr": null,
-            "phone": null,
-            "status": null,
-            "image": null
+            "token": null
         }
     }
 
@@ -206,6 +199,21 @@
     }
 
 ** 9. ออกจากระบบ
+    [POST]  http://mini-plant.comsciproject.com/user/logout
+
+    INPUT:
+    {
+        "status": null      <-- 0=employee, 1=customer,
+        "id": null
+    }
+
+    OUTOUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": null
+    }
 
 ** 10. สมัครสมาชิก
     [POST]  http://mini-plant.comsciproject.com/user/register
@@ -228,13 +236,7 @@
         "descript": null,
         "error": null,
         "data": {
-            "id": null,
-            "name": null,
-            "email": null,
-            "addr": null,
-            "phone": null,
-            "status": null,
-            "image": null
+            "token": null
         }
     }
 

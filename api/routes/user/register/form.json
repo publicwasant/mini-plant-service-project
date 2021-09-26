@@ -1,6 +1,5 @@
 {
     "input": {
-        "id": null,
         "name": null,
         "email": null,
         "addr": null,
@@ -15,14 +14,7 @@
         "descript": null,
         "error": null,
         "data": {
-            "id": null,
-            "name": null,
-            "email": null,
-            "addr": null,
-            "phone": null,
-            "status": null,
-            "image": null,
-            "shoprated": null
+            "token": null
         }
     }
 }
