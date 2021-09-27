@@ -4,12 +4,10 @@ const router = express.Router();
 const token = require('./../../../../../jwt_token');
 
 router.put('/', token.auth((payload, done) => {
-    if (payload.status != 1)
-        return done(null, false);
-
-    token.verify(payload, (result) => {
-        return done(null, result);
-    });
+    payload.status == 1 ?
+        token.verify(payload, (result) => {
+            done(null, result);
+    }) : done(null, false);
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -17,8 +15,8 @@ router.put('/', token.auth((payload, done) => {
     const vat = env.validate(input.body, []);
 
     if (vat.valid) {
-        let sql = "SELECT cus_password FROM customers WHERE cus_id=? AND cus_email=?";
-        let values = [input.body.id, input.body.email];
+        const sql = "SELECT cus_password FROM customers WHERE cus_id=? AND cus_email=?";
+        const values = [input.body.id, input.body.email];
 
         env.database.query(sql, values, (err, result) => {
             if (err) {
@@ -31,8 +29,8 @@ router.put('/', token.auth((payload, done) => {
 
             if (result.length > 0) {
                 if (env.password_hash.verify(input.body.verify.my_password, result[0].cus_password)) {
-                    let sqld = "UPDATE customers SET cus_password=? WHERE cus_id=?";
-                    let valuesd = [
+                    const sqld = "UPDATE customers SET cus_password=? WHERE cus_id=?";
+                    const valuesd = [
                         env.password_hash.generate(input.body.verify.new_password),
                         input.body.id
                     ];

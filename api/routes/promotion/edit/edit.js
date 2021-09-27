@@ -4,12 +4,10 @@ const router = express.Router();
 const token = require('./../../../../jwt_token');
 
 router.put('/', token.auth((payload, done) => {
-    if (payload.status != 0)
-        return done(null, false);
-
-    token.verify(payload, (result) => {
-        return done(null, result);
-    });
+    payload.status == 0 ?
+        token.verify(payload, (result) => {
+            done(null, result);
+    }) : done(null, false);
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -17,7 +15,7 @@ router.put('/', token.auth((payload, done) => {
     const vat = env.validate(input.body, ["promo_imgURL"]);
 
     if (vat.valid) {
-        let sql = "UPDATE promotions SET "
+        const sql = "UPDATE promotions SET "
             + "promo_imgURL=?, "
             + "promo_start=?, "
             + "promo_end=?, "
@@ -25,7 +23,7 @@ router.put('/', token.auth((payload, done) => {
             + "promo_details=? "
             + "WHERE promo_id=?";
         
-        let values = [
+        const values = [
             JSON.stringify(input.body.promo_imgURL == null ? [] : input.body.promo_imgURL),
             input.body.promo_start,
             input.body.promo_end,
@@ -45,14 +43,14 @@ router.put('/', token.auth((payload, done) => {
             }
 
             if (result.affectedRows > 0) {
-                env.get("/promotion?id=*", [input.body.promo_id], (p) => {
+                env.get({url: "/promotion?id=*", params: [input.body.promo_id], then: (p) => {
                     form.output.status = 1;
                     form.output.descript = "แก้ไขข้อมูลสำเร็จแล้ว";
                     form.output.error = null;
                     form.output.data = p.data[0];
 
                     return res.json(form.output);
-                });
+                }});
             } else {
                 form.output.status = 0;
                 form.output.descript = "แก้ไขข้อมูลไม่สำเร็จ!";

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-let reorganize = (item) => {
+const reorganize = (item) => {
     return {
         shop: {
             email: item.shop_email,

@@ -5,7 +5,7 @@ const token = require('./../../../../../jwt_token');
 
 router.post('/', token.auth((payload, done) => {
     token.verify(payload, (result) => {
-        return done(null, result);
+        done(null, result);
     });
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');

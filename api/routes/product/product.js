@@ -27,10 +27,10 @@ let alternate = (param) => {
 };
 
 let reorganize = (items) => {
-    for (let [key, val] of Object.entries(items)) {
-        let percent = val.promo_discount != null ? val.promo_discount/100 : 0;
-        let difference = val.pr_price * percent;
-        let actual = val.pr_price - difference;
+    for (const [key, val] of Object.entries(items)) {
+        const percent = val.promo_discount != null ? val.promo_discount/100 : 0;
+        const difference = val.pr_price * percent;
+        const actual = val.pr_price - difference;
 
         items[key] = {
             id: val.pr_id,
@@ -66,7 +66,7 @@ router.get('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    let alt = alternate(input.url);
+    const alt = alternate(input.url);
 
     env.database.query(alt.sql, alt.values, (err, result) => {
         if (err) {

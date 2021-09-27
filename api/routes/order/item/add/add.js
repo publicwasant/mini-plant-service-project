@@ -4,12 +4,10 @@ const router = express.Router();
 const token = require('./../../../../../jwt_token');
 
 router.post('/', token.auth((payload, done) => {
-    if (payload.status != 1)
-        return done(null, false);
-
-    token.verify(payload, (result) => {
-        return done(null, result);
-    });
+    payload.status == 1 ? 
+        token.verify(payload, (result) => {
+            done(null, result);
+    }) : done(null, false);
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -17,11 +15,11 @@ router.post('/', token.auth((payload, done) => {
     const vat = env.validate(input.body, []);
 
     if (vat.valid) {
-        env.get("/product?id=*", [input.body.product_id], (product) => {
+        env.get({url: "/product?id=*", params: [input.body.product_id], then: (product) => {
             if (product.status == 1) {
-                let total_price = product.data[0].price.actual * input.body.amount;
-                let sql = "INSERT INTO orderitems (oitem_product_id, oitem_customer_id, oitem_amount, oitem_price) VALUES ?";
-                let values = [[
+                const total_price = product.data[0].price.actual * input.body.amount;
+                const sql = "INSERT INTO orderitems (oitem_product_id, oitem_customer_id, oitem_amount, oitem_price) VALUES ?";
+                const values = [[
                     input.body.product_id,
                     input.body.customer_id,
                     input.body.amount,
@@ -39,14 +37,14 @@ router.post('/', token.auth((payload, done) => {
                     }
             
                     if (result.affectedRows > 0) {
-                        env.get("/order/item?id=*", [result.insertId], (item) => {
+                        env.get({token: input.header.authorization, url: "/order/item?id=*", params: [result.insertId], then: (item) => {
                             form.output.status = 1;
                             form.output.descript = "ทำรายการสำเร็จแล้ว!";
                             form.output.error = null;
                             form.output.data = item.data[0];
             
                             return res.json(form.output);
-                        });
+                        }});
                     } else {
                         form.output.status = 0;
                         form.output.descript = "ทำรายการไม่สำเร็จ!";
@@ -61,7 +59,7 @@ router.post('/', token.auth((payload, done) => {
 
                 return res.json(form.output);
             }
-        });
+        }});
     } else {
         form.output.status = 0;
         form.output.descript = vat.message;

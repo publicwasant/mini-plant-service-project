@@ -4,12 +4,10 @@ const router = express.Router();
 const token = require('./../../../../../jwt_token');
 
 router.put('/', token.auth((payload, done) => {
-    if (payload.status != 0)
-        return done(null, false);
-
-    token.verify(payload, (result) => {
-        return done(null, result);
-    });
+    payload.status == 0 ?
+        token.verify(payload, (result) => {
+            done(null, result);
+    }) : done(null, false);
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -40,13 +38,13 @@ router.put('/', token.auth((payload, done) => {
             }
 
             if (result.affectedRows > 0) {
-                env.get("/user/employee?id=*", [input.body.id], (e) => {
+                env.get({url: "/user/employee?id=*", params: [input.body.id], then: (e) => {
                     form.output.status = 1;
                     form.output.descript = 'แก้ไขข้อมูลสำเร็จแล้ว';
                     form.output.data = e.data[0];
 
                     return res.json(form.output);
-                });
+                }});
             } else {
                 form.output.status = 0;
                 form.output.descript = 'แก้ไขข้อมูลไม่สำเร็จ';

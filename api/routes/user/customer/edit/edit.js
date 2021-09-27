@@ -4,12 +4,10 @@ const router = express.Router();
 const token = require('./../../../../../jwt_token');
 
 router.put('/', token.auth((payload, done) => {
-    if (payload.status != 1)
-        return done(null, false);
-
-    token.verify(payload, (result) => {
-        return done(null, result);
-    });
+    payload.status == 1 ?
+        token.verify(payload, (result) => {
+           done(null, result);
+    }) : done(null, false);
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -17,8 +15,8 @@ router.put('/', token.auth((payload, done) => {
     const vat = env.validate(input.body, []);
 
     if (vat.valid) {
-        let sql = "UPDATE customers SET cus_email=?, cus_name=?, cus_addr=?, cus_phone=?, cus_imgURL=? WHERE cus_id=?";
-        let values = [
+        const sql = "UPDATE customers SET cus_email=?, cus_name=?, cus_addr=?, cus_phone=?, cus_imgURL=? WHERE cus_id=?";
+        const values = [
             input.body.email,
             input.body.name,
             input.body.addr,
@@ -37,13 +35,13 @@ router.put('/', token.auth((payload, done) => {
             }
 
             if (result.affectedRows > 0) {
-                env.get("/user/customer?id=*", [input.body.id], (c) => {
+                env.get({url: "/user/customer?id=*", params: [input.body.id], then: (c) => {
                     form.output.status = 1;
                     form.output.descript = 'แก้ไขข้อมูลสำเร็จแล้ว';
                     form.output.data = c.data[0];
 
                     return res.json(form.output);
-                });
+                }});
             } else {
                 form.output.status = 0;
                 form.output.descript = 'แก้ไขข้อมูลไม่สำเร็จ';

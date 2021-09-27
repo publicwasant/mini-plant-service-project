@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-let alternate = (param) => {
+const alternate = (param) => {
     if (param.id) {
         return {
             sql: "SELECT * FROM customers WHERE cus_id=?",
@@ -20,7 +20,7 @@ let alternate = (param) => {
     }
 };
 
-let reorganize = (items) => {
+const reorganize = (items) => {
     for (let [key, val] of Object.entries(items)) {
         items[key] = {
             id: val.cus_id,

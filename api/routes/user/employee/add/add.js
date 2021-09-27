@@ -4,12 +4,10 @@ const router = express.Router();
 const token = require('./../../../../../jwt_token');
 
 router.post('/', token.auth((payload, done) => {
-    if (payload.status != 0)
-        return done(null, false);
-
-    token.verify(payload, (result) => {
-        return done(null, result);
-    });
+    payload.status == 0 ?
+        token.verify(payload, (result) => {
+            done(null, result);
+    }) : done(null, false);
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -18,11 +16,11 @@ router.post('/', token.auth((payload, done) => {
 
     if (vat.valid) {
         if (input.body.password == input.body.retype_password) {
-            let sql = "INSERT INTO employees"
+            const sql = "INSERT INTO employees"
                 + "(emp_username, emp_email, emp_name, emp_addr, emp_phone, emp_imgURL, emp_status, emp_password)"
                 + "VALUES ?";
 
-            let values = [[
+                const values = [[
                 input.body.username,
                 input.body.email,
                 input.body.name,

@@ -5,7 +5,7 @@ const token = require('./../../../../../jwt_token');
 
 router.put('/', token.auth((payload, done) => {
     token.verify(payload, (result) => {
-        return done(null, result);
+        done(null, result);
     });
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
@@ -31,13 +31,13 @@ router.put('/', token.auth((payload, done) => {
             }
 
             if (result.affectedRows > 0) {
-                env.get("/shop/comment?id=*", [input.body.id], (c) => {
+                env.get({url: "/shop/comment?id=*", params: [input.body.id], then: (c) => {
                     form.output.status = 1;
                     form.output.descript = "ทำรายการสำเร็จแล้ว";
                     form.output.data = c.data[0];
 
                     return res.json(form.output);
-                });
+                }});
             } else {
                 form.output.status = 0;
                 form.output.descript = "ทำรายการไม่สำเร็จ!";

@@ -4,21 +4,19 @@ const router = express.Router();
 const token = require('./../../../../../jwt_token');
 
 router.post('/', token.auth((payload, done) => {
-    if (payload.status != 1)
-        return done(null, false);
-
-    token.verify(payload, (result) => {
-        return done(null, result);
-    });
+    payload.status == 1 ?
+        token.verify(payload, (result) => {
+            done(null, result);
+    }) : done(null, false);
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    let vat = env.validate(input.body, []);
+    const vat = env.validate(input.body, []);
 
     if (vat.valid) {
-        let sql = "DELETE FROM orderitems WHERE oitem_id=?";
-        let values = [input.body.id];
+        const sql = "DELETE FROM orderitems WHERE oitem_id=?";
+        const values = [input.body.id];
 
         env.database.query(sql, values, (err, result) => {
             if (err) {

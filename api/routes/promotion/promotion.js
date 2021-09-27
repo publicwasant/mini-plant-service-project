@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-let alternate = (param) => {
-    let result = {
+const alternate = (param) => {
+    const result = {
         sql: null,
         values: null
     };
@@ -22,8 +22,8 @@ let alternate = (param) => {
     return result;
 };
 
-let reorganize = (items) => {
-    for (let [key, val] of Object.entries(items)) {
+const reorganize = (items) => {
+    for (const [key, val] of Object.entries(items)) {
         items[key] = {
             id: val.promo_id,
             detail: val.promo_details,
@@ -41,7 +41,7 @@ router.get('/', (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    let alt = alternate(input.url);
+    const alt = alternate(input.url);
 
     env.database.query(alt.sql, alt.values, (err, result) => {
         if (err) {

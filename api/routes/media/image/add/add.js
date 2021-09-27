@@ -4,10 +4,8 @@ const router = express.Router();
 const token = require('./../../../../../jwt_token');
 
 const preparation_data = (type, base64) => {
-    var invent_name = Math.random().toString(36).replace("0.", "");
-    
     return {
-        name: invent_name + "." + type,
+        name: env.key.random() + "." + type,
         data: Buffer.from(base64, "base64")
     };
 };

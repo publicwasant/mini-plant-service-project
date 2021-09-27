@@ -4,12 +4,10 @@ const router = express.Router();
 const token = require('./../../../../jwt_token');
 
 router.put('/', token.auth((payload, done) => {
-    if (payload.status != 0)
-        return done(null, false);
-
-    token.verify(payload, (result) => {
-        return done(null, result);
-    });
+    payload.status == 0 ?
+        token.verify(payload, (result) => {
+            done(null, result);
+    }) : done(null, false);
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -17,7 +15,7 @@ router.put('/', token.auth((payload, done) => {
     const vat = env.validate(input.body, ["pr_detail", "pr_imgURL"]);
     
     if (vat.valid) {
-        let sql = "UPDATE products SET "
+        const sql = "UPDATE products SET "
             + "pr_name=?, "
             + "pr_detail=?, "
             + "pr_type=?, "
@@ -27,7 +25,7 @@ router.put('/', token.auth((payload, done) => {
             + "pr_imgsURL=? "
             + "WHERE pr_id=?";
 
-        let values = [
+        const values = [
             input.body.pr_name,
             input.body.pr_detail,
             input.body.pr_type,
@@ -49,14 +47,14 @@ router.put('/', token.auth((payload, done) => {
             }
 
             if (result.affectedRows > 0) {
-                env.get("/product?id=*", [input.body.pr_id], (r) => {
+                env.get({url: "/product?id=*", params: [input.body.pr_id], then: (r) => {
                     form.output.status = 1;
                     form.output.descript = "แก้ไขข้อมูลสำเร็จแล้ว";
                     form.output.error = null;
                     form.output.data = r.data[0];
 
                     return res.json(form.output);
-                });
+                }});
             } else {
                 form.output.status = 0;
                 form.output.descript = "แก้ไขข้อมูลไม่สำเร็จ!";

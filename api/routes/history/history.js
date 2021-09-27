@@ -22,13 +22,12 @@ const alternate = (param) => {
     }
 };
 
-const reorganize = (time, items, then) => {
+const reorganize = (token, time, items, then) => {
     const result = [];
-
     const fetch = (i) => {
-        env.get("/order?id=*", [items[i].oitem_order_id], (orders) => {
-            env.get("/product?id=*", [items[i].oitem_product_id], (products) => {
-                env.get("/user/customer?id=*", [items[i].oitem_customer_id], (customers) => {
+        env.get({token: token, url: "/order?id=*", params: [items[i].oitem_order_id], then: (orders) => {
+            env.get({url: "/product?id=*", params: [items[i].oitem_product_id], then: (products) => {
+                env.get({url: "/user/customer?id=*", params: [items[i].oitem_customer_id], then: (customers) => {
                     items[i] = {
                         order: orders.status == 1 ? {
                             id: orders.data[0].id,
@@ -44,10 +43,10 @@ const reorganize = (time, items, then) => {
                     };
 
                     if (time.from != null && time.to != null) {
-                        if (between(time.from, time.to, orders.data[0].date))
+                        if (env.date.between(time.from, time.to, orders.data[0].date))
                             result.push(items[i]);
                     } else if (time.date != null) {
-                        if (inDate(time.date, orders.data[0].date))
+                        if (env.date.equals(time.date, orders.data[0].date))
                             result.push(items[i]);
                     } else {
                         result.push(items[i]);
@@ -58,34 +57,17 @@ const reorganize = (time, items, then) => {
                     } else {
                         then(result);
                     }
-                });
-            });
-        });
+                }});
+            }});
+        }});
     };
 
     fetch(0);
 };
 
-const between = (from, to, date) => {
-    const dFrom = new Date(from);
-    const dTo = new Date(to);
-    const dDate = new Date(date);
-
-    return (dDate <= dTo && dDate >= dFrom);
-};
-
-const inDate = (date1, date2) => {
-    const d1 = new Date(date1);
-    const d2 = new Date(date2);
-
-    return (d1.getFullYear() == d2.getFullYear())
-        && (d1.getMonth() == d2.getMonth())
-        && (d1.getDate() == d2.getDate());
-};
-
 router.get('/', token.auth((payload, done) => {
     token.verify(payload, (result) => {
-        return done(null, result);
+        done(null, result);
     });
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
@@ -104,7 +86,7 @@ router.get('/', token.auth((payload, done) => {
         }
 
         if (result.length > 0) {
-            reorganize({
+            reorganize(input.header.authorization, {
                 from: input.url.form,
                 to: input.url.to,
                 date: input.url.date

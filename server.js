@@ -18,77 +18,114 @@ global.env = {
     database: mysql.createPool(config.database),
     root: path.resolve(__dirname),
     config: config,
-    form: (path) => { return JSON.parse(fs.readFileSync(path)) },
-    input: (req) => { return {url: url.parse(req.url, true).query, body: req.body} },
+    form: (path) => { 
+        return JSON.parse(fs.readFileSync(path)) 
+    },
+    input: (req) => { 
+        return {
+            header: req.headers, 
+            url: url.parse(req.url, true).query, 
+            body: req.body
+        } 
+    },
     date: {
-        simple: () => {
+        current: () => {
             const date = new Date();
 
-            const d = ("0" + date.getDate()).slice(-2);
-            const m = ("0" + (date.getMonth() + 1)).slice(-2);
-            const y = date.getFullYear();
+            return {
+                date: ("0" + date.getDate()).slice(-2),
+                month: ("0" + (date.getMonth() + 1)).slice(-2),
+                year: date.getFullYear(),
+                hours: date.getHours(),
+                minutes: date.getMinutes(),
+                seconds: date.getSeconds()
+            };
+        },
+        simple: () => {
+            const current = env.date.current();
 
-            return y + "-" + m + "-" + d;
+            return current.year + "-" + current.month + "-" + current.date;
         },
         full: () => {
-            const date = new Date();
+            const current = env.date.current();
 
-            const d = ("0" + date.getDate()).slice(-2);
-            const m = ("0" + (date.getMonth() + 1)).slice(-2);
-            const y = date.getFullYear();
-
-            let h = date.getHours();
-            let min = date.getMinutes();
-            let sec = date.getSeconds();
-
-            return y + "-" + m + "-" + d + " " + h + ":" + min + ":" + sec;
+            return current.year + "-" + current.month + "-" + current.date + " " 
+                + current.hours + ":" + current.minutes + ":" + current.seconds;
         },
         time: () => {
-            const date = new Date();
+            const current = env.date.current();
 
-            let h = date.getHours();
-            let min = date.getMinutes();
-            let sec = date.getSeconds();
+            return current.hours + ":" + current.minutes + ":" + current.seconds;
+        },
+        between: (from, to, date) => {
+            const dFrom = new Date(from);
+            const dTo = new Date(to);
+            const dDate = new Date(date);
 
-            return h + ":" + min + ":" + sec;
+            return (dDate <= dTo && dDate >= dFrom);
+        },
+        equals: (date1, date2) => {
+            const d1 = new Date(date1);
+            const d2 = new Date(date2);
+
+            return (d1.getFullYear() == d2.getFullYear())
+                && (d1.getMonth() == d2.getMonth())
+                && (d1.getDate() == d2.getDate());
         }
     },
+    key: {
+        random: () => {
+            const time = parseInt(env.date.time().replace(":", "").replace(":", ""));
+            const seed = Math.floor(Math.random() * 100000 + 100000);
+            
+            return (time * seed).toString(36);
+        },
+    },
     validate: (body, except) => {
-        for (let [key, val] of Object.entries(body)) {
+        const keys = Object.keys(body);
+        const result = {valid: true, message: null};
+        
+        for (let i=0; i < keys.length; i++) {
+            const key = keys[i];
+            const val = body[keys[i]];
+
             if (except.includes(key)) continue;
             if (val == null) {
-                return {
-                    valid: false,
-                    message: "กรุณากรอกข้อมูลที่จำเป็นให้ครบ!"
-                };
+                result.valid = false;
+                result.message = result.message == null ? "กรุณากรอกข้อมูล " : result.message;
+                result.message = result.message + key;
+                result.message = result.message + ", ";
             }
         }
     
-        return {
-            valid: true,
-            message: "ข้อมูลถูกต้อง"
-        };
+        return result;
     },
-    get: (url, params, then) => {
-        while (url.includes("*"))
-            url = url.replace("*", params.shift());
+    get: (properties) => {
+        while (properties.url.includes("*"))
+            properties.url = properties.url.replace("*", properties.params.shift());
 
-        request.get({
-            headers: {'content-type': 'application/json'},
-            url: config.server.host + url,
+        return request.get({
+            headers: {
+                "content-type": "application/json",
+                "authorization": properties.token
+            },
+            url: config.server.host + properties.url,
         }, (err, response, body) => {
             if (!err)
-                then(JSON.parse(body));
+                properties.then(JSON.parse(body));
         });
     },
-    post: (url, body, then) => {
-        request.post({
-            headers: {'content-type': 'application/json'},
-            url: config.server.host + url,
-            body: JSON.stringify(body)
+    post: (properties) => {
+        return request.post({
+            headers: {
+                "content-type": "application/json",
+                "authorization": properties.token
+            },
+            url: config.server.host + properties.url,
+            body: JSON.stringify(properties.body)
         }, (err, response, body) => {
             if (!err)
-                then(JSON.parse(body));
+                properties.then(JSON.parse(body));
         });
     },
 };

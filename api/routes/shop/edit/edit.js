@@ -4,12 +4,10 @@ const router = express.Router();
 const token = require('./../../../../jwt_token');
 
 router.put('/', token.auth((payload, done) => {
-    if (payload.status != 0)
-        return done(null, false);
-
-    token.verify(payload, (result) => {
-        return done(null, result);
-    });
+    payload.status == 0 ?
+        token.verify(payload, (result) => {
+        done(null, result);
+    }) : done(null, false);
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
@@ -47,14 +45,14 @@ router.put('/', token.auth((payload, done) => {
         }
 
         if (result.affectedRows > 0) {
-            env.get("/shop", [], (s) => {
+            env.get({url: "/shop", params: [], then: (s) => {
                 form.output.status = 1;
                 form.output.descript = "ทำรายการสำเร็จแล้ว";
                 form.output.error = null;
                 form.output.data = s.data;
 
                 return res.json(form.output);
-            });
+            }});
         } else {
             form.output.status = 0;
             form.output.descript = "ทำรายการไม่สำเร็จ!";

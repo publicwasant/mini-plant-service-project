@@ -29,8 +29,8 @@ let alternate = (param) => {
 
 let reorganize = (items, then) => {
     let fetch = (ind) => {
-        env.get("/product?id=*", [items[ind].oitem_product_id], (product) => {
-            env.get("/user/customer?id=*", [items[ind].oitem_customer_id], (customer) => {
+        env.get({url: "/product?id=*", params: [items[ind].oitem_product_id], then: (product) => {
+            env.get({url: "/user/customer?id=*", params: [items[ind].oitem_customer_id], then: (customer) => {
                 items[ind] = {
                     id: items[ind].oitem_id,
                     order_id: items[ind].oitem_order_id,
@@ -45,8 +45,8 @@ let reorganize = (items, then) => {
                 } else {
                     then(items);
                 }
-            });
-        });
+            }});
+        }});
     };
 
     fetch(0);
