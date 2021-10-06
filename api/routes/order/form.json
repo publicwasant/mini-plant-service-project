@@ -31,6 +31,8 @@
             "order_items": [{
                 "id": null,
                 "order_id": null,
+                "color": null,
+                "size": null,
                 "amount": null,
                 "price": null,
                 "product": {
@@ -39,6 +41,7 @@
                     "detail": null,
                     "type": null,
                     "status": null,
+                    "colors": [],
                     "size": [],
                     "images": [],
                     "promotion": {

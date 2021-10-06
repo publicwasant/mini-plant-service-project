@@ -12,17 +12,18 @@ router.post('/', token.auth((payload, done) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    const vat = env.validate(input.body, ["pr_detail", "pr_imgURL"]);
+    const vat = env.validate(input.body, ["pr_detail", "pr_colors", "pr_imgURL"]);
 
     if (vat.valid) {
         const sql = "INSERT INTO products "
-            + "(pr_name, pr_detail, pr_type, pr_size, pr_price, pr_status, pr_imgsURL) "
+            + "(pr_name, pr_detail, pr_type, pr_colors, pr_size, pr_price, pr_status, pr_imgsURL) "
             + "VALUES ?";
 
         const values = [[
             input.body.pr_name,
             input.body.pr_detail,
             input.body.pr_type,
+            JSON.stringify(input.body.pr_colors == null ? [] : input.body.pr_colors),
             JSON.stringify(input.body.pr_size == null ? [] : input.body.pr_size),
             input.body.pr_price, 
             input.body.pr_status,

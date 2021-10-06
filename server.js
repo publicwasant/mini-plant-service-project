@@ -8,7 +8,7 @@ const mysql = require('mysql');
 const express = require('express');
 
 const app = require('./api/app');
-const config = JSON.parse(fs.readFileSync('./config.json'))['debug'];
+const config = JSON.parse(fs.readFileSync('./config.json'))['deploy'];
 
 global.env = {
     fs: fs,
@@ -25,6 +25,7 @@ global.env = {
         return {
             header: req.headers, 
             url: url.parse(req.url, true).query, 
+            parsedUrl: url.parse(req.url, true),
             body: req.body
         } 
     },
@@ -74,9 +75,9 @@ global.env = {
         }
     },
     key: {
-        random: () => {
+        random: (stime=100000) => {
             const time = parseInt(env.date.time().replace(":", "").replace(":", ""));
-            const seed = Math.floor(Math.random() * 100000 + 100000);
+            const seed = Math.floor(Math.random() * stime + stime);
             
             return (time * seed).toString(36);
         },

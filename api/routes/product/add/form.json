@@ -3,6 +3,7 @@
         "pr_name": null,
         "pr_detail": null,
         "pr_type": null,
+        "pr_colors": null,
         "pr_size": null,
         "pr_price": null,
         "pr_status": null,
@@ -18,6 +19,7 @@
             "detail": null,
             "type": null,
             "status": null,
+            "colors": [],
             "size": [],
             "images": [],
             "promotion": {

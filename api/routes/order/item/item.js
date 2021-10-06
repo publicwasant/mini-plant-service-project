@@ -34,6 +34,8 @@ let reorganize = (items, then) => {
                 items[ind] = {
                     id: items[ind].oitem_id,
                     order_id: items[ind].oitem_order_id,
+                    color: items[ind].oitem_color,
+                    size: items[ind].oitem_size,
                     amount: items[ind].oitem_amount,
                     total_price: items[ind].oitem_price,
                     product: product.data[0],

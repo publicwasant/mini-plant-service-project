@@ -18,10 +18,12 @@ router.post('/', token.auth((payload, done) => {
         env.get({url: "/product?id=*", params: [input.body.product_id], then: (product) => {
             if (product.status == 1) {
                 const total_price = product.data[0].price.actual * input.body.amount;
-                const sql = "INSERT INTO orderitems (oitem_product_id, oitem_customer_id, oitem_amount, oitem_price) VALUES ?";
+                const sql = "INSERT INTO orderitems (oitem_product_id, oitem_customer_id, oitem_color, oitem_size, oitem_amount, oitem_price) VALUES ?";
                 const values = [[
                     input.body.product_id,
                     input.body.customer_id,
+                    input.body.color,
+                    input.body.size,
                     input.body.amount,
                     total_price
                 ]];

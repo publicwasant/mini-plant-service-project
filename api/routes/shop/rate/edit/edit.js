@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const token = require('./../../../../jwt_token');
+const token = require('./../../../../../jwt_token');
 
 router.put('/', token.auth((payload, done) => {
     payload.status == 1 ?
@@ -30,10 +30,10 @@ router.put('/', token.auth((payload, done) => {
                 }
 
                 if (result.affectedRows > 0) {
-                    env.get({url: "/user/customer?id=*", params: [input.body.customer_id], then: (c) => {
+                    env.get({url: "/shop/rate", params: [], then: (rating) => {
                         form.output.status = 1;
                         form.output.descript = "ทำรายการสำเร็จแล้ว";
-                        form.output.data = c.data;
+                        form.output.data = rating.data;
 
                         return res.json(form.output);
                     }});

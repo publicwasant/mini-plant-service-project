@@ -10,6 +10,8 @@
         "data": {
             "id": null,
             "order_id": null,
+            "color": null,
+            "size": null,
             "amount": null,
             "total_price": null,
             "product": {
@@ -18,6 +20,7 @@
                 "detail": null,
                 "type": null,
                 "status": null,
+                "colors": [],
                 "size": [],
                 "images": [],
                 "promotion": {

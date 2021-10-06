@@ -303,8 +303,32 @@
         }
     }
 
-** 13. แก้ไขข้อมูลการให้คะแนนร้าน
-    [PUT]   http://mini-plant.comsciproject.com/shop/rating
+** 13. ค้นหาข้อมูลการให้คะแนนร้าน
+    [GET]   http://mini-plant.comsciproject.com/shop/rate
+
+    INPUT:  http://mini-plant.comsciproject.com/shop/rate
+
+    OUTPUT: {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "average": null,
+            "customers": [{
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null,
+                "shoprated": null
+            }]
+        }
+    }
+
+** 14. แก้ไขข้อมูลการให้คะแนนร้าน
+    [PUT]   http://mini-plant.comsciproject.com/shop/rate/edit
 
     INPUT: 
     {
@@ -330,7 +354,7 @@
     }
 }
 
-** 14. ค้นหาข้อมูลการแสดงความคิดเห็นของร้าน
+** 15. ค้นหาข้อมูลการแสดงความคิดเห็นของร้าน
     [GET]   http://mini-plant.comsciproject.com/shop/comment
 
     INPUT:  http://mini-plant.comsciproject.com/shop/comment
@@ -396,7 +420,7 @@
         }]
     }
 
-** 15. เพิ่มการแสดงความคิดเห็นต่อร้าน
+** 16. เพิ่มการแสดงความคิดเห็นต่อร้าน
     [POST]  http://mini-plant.comsciproject.com/shop/comment/add
 
     INPUT: 
@@ -440,7 +464,7 @@
         }
     }
 
-** 16. ลบการแสดงความคิดเห็นต่อร้าน
+** 17. ลบการแสดงความคิดเห็นต่อร้าน
     [POST]  http://mini-plant.comsciproject.com/shop/comment/delete
 
     INPUT: 
@@ -459,7 +483,7 @@
         }
     }
 
-** 17. แก้ไขการแสดงความคิดเห็นต่อร้าน
+** 18. แก้ไขการแสดงความคิดเห็นต่อร้าน
     [PUT]   http://mini-plant.comsciproject.com/shop/comment/edit
 
     INPUT: 
@@ -502,7 +526,7 @@
     }
 
 
-** 18. ค้นหาข้อมูลสินค้า
+** 19. ค้นหาข้อมูลสินค้า
     [GET]   http://mini-plant.comsciproject.com/product
 
     INPUT:  http://mini-plant.comsciproject.com/product
@@ -520,6 +544,7 @@
             "detail": null,
             "type": null,
             "status": null,
+            "colors": [],
             "size": [],
             "images": [],
             "promotion": {
@@ -541,7 +566,7 @@
         }]
     }
 
-** 19. เพิ่มข้อมูลสินค้า
+** 20. เพิ่มข้อมูลสินค้า
     [POST]  http://mini-plant.comsciproject.com/product/add
     
     INPUT:  http://mini-plant.comsciproject.com/product/add 
@@ -549,7 +574,8 @@
         "pr_name": null,
         "pr_detail": null,
         "pr_type": null,
-        "pr_size": null,
+        "pr_colors": [],    --> ["ขาว", "น้ำตาล", "ดำ", ...]
+        "pr_size": [],      --> ["S", "M", "L", ...]
         "pr_price": null,
         "pr_status": null,
         "pr_imgsURL": null
@@ -566,6 +592,7 @@
             "detail": null,
             "type": null,
             "status": null,
+            "colors": [],
             "size": [],
             "images": [],
             "promotion": {
@@ -587,7 +614,7 @@
         }]
     }
 
-** 20. แก้ไขข้อมูลสินค้า
+** 21. แก้ไขข้อมูลสินค้า
     [PUT] http://mini-plant.comsciproject.com/product/edit
 
     INPUT:  http://mini-plant.comsciproject.com/product/edit 
@@ -595,7 +622,8 @@
         "pr_name": null,
         "pr_detail": null,
         "pr_type": null,
-        "pr_size": null,
+        "pr_colors": [],
+        "pr_size": [],
         "pr_price": null,
         "pr_status": null,
         "pr_imgsURL": null
@@ -612,6 +640,7 @@
             "detail": null,
             "type": null,
             "status": null,
+            "colors": [],
             "size": [],
             "images": [],
             "promotion": {
@@ -654,7 +683,7 @@ Functions
     6. ./order/item/remove
 
 
-** 21. ค้นหาข้อมูลการสั่งซื้อ
+** 22. ค้นหาข้อมูลการสั่งซื้อ
     [GET]   http://mini-plant.comsciproject.com/order
     
     INPUT:  http://mini-plant.comsciproject.com/order?id=XX
@@ -693,6 +722,8 @@ Functions
             "order_items": [{
                 "id": null,
                 "order_id": null,
+                "color": null,
+                "size": null,
                 "amount": null,
                 "price": null,
                 "product": {
@@ -701,6 +732,7 @@ Functions
                     "detail": null,
                     "type": null,
                     "status": null,
+                    "colors": [],
                     "size": [],
                     "images": [],
                     "promotion": {
@@ -733,7 +765,7 @@ Functions
         }
     }
 
-** 22. เพิ่มข้อมูลการสั่งซื้อ
+** 23. เพิ่มข้อมูลการสั่งซื้อ
     [POST]  http://mini-plant.comsciproject.com/order/confirm 
     
     INPUT:  http://mini-plant.comsciproject.com/order/confirm
@@ -776,6 +808,8 @@ Functions
             "order_items": [{
                 "id": null,
                 "order_id": null,
+                "color": null,
+                "size": null
                 "amount": null,
                 "price": null,
                 "product": {
@@ -784,6 +818,7 @@ Functions
                     "detail": null,
                     "type": null,
                     "status": null,
+                    "colors": [],
                     "size": [],
                     "images": [],
                     "promotion": {
@@ -816,7 +851,7 @@ Functions
         }
     }
 
-** 23. ค้นหาข้อมูลรายละเอียดการสั่งซื้อ
+** 24. ค้นหาข้อมูลรายละเอียดการสั่งซื้อ
     [GET] http://mini-plant.comsciproject.com/order/item
 
     INPUT:  http://mini-plant.comsciproject.com/order/item
@@ -832,6 +867,8 @@ Functions
         "data": [{
             "id": null,
             "order_id": null,
+            "color": null,
+            "size": null,
             "amount": null,
             "price": null,
             "product": {
@@ -840,6 +877,7 @@ Functions
                 "detail": null,
                 "type": null,
                 "status": null,
+                "colors": [],
                 "size": [],
                 "images": [],
                 "promotion": {
@@ -871,7 +909,7 @@ Functions
         }]
     }
 
-** 24. เพิ่มข้อมูลรายละเอียดการสั่งซื้อ
+** 25. เพิ่มข้อมูลรายละเอียดการสั่งซื้อ
     [POST] http://mini-plant.comsciproject.com/order/item/add
 
     INPUT:  http://mini-plant.comsciproject.com/order/item/add
@@ -889,6 +927,8 @@ Functions
         "data": {
             "id": null,
             "order_id": null,
+            "color": null,
+            "size": null,
             "amount": null,
             "total_price": null,
             "product": {
@@ -897,6 +937,7 @@ Functions
                 "detail": null,
                 "type": null,
                 "status": null,
+                "colors": [],
                 "size": [],
                 "images": [],
                 "promotion": {
@@ -928,7 +969,7 @@ Functions
         }
     }
 
-** 25. แก้ไขข้อมูลรายละเอียดการสั่งซื้อ
+** 26. แก้ไขข้อมูลรายละเอียดการสั่งซื้อ
     [PUT] http://mini-plant.comsciproject.com/order/item/edit
 
     INPUT:  http://mini-plant.comsciproject.com/order/item/edit
@@ -945,6 +986,8 @@ Functions
         "data": {
             "id": null,
             "order_id": null,
+            "color": null,
+            "size": null,
             "amount": null,
             "total_price": null,
             "product": {
@@ -953,6 +996,7 @@ Functions
                 "detail": null,
                 "type": null,
                 "status": null,
+                "colors": [],
                 "size": [],
                 "images": [],
                 "promotion": {
@@ -984,7 +1028,7 @@ Functions
         }
     }
 
-** 26. ลบข้อมูลรายละเอียดการสั่งซื้อ
+** 27. ลบข้อมูลรายละเอียดการสั่งซื้อ
     [POST] http://mini-plant.comsciproject.com/order/item/remove
 
     INPUT:  http://mini-plant.comsciproject.com/order/item/remove
@@ -1000,7 +1044,194 @@ Functions
         "data": []
     }
 
-** 27. ค้นหาข้อมูลโปรโมชั่น
+** 28. แก้ไขข้อมูลการจัดส่ง
+    [PUT]   http://mini-plant.comsciproject.com/order/shipment/edit
+
+    INPUT:
+    {
+        "id": null,
+        "status": null,
+        "bill": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "type": null,
+            "date": null,
+            "total_price": null,
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "order_items": [{
+                "id": null,
+                "order_id": null,
+                "color": null,
+                "size": null,
+                "amount": null,
+                "price": null,
+                "product": {
+                    "id": null,
+                    "name": null,
+                    "detail": null,
+                    "type": null,
+                    "status": null,
+                    "colors": [],
+                    "size": [],
+                    "images": [],
+                    "promotion": {
+                        "id": null,
+                        "detail": null,
+                        "discount": null,
+                        "start": null,
+                        "end": null,
+                        "images": []
+                    },
+                    "price": {
+                        "original": null,
+                        "actual": null,
+                        "discount": {
+                            "percent": null,
+                            "difference": null
+                        }
+                    }
+                },
+                "customer": {
+                    "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null,
+                    "shoprated": null
+                }
+            }],
+            "shipment": {
+                "id": null,
+                "order_id": null,
+                "date": null,
+                "status": null
+            },
+            "payment": {
+            }
+        }
+    }
+
+** 29. แก้ไขข้อมูลการชำระ
+    [PUT]  http://mini-plant.comsciproject.com/order/payment/edit
+
+    INPUT:
+    {
+        "id": null,
+        "status": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "type": null,
+            "date": null,
+            "total_price": null,
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "order_items": [{
+                "id": null,
+                "order_id": null,
+                "color": null,
+                "size": null,
+                "amount": null,
+                "price": null,
+                "product": {
+                    "id": null,
+                    "name": null,
+                    "detail": null,
+                    "type": null,
+                    "status": null,
+                    "colors": [],
+                    "size": [],
+                    "images": [],
+                    "promotion": {
+                        "id": null,
+                        "detail": null,
+                        "discount": null,
+                        "start": null,
+                        "end": null,
+                        "images": []
+                    },
+                    "price": {
+                        "original": null,
+                        "actual": null,
+                        "discount": {
+                            "percent": null,
+                            "difference": null
+                        }
+                    }
+                },
+                "customer": {
+                    "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null,
+                    "shoprated": null
+                }
+            }],
+            "shipment": {
+                "id": null,
+                "order_id": null,
+                "date": null,
+                "status": null
+            },
+            "payment": {
+            }
+        }
+    }
+
+** 30. ค้นหาข้อมูลโปรโมชั่น
     [GET] http://mini-plant.comsciproject.com/promotion
 
     INPUT:  http://mini-plant.comsciproject.com/promotion **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
@@ -1023,7 +1254,7 @@ Functions
     }
 
 
-** 28. เพิ่มข้อมูลโปรโมชั่น
+** 31. เพิ่มข้อมูลโปรโมชั่น
     [POST] http://mini-plant.comsciproject.com/promotion/add
 
     INPUT:
@@ -1052,7 +1283,7 @@ Functions
     }
 
 
-** 29. แก้ไขข้อมูลโปรโมชั่น
+** 32. แก้ไขข้อมูลโปรโมชั่น
     [PUT] http://mini-plant.comsciproject.com/promotion/edit
 
     INPUT: 
@@ -1081,136 +1312,7 @@ Functions
     }
 
 
-** 30. ค้นหาข้อมูลการจัดส่ง
-    [GET] http://mini-plant.comsciproject.com/shipment
-
-    INPUT:  http://mini-plant.comsciproject.com/shipment
-            http://mini-plant.comsciproject.com/shipment?id=XX
-            http://mini-plant.comsciproject.com/shipment?order_id=XX
-
-    OUPUT:
-    {
-        "status": null,
-        "descript": null,
-        "error": null,
-        "data": [{
-            "id": null,
-            "order_id": null,
-            "date": null,
-            "status": null
-        }]
-    }
-
-** 31. เพิ่มข้อมูลการจัดส่ง
-    [POST]  http://mini-plant.comsciproject.com/shipment/add
-
-    INPUT:
-    {
-        "order_id": null,
-        "bill": null
-    }
-
-    OUTPUT:
-    {
-        "status": null,
-        "descript": null,
-        "error": null,
-        "data": {
-            "id": null,
-            "order_id": null,
-            "date": null,
-            "status": null
-        }
-    }
-
-** 32. แก้ไขข้อมูลการจัดส่ง
-    [PUT]   http://mini-plant.comsciproject.com/shipment/edit
-
-    INPUT:
-    {
-        "id": null,
-        "date": null,
-        "status": null,
-        "bill": null
-    }
-
-    OUTPUT:
-    {
-        "status": null,
-        "descript": null,
-        "error": null,
-        "data": {
-            "id": null,
-            "order_id": null,
-            "date": null,
-            "status": null
-        }
-    }
-
-** 33. ค้นหาข้อมูลการชำระ
-    [GET]   http://mini-plant.comsciproject.com/payment
-
-    INPUT:  http://mini-plant.comsciproject.com/payment
-            http://mini-plant.comsciproject.com/payment?id=XX
-            http://mini-plant.comsciproject.com/payment?order_id=XX
-
-    OUTPUT:
-    {
-        "status": null,
-        "descript": null,
-        "error": null,
-        "data": [{
-            "id": null,
-            "order_id": null,
-            "date": null,
-            "status": null
-        }]
-    }
-
-** 34. เพิ่มข้อมูลการชำระ
-    [POST]  http://mini-plant.comsciproject.com/payment/add
-
-    INPUT:
-    {
-        "order_id": null
-    }
-
-    OUTPUT:
-    {
-        "status": null,
-        "descript": null,
-        "error": null,
-        "data": {
-            "id": null,
-            "order_id": null,
-            "date": null,
-            "status": null
-        }
-    }
-
-** 35. แก้ไขข้อมูลการชำระ
-    [PUT]  http://mini-plant.comsciproject.com/payment/edit
-
-    INPUT:
-    {
-        "id": null,
-        "status": null
-    }
-
-    OUTPUT:
-    {
-        "status": null,
-        "descript": null,
-        "error": null,
-        "data": {
-            "id": null,
-            "order_id": null,
-            "date": null,
-            "status": null
-        }
-    }
-
-** 36. ค้นหาข้อมูลประวัติการสั่งซื้อ
+** 33. ค้นหาข้อมูลประวัติการสั่งซื้อ
     [GET]   http://mini-plant.comsciproject.com/history
 
     INPUT:  
@@ -1264,6 +1366,7 @@ Functions
                     "detail": null,
                     "type": null,
                     "status": null,
+                    "colors": [],
                     "size": [],
                     "images": [],
                     "promotion": {
@@ -1297,13 +1400,13 @@ Functions
         }]
     }
 
-** 37. ค้นหารูปภาพ
+** 34. ค้นหารูปภาพ
     [GET]   http://mini-plant.comsciproject.com/media/image
 
     INPUT:  http://mini-plant.comsciproject.com/media/image?p=XXX.jpg
     OUPUT:  <image>
 
-** 38. เพิ่มรูปภาพ
+** 35. เพิ่มรูปภาพ
     [POST]  http://mini-plant.comsciproject.com/media/image/add
 
     INPUT: 

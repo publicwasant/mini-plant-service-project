@@ -5,21 +5,21 @@ let alternate = (param) => {
     if (param.id) {
         return {
             sql: "SELECT * FROM products "
-                +"LEFT JOIN promotions ON products.pr_promo_id=promotions.promo_id "
+                + "LEFT JOIN promotions ON products.pr_promo_id=promotions.promo_id "
                 + "WHERE products.pr_id=? ORDER BY products.pr_id DESC",
             values: [param.id]
         };
     } else if (param.key) {
         return {
             sql: "SELECT * FROM products "
-                +"LEFT JOIN promotions ON products.pr_promo_id=promotions.promo_id "
+                + "LEFT JOIN promotions ON products.pr_promo_id=promotions.promo_id "
                 + "WHERE products.pr_name LIKE ? OR products.pr_detail LIKE ? ORDER BY products.pr_id DESC",
             values: ["%" + param.key + "%", "%" + param.key + "%"]
         };
     } else {
         return {
             sql: "SELECT * FROM products "
-                +"LEFT JOIN promotions ON products.pr_promo_id=promotions.promo_id "
+                + "LEFT JOIN promotions ON products.pr_promo_id=promotions.promo_id "
                 + "ORDER BY products.pr_id DESC",
             values: [param.id]
         };
@@ -38,6 +38,7 @@ let reorganize = (items) => {
             detail: val.pr_detail,
             type: val.pr_type,
             status: val.pr_status,
+            colors: val.pr_colors != null ? JSON.parse(val.pr_colors) : [],
             size: val.pr_size != null ? JSON.parse(val.pr_size) : [],
             images: val.pr_imgsURL != null ? JSON.parse(val.pr_imgsURL) : [],
             promotion: val.promo_id != null ? {
