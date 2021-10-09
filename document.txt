@@ -761,17 +761,24 @@ Functions
                     "status": null,
                     "image": null
                 }
-            }] 
+            }],
+            "shipment": {
+                "bill": null,
+                "status": null
+            },
+            "payment": {
+                "transfer": null, --> หลักฐานการโอนเงิน
+                "status": null
+            }
         }
     }
 
-** 23. เพิ่มข้อมูลการสั่งซื้อ
+** 23. ยื่นยันข้อมูลการสั่งซื้อ
     [POST]  http://mini-plant.comsciproject.com/order/confirm 
     
     INPUT:  http://mini-plant.comsciproject.com/order/confirm
     {
         "type": null,
-        "date": null,
         "customer_id": null,
         "employee_id": null
     }
@@ -847,7 +854,15 @@ Functions
                     "status": null,
                     "image": null
                 }
-            }] 
+            }],
+            "shipment": {
+                "bill": null,
+                "status": null
+            },
+            "payment": {
+                "transfer": null,
+                "status": null
+            }
         }
     }
 

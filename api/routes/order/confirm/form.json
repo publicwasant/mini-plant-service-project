@@ -75,12 +75,12 @@
                 }
             }],
             "shipment": {
-                "id": null,
-                "order_id": null,
-                "date": null,
+                "bill": null,
                 "status": null
             },
             "payment": {
+                "transfer": null,
+                "status": null
             }
         }
     }

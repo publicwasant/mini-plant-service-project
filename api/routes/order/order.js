@@ -45,6 +45,7 @@ const reorganize = (token, items, then) => {
                             status: items[ind].ship_status
                         },
                         payment: {
+                            transfer: items[ind].pay_transfer,
                             status: items[ind].pay_status
                         }
                     };
