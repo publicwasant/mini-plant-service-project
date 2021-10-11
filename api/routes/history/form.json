@@ -51,6 +51,16 @@
                     "shoprated": null
                 }
             }
-        }]
+        }],
+        "shipment": {
+            "date": null,
+            "bill": null,
+            "status": null
+        },
+        "payment": {
+            "date": null,
+            "transfer": null,
+            "status": null
+        }
     }
 }

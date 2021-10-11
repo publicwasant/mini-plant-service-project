@@ -41,10 +41,12 @@ const reorganize = (token, items, then) => {
                         employee: employees.status == 1 ? employees.data[0] : null,
                         order_items: orderitems.data,
                         shipment: {
+                            date: items[ind].ship_date,
                             bill: items[ind].ship_bill,
                             status: items[ind].ship_status
                         },
                         payment: {
+                            date: items[ind].pay_date,
                             transfer: items[ind].pay_transfer,
                             status: items[ind].pay_status
                         }

@@ -21,7 +21,7 @@ router.put('/', token.auth((payload, done) => {
             input.body.email,
             input.body.name,
             input.body.addr,
-            input.body.emp_phone,
+            input.body.phone,
             input.body.image,
             input.body.status,
             input.body.id

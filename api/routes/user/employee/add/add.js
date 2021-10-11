@@ -20,7 +20,7 @@ router.post('/', token.auth((payload, done) => {
                 + "(emp_username, emp_email, emp_name, emp_addr, emp_phone, emp_imgURL, emp_status, emp_password)"
                 + "VALUES ?";
 
-                const values = [[
+            const values = [[
                 input.body.username,
                 input.body.email,
                 input.body.name,

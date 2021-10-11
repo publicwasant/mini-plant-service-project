@@ -578,7 +578,7 @@
         "pr_size": [],      --> ["S", "M", "L", ...]
         "pr_price": null,
         "pr_status": null,
-        "pr_imgsURL": null
+        "pr_imgsURL": []
     }
 
     OUTPUT: 
@@ -763,10 +763,12 @@ Functions
                 }
             }],
             "shipment": {
+                "date": null, --> YYYY-MM-DD
                 "bill": null,
                 "status": null
             },
             "payment": {
+                "date": null,
                 "transfer": null, --> หลักฐานการโอนเงิน
                 "status": null
             }
@@ -856,10 +858,12 @@ Functions
                 }
             }],
             "shipment": {
+                "date": null,
                 "bill": null,
                 "status": null
             },
             "payment": {
+                "date": null,
                 "transfer": null,
                 "status": null
             }
@@ -931,6 +935,8 @@ Functions
     {
         "product_id": null,
         "customer_id": null,
+        "color": null,
+        "size": null,
         "amount": null
     }
 
@@ -990,6 +996,8 @@ Functions
     INPUT:  http://mini-plant.comsciproject.com/order/item/edit
     {
         "id": null,
+        color: null,
+        size: null,
         "amount": null
     }
 
@@ -1065,8 +1073,9 @@ Functions
     INPUT:
     {
         "id": null,
+        "date": null,
+        "bill": null,
         "status": null,
-        "bill": null
     }
 
     OUTPUT:
@@ -1143,12 +1152,14 @@ Functions
                 }
             }],
             "shipment": {
-                "id": null,
-                "order_id": null,
                 "date": null,
+                "bill": null,
                 "status": null
             },
             "payment": {
+                "date": null,
+                "transfer": null,
+                "status": null
             }
         }
     }
@@ -1236,12 +1247,14 @@ Functions
                 }
             }],
             "shipment": {
-                "id": null,
-                "order_id": null,
                 "date": null,
+                "bill": null,
                 "status": null
             },
             "payment": {
+                "date": null,
+                "transfer": null,
+                "status": null
             }
         }
     }
@@ -1412,7 +1425,17 @@ Functions
                     "shoprated": null
                 }
             }
-        }]
+        }],
+        "shipment": {
+                "date": null,
+                "bill": null,
+                "status": null
+        },
+        "payment": {
+            "date": null,
+            "transfer": null,
+            "status": null
+        }
     }
 
 ** 34. ค้นหารูปภาพ
