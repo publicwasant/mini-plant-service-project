@@ -1170,6 +1170,8 @@ Functions
     INPUT:
     {
         "id": null,
+        "date": null,
+        "transfer": null,
         "status": null
     }
 
