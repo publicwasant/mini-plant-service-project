@@ -54,8 +54,7 @@
         "addr": null,
         "phone": null,
         "status": null,
-        "image": null,
-        "shoprated": null
+        "image": null
     }
 
     OUTPUT:
@@ -70,7 +69,8 @@
             "addr": null,
             "phone": null,
             "status": null,
-            "image": null
+            "image": null,
+            "shoprated": null
         }
     }
 
