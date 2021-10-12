@@ -1,0 +1,12 @@
+{
+    "input": {
+        "product_id": null,
+        "promotion_id": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": null
+    }
+}

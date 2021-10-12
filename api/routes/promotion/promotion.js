@@ -8,11 +8,14 @@ const alternate = (param) => {
     };
 
     if (param.id) {
-        result.sql = "SELECT * FROM promotions WHERE promo_id=?";
+        result.sql = "SELECT * FROM promotions WHERE promo_id=? ORDER BY promo_id DESC";
         result.values = [param.id];
     } else if (param.product_id) {
         result.sql = "SELECT * FROM promotions "
-            + "WHERE promo_id=(SELECT pr_promo_id FROM products WHERE pr_id=?)";
+            + "WHERE promo_id IN (SELECT pp_promotion_id "
+                + "FROM promotions_related_to_products "
+                + "WHERE pp_product_id=?) "
+            + "ORDER BY promo_id DESC";
         result.values = [param.product_id];
     } else {
         result.sql = "SELECT * FROM promotions ORDER BY promo_id DESC";
@@ -22,19 +25,19 @@ const alternate = (param) => {
     return result;
 };
 
-const reorganize = (items) => {
+const reorganize = (items, then) => {
     for (const [key, val] of Object.entries(items)) {
         items[key] = {
             id: val.promo_id,
-            detail: val.promo_details,
-            discount: val.promo_discount,
             start: val.promo_start,
             end: val.promo_end,
+            discount: val.promo_discount,
+            detail: val.promo_details,
             images: JSON.parse(val.promo_imgURL)
         };
     }
 
-    return items;
+    then(items);
 };
 
 router.get('/', (req, res) => {
@@ -47,20 +50,24 @@ router.get('/', (req, res) => {
         if (err) {
             form.output.status = 0;
             form.output.descript = "พบข้อผิดพลาดบางอย่าง!";
-            form.output.error.message = err;
+            form.output.error = err;
+            form.output.data = [];
             
             return res.json(form.output);
         }
 
         if (result.length > 0) {
-            form.output.status = 1;
-            form.output.descript = "พบข้อมูลแล้ว " + result.length + " รายการ";
-            form.output.data = reorganize(result);
+            reorganize(result, (items) => {
+                form.output.status = 1;
+                form.output.descript = "พบข้อมูลแล้ว " + items.length + " รายการ";
+                form.output.data = items;
 
-            return res.json(form.output);
+                return res.json(form.output);
+            });
         } else {
             form.output.status = 0;
             form.output.descript = "ไม่พบข้อมูล!";
+            form.output.data = [];
 
             return res.json(form.output);
         }

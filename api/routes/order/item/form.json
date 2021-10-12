@@ -21,14 +21,14 @@
                 "colors": [],
                 "size": [],
                 "images": [],
-                "promotion": {
+                "promotions": [{
                     "id": null,
-                    "detail": null,
-                    "discount": null,
                     "start": null,
                     "end": null,
+                    "detail": null,
+                    "discount": null,
                     "images": []
-                },
+                }],
                 "price": {
                     "original": null,
                     "actual": null,

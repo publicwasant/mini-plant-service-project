@@ -1,11 +1,10 @@
 {
     "input": {
-        "product_id": null,
-        "promo_start": null,
-        "promo_end": null,
-        "promo_discount": null,
-        "promo_details": null,
-        "promo_imgURL": null
+        "start": null,
+        "end": null,
+        "discount": null,
+        "details": null,
+        "images": []
     },
     "output": {
         "status": null,
@@ -13,10 +12,10 @@
         "error": null,
         "data": {
             "id": null,
-            "detail": null,
-            "discount": null,
             "start": null,
             "end": null,
+            "discount": null,
+            "detail": null,
             "images": []
         }
     }

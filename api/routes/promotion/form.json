@@ -7,10 +7,10 @@
         "error": null,
         "data": [{
             "id": null,
-            "detail": null,
-            "discount": null,
             "start": null,
             "end": null,
+            "discount": null,
+            "detail": null,
             "images": []
         }]
     }

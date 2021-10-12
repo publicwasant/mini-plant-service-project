@@ -1,15 +1,13 @@
 {
     "input": {
-        "id": null,
-        "id_example": "http://mini-plant.comsciproject.com/product?id=4",
-        "key": null,
-        "key_example": "http://mini-plant.comsciproject.com/product?key=Hot.."
+        "product_id": null,
+        "promotion_id": null
     },
     "output": {
         "status": null,
         "descript": null,
         "error": null,
-        "data": [{
+        "data": {
             "id": null,
             "name": null,
             "detail": null,
@@ -34,6 +32,6 @@
                     "difference": null
                 }
             }
-        }]
+        }
     }
 }

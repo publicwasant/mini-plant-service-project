@@ -547,14 +547,14 @@
             "colors": [],
             "size": [],
             "images": [],
-            "promotion": {
+            "promotions": [{
                 "id": null,
-                "detail": null,
-                "discount": null,
                 "start": null,
                 "end": null,
+                "discount": null,
+                "detail": null,
                 "images": []
-            },
+            }],
             "price": {
                 "original": null,
                 "actual": null,
@@ -595,14 +595,14 @@
             "colors": [],
             "size": [],
             "images": [],
-            "promotion": {
+            "promotion": [{
                 "id": null,
-                "detail": null,
-                "discount": null,
                 "start": null,
                 "end": null,
+                "discount": null,
+                "detail": null,
                 "images": []
-            },
+            }],
             "price": {
                 "original": null,
                 "actual": null,
@@ -643,14 +643,14 @@
             "colors": [],
             "size": [],
             "images": [],
-            "promotion": {
+            "promotion": [{
                 "id": null,
-                "detail": null,
-                "discount": null,
                 "start": null,
                 "end": null,
+                "discount": null,
+                "detail": null,
                 "images": []
-            },
+            }],
             "price": {
                 "original": null,
                 "actual": null,
@@ -735,14 +735,14 @@ Functions
                     "colors": [],
                     "size": [],
                     "images": [],
-                    "promotion": {
+                    "promotions": [{
                         "id": null,
-                        "detail": null,
-                        "discount": null,
                         "start": null,
                         "end": null,
+                        "discount": null,
+                        "detail": null,
                         "images": []
-                    },
+                    }],
                     "price": {
                         "original": null,
                         "actual": null,
@@ -830,14 +830,14 @@ Functions
                     "colors": [],
                     "size": [],
                     "images": [],
-                    "promotion": {
+                    "promotions": [{
                         "id": null,
-                        "detail": null,
-                        "discount": null,
                         "start": null,
                         "end": null,
+                        "discount": null,
+                        "detail": null,
                         "images": []
-                    },
+                    }],
                     "price": {
                         "original": null,
                         "actual": null,
@@ -899,14 +899,14 @@ Functions
                 "colors": [],
                 "size": [],
                 "images": [],
-                "promotion": {
+                "promotions": [{
                     "id": null,
-                    "detail": null,
-                    "discount": null,
                     "start": null,
                     "end": null,
+                    "discount": null,
+                    "detail": null,
                     "images": []
-                },
+                }],
                 "price": {
                     "original": null,
                     "actual": null,
@@ -961,14 +961,14 @@ Functions
                 "colors": [],
                 "size": [],
                 "images": [],
-                "promotion": {
+                "promotions": [{
                     "id": null,
-                    "detail": null,
-                    "discount": null,
                     "start": null,
                     "end": null,
+                    "discount": null,
+                    "detail": null,
                     "images": []
-                },
+                }],
                 "price": {
                     "original": null,
                     "actual": null,
@@ -1022,14 +1022,14 @@ Functions
                 "colors": [],
                 "size": [],
                 "images": [],
-                "promotion": {
+                "promotions": [{
                     "id": null,
-                    "detail": null,
-                    "discount": null,
                     "start": null,
                     "end": null,
+                    "discount": null,
+                    "detail": null,
                     "images": []
-                },
+                }],
                 "price": {
                     "original": null,
                     "actual": null,
@@ -1123,14 +1123,14 @@ Functions
                     "colors": [],
                     "size": [],
                     "images": [],
-                    "promotion": {
+                    "promotions": [{
                         "id": null,
-                        "detail": null,
-                        "discount": null,
                         "start": null,
                         "end": null,
+                        "discount": null,
+                        "detail": null,
                         "images": []
-                    },
+                    }],
                     "price": {
                         "original": null,
                         "actual": null,
@@ -1220,14 +1220,14 @@ Functions
                     "colors": [],
                     "size": [],
                     "images": [],
-                    "promotion": {
+                    "promotions": [{
                         "id": null,
-                        "detail": null,
-                        "discount": null,
                         "start": null,
                         "end": null,
+                        "discount": null,
+                        "detail": null,
                         "images": []
-                    },
+                    }],
                     "price": {
                         "original": null,
                         "actual": null,
@@ -1275,10 +1275,10 @@ Functions
         "error": null,
         "data": [{
             "id": null,
-            "detail": null,
-            "discount": null,
             "start": null,
             "end": null,
+            "discount": null,
+            "detail": null,
             "images": []
         }]
     }
@@ -1289,12 +1289,11 @@ Functions
 
     INPUT:
     {
-        "product_id": null,
-        "promo_start": null,
-        "promo_end": null,
-        "promo_discount": null,
-        "promo_details": null,
-        "promo_imgURL": null
+        "start": null,
+        "end": null,
+        "discount": null,
+        "details": null,
+        "images": null
     }
 
     OUTPUT:
@@ -1304,10 +1303,10 @@ Functions
         "error": null,
         "data": {
             "id": null,
-            "detail": null,
-            "discount": null,
             "start": null,
             "end": null,
+            "discount": null,
+            "detail": null,
             "images": []
         }
     }
@@ -1318,12 +1317,12 @@ Functions
 
     INPUT: 
     {
-        "promo_id": null,
-        "promo_start": null,
-        "promo_end": null,
-        "promo_discount": null,
-        "promo_details": null,
-        "promo_imgURL": null
+        "id": null,
+        "start": null,
+        "end": null,
+        "discount": null,
+        "details": null,
+        "images": null
     }
 
     OUTPUT:
@@ -1332,12 +1331,12 @@ Functions
         "descript": null,
         "error": null,
         "data": {
-            "promo_id": null,
-            "promo_start": null,
-            "promo_end": null,
-            "promo_discount": null,
-            "promo_details": null,
-            "promo_imgURL": null
+            "id": null,
+            "start": null,
+            "end": null,
+            "discount": null,
+            "detail": null,
+            "images": []
         }
     }
 
@@ -1399,14 +1398,14 @@ Functions
                     "colors": [],
                     "size": [],
                     "images": [],
-                    "promotion": {
+                    "promotions": [{
                         "id": null,
-                        "detail": null,
-                        "discount": null,
                         "start": null,
                         "end": null,
+                        "discount": null,
+                        "detail": null,
                         "images": []
-                    },
+                    }],
                     "price": {
                         "original": null,
                         "actual": null,

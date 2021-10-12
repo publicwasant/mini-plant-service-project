@@ -48,6 +48,8 @@ app.use('/product/edit', require('./routes/product/edit/edit'));
 app.use('/promotion', require('./routes/promotion/promotion'));
 app.use('/promotion/add', require('./routes/promotion/add/add'));
 app.use('/promotion/edit', require('./routes/promotion/edit/edit'));
+app.use('/promotion/related_to_product/add', require('./routes/promotion/related_to_product/add/add'));
+app.use('/promotion/related_to_product/remove', require('./routes/promotion/related_to_product/remove/remove'))
 
 app.use('/order', require('./routes/order/order'));
 app.use('/order/confirm', require('./routes/order/confirm/confirm'));

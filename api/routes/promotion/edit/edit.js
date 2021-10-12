@@ -24,12 +24,12 @@ router.put('/', token.auth((payload, done) => {
             + "WHERE promo_id=?";
         
         const values = [
-            JSON.stringify(input.body.promo_imgURL == null ? [] : input.body.promo_imgURL),
-            input.body.promo_start,
-            input.body.promo_end,
-            input.body.promo_discount,
-            input.body.promo_details,
-            input.body.promo_id
+            JSON.stringify(input.body.images == null ? [] : input.body.images),
+            input.body.start,
+            input.body.end,
+            input.body.discount,
+            input.body.details,
+            input.body.id
         ];
 
         env.database.query(sql, values, (err, result) => {
@@ -43,7 +43,7 @@ router.put('/', token.auth((payload, done) => {
             }
 
             if (result.affectedRows > 0) {
-                env.get({url: "/promotion?id=*", params: [input.body.promo_id], then: (p) => {
+                env.get({url: "/promotion?id=*", params: [input.body.id], then: (p) => {
                     form.output.status = 1;
                     form.output.descript = "แก้ไขข้อมูลสำเร็จแล้ว";
                     form.output.error = null;

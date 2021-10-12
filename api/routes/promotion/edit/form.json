@@ -1,23 +1,23 @@
 {
     "input": {
-        "promo_id": null,
-        "promo_start": null,
-        "promo_end": null,
-        "promo_discount": null,
-        "promo_details": null,
-        "promo_imgURL": null
+        "id": null,
+        "start": null,
+        "end": null,
+        "discount": null,
+        "details": null,
+        "images": []
     },
     "output": {
         "status": null,
         "descript": null,
         "error": null,
         "data": {
-            "promo_id": null,
-            "promo_start": null,
-            "promo_end": null,
-            "promo_discount": null,
-            "promo_details": null,
-            "promo_imgURL": null
+            "id": null,
+            "start": null,
+            "end": null,
+            "discount": null,
+            "detail": null,
+            "images": []
         }
     }
 }

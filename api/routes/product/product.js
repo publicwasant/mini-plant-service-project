@@ -4,63 +4,69 @@ const router = express.Router();
 let alternate = (param) => {
     if (param.id) {
         return {
-            sql: "SELECT * FROM products "
-                + "LEFT JOIN promotions ON products.pr_promo_id=promotions.promo_id "
-                + "WHERE products.pr_id=? ORDER BY products.pr_id DESC",
+            sql: "SELECT * FROM products WHERE pr_id=? ORDER BY pr_id DESC",
             values: [param.id]
         };
     } else if (param.key) {
         return {
-            sql: "SELECT * FROM products "
-                + "LEFT JOIN promotions ON products.pr_promo_id=promotions.promo_id "
-                + "WHERE products.pr_name LIKE ? OR products.pr_detail LIKE ? ORDER BY products.pr_id DESC",
+            sql: "SELECT * FROM products pr_name LIKE ? OR pr_detail LIKE ? ORDER BY pr_id DESC",
             values: ["%" + param.key + "%", "%" + param.key + "%"]
         };
     } else {
         return {
-            sql: "SELECT * FROM products "
-                + "LEFT JOIN promotions ON products.pr_promo_id=promotions.promo_id "
-                + "ORDER BY products.pr_id DESC",
+            sql: "SELECT * FROM products ORDER BY pr_id DESC",
             values: [param.id]
         };
     }
 };
 
-let reorganize = (items) => {
-    for (const [key, val] of Object.entries(items)) {
-        const percent = val.promo_discount != null ? val.promo_discount/100 : 0;
-        const difference = val.pr_price * percent;
-        const actual = val.pr_price - difference;
+const priceWithDiscountCalculate = (originalPrice, promotions) => {
+    let discount = 0;
 
-        items[key] = {
-            id: val.pr_id,
-            name: val.pr_name,
-            detail: val.pr_detail,
-            type: val.pr_type,
-            status: val.pr_status,
-            colors: val.pr_colors != null ? JSON.parse(val.pr_colors) : [],
-            size: val.pr_size != null ? JSON.parse(val.pr_size) : [],
-            images: val.pr_imgsURL != null ? JSON.parse(val.pr_imgsURL) : [],
-            promotion: val.promo_id != null ? {
-                id: val.promo_id,
-                detail: val.promo_details,
-                discount: val.promo_discount,
-                start: val.promo_start,
-                end: val.promo_end,
-                images: val.promo_imgURL != null ? JSON.parse(val.promo_imgURL) : []
-            } : null,
-            price: {
-                original: val.pr_price,
-                actual: actual,
-                discount: {
-                    percent: percent * 100,
-                    difference: difference
-                }
+    if (promotions.status == 1) 
+        for (let i=0; i < promotions.data.length; i++)
+            discount += promotions.data[i].discount
+
+    const difference = originalPrice * (discount/100);
+    const actual = originalPrice - difference;
+
+    return {
+        original: originalPrice,
+        actual: actual,
+        discount: {
+            percent: discount,
+            difference: difference
+        }
+    };
+};
+
+const reorganize = (items, then) => {
+    const fetch = (i) => {
+        env.get({url: "/promotion?product_id=*", params: [items[i].pr_id], then: (p) => {
+            const product = items[i];
+
+            items[i] = {
+                id: product.pr_id,
+                name: product.pr_name,
+                detail: product.pr_detail,
+                type: product.pr_type,
+                status: product.pr_status,
+                colors: product.pr_colors != null ? JSON.parse(product.pr_colors) : [],
+                size: product.pr_size != null ? JSON.parse(product.pr_size) : [],
+                images: product.pr_imgsURL != null ? JSON.parse(product.pr_imgsURL) : [],
+                promotions: p.data,
+                price: priceWithDiscountCalculate(product.pr_price, p)
+            };
+
+            if (i + 1 < items.length) {
+                fetch(i + 1);
+            } else {
+                then(items);
             }
-        };
-    }
+        }});
+    };
 
-    return items;
+    fetch(0);
 };
 
 router.get('/', (req, res) => {
@@ -80,12 +86,14 @@ router.get('/', (req, res) => {
         }
 
         if (result.length > 0) {
-            form.output.status = 1;
-            form.output.descript = "พบข้อมูลแล้ว " + result.length + " รายการ";
-            form.output.error = null;
-            form.output.data = reorganize(result);;
+            reorganize(result, (items) => {
+                form.output.status = 1;
+                form.output.descript = "พบข้อมูลแล้ว " + items.length + " รายการ";
+                form.output.error = null;
+                form.output.data = items;
 
-            return res.json(form.output);
+                return res.json(form.output);
+            });
         } else {
             form.output.status = 0;
             form.output.descript = "ไม่พบข้อมูล!";
