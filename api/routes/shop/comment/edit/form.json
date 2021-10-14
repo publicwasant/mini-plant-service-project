@@ -12,25 +12,12 @@
             "previous_id": null,
             "date": null,
             "text": null,
-            "employee": {
-                "id": null,
-                "username": null,
-                "name": null,
-                "email": null,
-                "addr": null,
-                "phone": null,
+            "owner": {
                 "status": null,
-                "image": null
-            },
-            "customer": {
                 "id": null,
                 "name": null,
-                "email": null,
-                "addr": null,
-                "phone": null,
-                "status": null,
                 "image": null,
-                "shoprated": null       
+                "shoprated": null
             }
         }
     }

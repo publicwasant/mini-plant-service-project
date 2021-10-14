@@ -22,17 +22,28 @@ const alternate = (param) => {
 
 const reorganize = (items, then) => {
     let fetch = (ind) => {
-        env.get("/shop/comment?previous_id=*", [items[ind].cm_id], (replier) => {
-            env.get("/user/customer?id=*", [items[ind].cm_cus_id], (customers) => {
-                env.get("/user/employee?id=*", [items[ind].cm_emp_id], (employees) => {
+        env.get({url: "/shop/comment?previous_id=*", params: [items[ind].cm_id], then: (replier) => {
+            env.get({url: "/user/customer?id=*", params: [items[ind].cm_cus_id], then: (customer) => {
+                env.get({url: "/user/employee?id=*", params: [items[ind].cm_emp_id], then: (employee) => {
                     items[ind] = {
                         id: items[ind].cm_id,
                         previous_id: items[ind].cm_previous_id,
                         shop_id: items[ind].cm_shop_id,
                         date: items[ind].cm_date,
                         text: items[ind].cm_text,
-                        employee: employees.status == 1 ? employees.data[0] : null,
-                        customer: customers.status == 1 ? customers.data[0] : null,
+                        owner: employee.status == 1 ? {
+                            status: 0,
+                            id: employee.data[0].id,
+                            name: employee.data[0].name,
+                            image: employee.data[0].image,
+                            shoprated: null
+                        } : {
+                            status: 1,
+                            id: customer.data[0].id,
+                            name: customer.data[0].name,
+                            image: customer.data[0].image,
+                            shoprated: customer.data[0].shoprated
+                        },
                         replier: replier.status == 1 ? replier.data : []
                     };
 
@@ -41,9 +52,9 @@ const reorganize = (items, then) => {
                     } else {
                         then(items);
                     }
-                });
-            });
-        });
+                }});
+            }});
+        }});
     };
 
     fetch(0);
