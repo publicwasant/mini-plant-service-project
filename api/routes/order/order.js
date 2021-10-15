@@ -36,7 +36,7 @@ const reorganize = (token, items, then) => {
                         id: items[ind].order_id,
                         type: items[ind].order_type,
                         date: items[ind].order_date,
-                        total_price: items[ind].order_totalPrice,
+                        total_price: items[ind].order_totalprice,
                         customer: customers.status == 1 ? customers.data[0] : null,
                         employee: employees.status == 1 ? employees.data[0] : null,
                         order_items: orderitems.data,

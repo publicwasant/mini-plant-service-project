@@ -13,7 +13,8 @@
             "storage": {
                 "media": {
                     "image": "/storage/media/images/"
-                }
+                },
+                "opt": "/storage/opt/"
             }
         }
     }, 
@@ -31,7 +32,8 @@
             "storage": {
                 "media": {
                     "image": "/storage/media/images/"
-                }
+                },
+                "opt": "/storage/opt/"
             }
         }
     } 
