@@ -1288,8 +1288,66 @@ Functions
         }
     }
 
+** 33. เพิ่มการตั้งโปรโมชั่นให้กับสินค้า
+    [POST]  http://mini-plant.comsciproject.com/promotion/related_to_product/add
 
-** 33. ค้นหาข้อมูลประวัติการสั่งซื้อ
+    INPUT:
+    {
+        "product_id": null,
+        "promotion_id": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "name": null,
+            "detail": null,
+            "type": null,
+            "status": null,
+            "colors": [],
+            "size": [],
+            "images": [],
+            "promotions": [{
+                "id": null,
+                "start": null,
+                "end": null,
+                "discount": null,
+                "detail": null,
+                "images": []
+            }],
+            "price": {
+                "original": null,
+                "actual": null,
+                "discount": {
+                    "percent": null,
+                    "difference": null
+                }
+            }
+        }
+    }
+
+** 34. ลบการตั้งโปรโมชั่นให้กับสินค้า
+    [POST]  http://mini-plant.comsciproject.com/promotion/related_to_product/remove
+
+    INPUT:
+    {
+        "product_id": null,
+        "promotion_id": null
+    }
+
+    OUTPUT:
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": null
+    }
+
+** 35. ค้นหาข้อมูลประวัติการสั่งซื้อ
     [GET]   http://mini-plant.comsciproject.com/history
 
     INPUT:  
@@ -1387,13 +1445,13 @@ Functions
         }
     }
 
-** 34. ค้นหารูปภาพ
+** 36. ค้นหารูปภาพ
     [GET]   http://mini-plant.comsciproject.com/media/image
 
     INPUT:  http://mini-plant.comsciproject.com/media/image?p=XXX.jpg
     OUPUT:  <image>
 
-** 35. เพิ่มรูปภาพ
+** 37. เพิ่มรูปภาพ
     [POST]  http://mini-plant.comsciproject.com/media/image/add
 
     INPUT: 
