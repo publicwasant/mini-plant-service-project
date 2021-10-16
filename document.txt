@@ -252,8 +252,10 @@
         "error": null,
         "data": {
             "shop": {
+                "name": null,
                 "email": null,
                 "phone": null,
+                "profile": null,
                 "images": []
             }, 
             "banks": [{
@@ -309,8 +311,10 @@
 
     INPUT: 
     {
+        "name": null,
         "email": null,
         "phone": null,
+        "profile": null,
         "images": []
     }
 
@@ -321,8 +325,10 @@
         "error": null,
         "data": {
             "shop": {
+                "name": null,
                 "email": null,
                 "phone": null,
+                "profile": null,
                 "images": []
             }, 
             "banks": [{
@@ -868,6 +874,7 @@ Functions
             }],
             "shipment": {
                 "date": null, --> YYYY-MM-DD
+                "number": null,
                 "bill": null,
                 "status": null
             },
@@ -963,6 +970,7 @@ Functions
             }],
             "shipment": {
                 "date": null,
+                "number": null,
                 "bill": null,
                 "status": null
             },
@@ -1100,8 +1108,8 @@ Functions
     INPUT:  http://mini-plant.comsciproject.com/order/item/edit
     {
         "id": null,
-        color: null,
-        size: null,
+        "color": null,
+        "size": null,
         "amount": null
     }
 
@@ -1178,6 +1186,7 @@ Functions
     {
         "id": null,
         "date": null,
+        "number": null,
         "bill": null,
         "status": null,
     }
@@ -1257,6 +1266,7 @@ Functions
             }],
             "shipment": {
                 "date": null,
+                "number": null,
                 "bill": null,
                 "status": null
             },
@@ -1354,6 +1364,7 @@ Functions
             }],
             "shipment": {
                 "date": null,
+                "number": null,
                 "bill": null,
                 "status": null
             },

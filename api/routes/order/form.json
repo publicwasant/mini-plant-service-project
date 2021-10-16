@@ -73,6 +73,7 @@
             }],
             "shipment": {
                 "date": null,
+                "number": null,
                 "bill": null,
                 "status": null
             },

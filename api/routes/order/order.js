@@ -42,6 +42,7 @@ const reorganize = (token, items, then) => {
                         order_items: orderitems.data,
                         shipment: {
                             date: items[ind].ship_date,
+                            number: items[ind].ship_number,
                             bill: items[ind].ship_bill,
                             status: items[ind].ship_status
                         },

@@ -7,8 +7,10 @@ const reorganize = (item, then) => {
             env.get({url: "/shop/comment", params: [], then: (comments) => {
                 then({
                     shop: {
+                        name: item.shop_name,
                         email: item.shop_email,
                         phone: item.shop_phone,
+                        profile: item.shop_profile,
                         images: JSON.parse(item.shop_imgsURL)
                     }, 
                     banks: banks.data, 

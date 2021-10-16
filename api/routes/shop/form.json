@@ -7,8 +7,10 @@
         "error": null,
         "data": {
             "shop": {
+                "name": null,
                 "email": null,
                 "phone": null,
+                "profile": null,
                 "images": []
             }, 
             "banks": [{
