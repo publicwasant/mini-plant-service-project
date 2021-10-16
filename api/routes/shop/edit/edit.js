@@ -15,23 +15,15 @@ router.put('/', token.auth((payload, done) => {
     const sql = "UPDATE shops SET "
         + "shop_email=?, "
         + "shop_phone=?, "
-        + "shop_imgsURL=?, "
-        + "shop_bk_name=?, "
-        + "shop_bk_owner=?, "
-        + "shop_bk_number=?, "
-        + "shop_bk_prompay=? "
+        + "shop_imgsURL=? "
         + "WHERE shop_id=0"
 
     const values = [
-        input.body.shop.email,
-        input.body.shop.phone,
+        input.body.email,
+        input.body.phone,
         JSON.stringify(
-            input.body.shop.images == null ? 
-            [] : input.body.shop.images),
-        input.body.bank.name,
-        input.body.bank.owner,
-        input.body.bank.number,
-        input.body.bank.prompay
+            input.body.images == null ? 
+            [] : input.body.images),
     ];
 
     env.database.query(sql, values, (err, result) => {

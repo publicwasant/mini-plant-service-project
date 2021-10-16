@@ -1,0 +1,21 @@
+{
+    "input": {
+        "id": null,
+        "name": null,
+        "owner": null,
+        "number": null,
+        "prompay": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "name": null,
+            "owner": null,
+            "number": null,
+            "prompay": null
+        }
+    }
+}

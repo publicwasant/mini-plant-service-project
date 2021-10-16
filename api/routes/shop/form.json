@@ -11,12 +11,51 @@
                 "phone": null,
                 "images": []
             }, 
-            "bank": {
+            "banks": [{
                 "name": null,
                 "owner": null,
                 "number": null,
                 "prompay": null
-            }
+            }],
+            "rating": {
+                "average": null,
+                "customers": [{
+                    "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null,
+                    "shoprated": null
+                }]
+            },
+            "comments": [{
+                "id": null,
+                "previous_id": null,
+                "date": null,
+                "text": null,
+                "owner": {
+                    "status": null,
+                    "id": null,
+                    "name": null,
+                    "image": null,
+                    "shoprated": null
+                },
+                "replier": [{
+                    "id": null,
+                    "previous_id": null,
+                    "date": null,
+                    "text": null,
+                    "owner": {
+                        "status": null,
+                        "id": null,
+                        "name": null,
+                        "image": null,
+                        "shoprated": null
+                    }
+                }]
+            }]
         }
     }
 }

@@ -34,6 +34,10 @@ app.use('/user/employee/edit', require('./routes/user/employee/edit/edit'));
 
 app.use('/shop', require('./routes/shop/shop'));
 app.use('/shop/edit', require('./routes/shop/edit/edit'));
+app.use('/shop/bank', require('./routes/shop/bank/bank'));
+app.use('/shop/bank/add', require('./routes/shop/bank/add/add'));
+app.use('/shop/bank/edit', require('./routes/shop/bank/edit/edit'));
+app.use('/shop/bank/delete', require('./routes/shop/bank/delete/delete'));
 app.use('/shop/rate', require('./routes/shop/rate/rate'));
 app.use('/shop/rate/edit', require('./routes/shop/rate/edit/edit'));
 app.use('/shop/comment', require('./routes/shop/comment/comment'));

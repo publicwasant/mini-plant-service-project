@@ -3,20 +3,20 @@ const router = express.Router();
 
 const reorganize = (item, then) => {
     env.get({url: "/shop/rate", params: [], then: (rating) => {
-        then({
-            shop: {
-                email: item.shop_email,
-                phone: item.shop_phone,
-                images: JSON.parse(item.shop_imgsURL)
-            }, 
-            bank: {
-                name: item.shop_bk_name,
-                owner: item.shop_bk_owner,
-                number: item.shop_bk_number,
-                prompay: item.shop_bk_prompay
-            }, 
-            rating: rating.data
-        });
+        env.get({url: "/shop/bank", params: [], then: (banks) => {
+            env.get({url: "/shop/comment", params: [], then: (comments) => {
+                then({
+                    shop: {
+                        email: item.shop_email,
+                        phone: item.shop_phone,
+                        images: JSON.parse(item.shop_imgsURL)
+                    }, 
+                    banks: banks.data, 
+                    rating: rating.data,
+                    comments: comments.data
+                });
+            }});
+        }});
     }});
 };
 
