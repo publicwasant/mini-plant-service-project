@@ -3,6 +3,27 @@ const router = express.Router();
 
 const token = require('./../../../../jwt_token');
 
+const related_to_product = (token, promotion_id, products_id, then) => {
+    const fetch = (i) => {
+        env.post({url: "/promotion/related_to_product/add", 
+            token: token,
+            body: {
+                product_id: products_id[i], 
+                promotion_id: promotion_id
+            }, then: (res) => {
+                console.log(res);
+
+                if (i + 1 < products_id.length) {
+                    fetch(i + 1);
+                } else {
+                    then(promotion_id);
+                }
+        }});
+    };
+
+    fetch(0);
+};
+
 router.post('/', token.auth((payload, done) => {
     payload.status == 0 ? 
         token.verify(payload, (result) => {
@@ -38,14 +59,16 @@ router.post('/', token.auth((payload, done) => {
             }
 
             if (result.affectedRows > 0) {
-                env.get({url: "/promotion?id=*", params: [result.insertId], then: (p) => {
-                    form.output.status = 1;
-                    form.output.descript = "บันทึกข้อมูลสำเร็จแล้ว";
-                    form.output.error = null;
-                    form.output.data = p.data[0];
-
-                    return res.json(form.output);
-                }});
+                related_to_product(input.header.authorization, result.insertId, input.body.products_id, (id) => {
+                    env.get({url: "/promotion?id=*", params: [result.insertId], then: (p) => {
+                        form.output.status = 1;
+                        form.output.descript = "บันทึกข้อมูลสำเร็จแล้ว";
+                        form.output.error = null;
+                        form.output.data = p.data[0];
+    
+                        return res.json(form.output);
+                    }});
+                });
             } else {
                 form.output.status = 0;
                 form.output.descript = "บันทึกข้อมูลไม่สำเร็จ!";

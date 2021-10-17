@@ -9,7 +9,7 @@ let alternate = (param) => {
         };
     } else if (param.key) {
         return {
-            sql: "SELECT * FROM products pr_name LIKE ? OR pr_detail LIKE ? ORDER BY pr_id DESC",
+            sql: "SELECT * FROM products WHERE pr_name LIKE ? OR pr_detail LIKE ? ORDER BY pr_id DESC",
             values: ["%" + param.key + "%", "%" + param.key + "%"]
         };
     } else {
@@ -85,7 +85,7 @@ router.get('/', (req, res) => {
         if (err) {
             form.output.status = 0;
             form.output.descript = "เกิดข้อผิดพลาดบางอย่าง!";
-            form.output.error.message = err;
+            form.output.error = err;
             form.output.data = [];
 
             return res.json(form.output);

@@ -4,12 +4,12 @@ const router = express.Router();
 const alternate = (param) => {
     if (param.id) {
         return {
-            sql: "SELECT * FROM comments WHERE cm_id=? ORDER BY cm_id DESC",
+            sql: "SELECT * FROM comments WHERE cm_id=?",
             values: [param.id]
         };
     } else if (param.previous_id) {
         return {
-            sql: "SELECT * FROM comments WHERE cm_previous_id=? ORDER BY cm_id DESC",
+            sql: "SELECT * FROM comments WHERE cm_previous_id=?",
             values: [param.previous_id]
         };
     } else {

@@ -69,8 +69,6 @@ app.use('/history', require('./routes/history/history'));
 app.use('/media/image', require('./routes/media/image/image'));
 app.use('/media/image/add', require('./routes/media/image/add/add'));
 
-app.use('/opt/generate', require('./routes/opt/generate/generate'));
-
 app.use((req, res) => {
     res.status(400);
     res.send('400 Bad request, service not found!');

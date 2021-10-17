@@ -1414,7 +1414,8 @@ Functions
         "end": null,
         "discount": null,
         "details": null,
-        "images": null
+        "images": [],
+        "products_id": []
     }
 
     OUTPUT:
@@ -1443,7 +1444,7 @@ Functions
         "end": null,
         "discount": null,
         "details": null,
-        "images": null
+        "images": []
     }
 
     OUTPUT:
