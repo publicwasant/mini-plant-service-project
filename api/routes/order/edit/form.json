@@ -1,0 +1,91 @@
+{
+    "input": {
+        "id": null,
+        "type": null,
+        "customer_id": null,
+        "employee_id": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "id": null,
+            "type": null,
+            "date": null,
+            "total_price": null,
+            "customer": {
+                "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null,
+                "shoprated": null
+            },
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "order_items": [{
+                "id": null,
+                "order_id": null,
+                "amount": null,
+                "price": null,
+                "product": {
+                    "id": null,
+                    "name": null,
+                    "detail": null,
+                    "type": null,
+                    "status": null,
+                    "colors": [],
+                    "size": [],
+                    "images": [],
+                    "promotions": [{
+                        "id": null,
+                        "start": null,
+                        "end": null,
+                        "discount": null,
+                        "detail": null,
+                        "images": []
+                    }],
+                    "price": {
+                        "original": null,
+                        "actual": null,
+                        "discount": {
+                            "percent": null,
+                            "difference": null
+                        }
+                    }
+                },
+                "customer": {
+                    "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
+                }
+            }],
+            "shipment": {
+                "date": null,
+                "number": null,
+                "bill": null,
+                "status": null
+            },
+            "payment": {
+                "date": null,
+                "transfer": null,
+                "status": null
+            }
+        }
+    }
+}

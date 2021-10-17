@@ -4,10 +4,9 @@ const router = express.Router();
 const token = require('./../../../../../jwt_token');
 
 router.post('/', token.auth((payload, done) => {
-    payload.status == 1 ? 
-        token.verify(payload, (result) => {
-            done(null, result);
-    }) : done(null, false);
+    token.verify(payload, (result) => {
+        return done(null, result);
+    });
 }), (req, res) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);

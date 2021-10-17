@@ -57,6 +57,7 @@ app.use('/promotion/related_to_product/remove', require('./routes/promotion/rela
 
 app.use('/order', require('./routes/order/order'));
 app.use('/order/confirm', require('./routes/order/confirm/confirm'));
+app.use('/order/edit', require('./routes/order/edit/edit'));
 app.use('/order/item', require('./routes/order/item/item'));
 app.use('/order/item/add', require('./routes/order/item/add/add'));
 app.use('/order/item/edit', require('./routes/order/item/edit/edit'));
