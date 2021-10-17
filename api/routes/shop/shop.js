@@ -10,6 +10,8 @@ const reorganize = (item, then) => {
                         name: item.shop_name,
                         email: item.shop_email,
                         phone: item.shop_phone,
+                        owner: item.shop_owner,
+                        addr: item.shop_addr,
                         profile: item.shop_profile,
                         images: JSON.parse(item.shop_imgsURL)
                     }, 

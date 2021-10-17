@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 const mysql = require('mysql');
+const nodemailer = require('nodemailer');
 const express = require('express');
 
 const app = require('./api/app');
@@ -81,6 +82,9 @@ global.env = {
             
             return (time * seed).toString(36);
         },
+        opt: (stime=10000) => {
+            return Math.floor(Math.random() * stime + stime)
+        }
     },
     validate: (body, except) => {
         const keys = Object.keys(body);
@@ -100,6 +104,28 @@ global.env = {
         }
     
         return result;
+    },
+    email: {
+        send: (to, subject, text, then) => {
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: config.email.addr,
+                  pass: config.email.password
+                }
+            });
+
+            transporter.sendMail({
+                from: config.email.addr,
+                to: to,
+                subject: subject,
+                text: text
+            }, (err, info) => {
+
+                console.log(err);
+                return err ? then(null) : then(info.response);
+            });
+        }
     },
     get: (properties) => {
         while (properties.url.includes("*"))

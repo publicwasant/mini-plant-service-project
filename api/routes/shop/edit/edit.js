@@ -15,12 +15,16 @@ router.put('/', token.auth((payload, done) => {
     const sql = "UPDATE shops SET "
         + "shop_email=?, "
         + "shop_phone=?, "
+        + "shop_owner=?, "
+        + "shop_addr=?, "
         + "shop_imgsURL=? "
         + "WHERE shop_id=0"
 
     const values = [
         input.body.email,
         input.body.phone,
+        input.body.owner,
+        input.body.addr,
         JSON.stringify(
             input.body.images == null ? 
             [] : input.body.images),

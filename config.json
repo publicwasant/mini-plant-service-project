@@ -16,6 +16,9 @@
                 },
                 "opt": "/storage/opt/"
             }
+        }, "email": {
+            "addr": "wasant44170@gmail.com",
+            "password": "goldussanterpi"
         }
     }, 
     "deploy": {
@@ -35,6 +38,9 @@
                 },
                 "opt": "/storage/opt/"
             }
+        }, "email": {
+            "addr": "mp.service.1710@gmail.com",
+            "password": "mp.service.amaw7xc"
         }
     } 
 }

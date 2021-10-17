@@ -255,6 +255,8 @@
                 "name": null,
                 "email": null,
                 "phone": null,
+                "owner": null, *
+                "addr": null,  *
                 "profile": null,
                 "images": []
             }, 
@@ -314,6 +316,8 @@
         "name": null,
         "email": null,
         "phone": null,
+        "owner": null,
+        "addr": null,
         "profile": null,
         "images": []
     }
@@ -328,6 +332,8 @@
                 "name": null,
                 "email": null,
                 "phone": null,
+                "owner": null,
+                "addr": null,
                 "profile": null,
                 "images": []
             }, 
