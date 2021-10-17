@@ -25,9 +25,11 @@ const alternate = (param) => {
     return result;
 };
 
-const reorganize = (items, then) => {
+const reorganize = (available, items, then) => {
+    const promotions = [];
+
     for (const [key, val] of Object.entries(items)) {
-        items[key] = {
+        const temp = {
             id: val.promo_id,
             start: val.promo_start,
             end: val.promo_end,
@@ -35,9 +37,17 @@ const reorganize = (items, then) => {
             detail: val.promo_details,
             images: JSON.parse(val.promo_imgURL)
         };
+
+        if (available) {
+            if (env.date.between(val.promo_start, val.promo_end, env.date.simple())) {
+                promotions.push(temp);
+            }
+        } else {
+            promotions.push(temp);
+        }
     }
 
-    then(items);
+    then(promotions);
 };
 
 router.get('/', (req, res) => {
@@ -56,8 +66,10 @@ router.get('/', (req, res) => {
             return res.json(form.output);
         }
 
+        console.log(input.url);
+
         if (result.length > 0) {
-            reorganize(result, (items) => {
+            reorganize(input.url.available, result, (items) => {
                 form.output.status = 1;
                 form.output.descript = "พบข้อมูลแล้ว " + items.length + " รายการ";
                 form.output.data = items;

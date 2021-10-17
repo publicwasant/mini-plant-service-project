@@ -1385,9 +1385,9 @@ Functions
 ** 34. ค้นหาข้อมูลโปรโมชั่น
     [GET] http://mini-plant.comsciproject.com/promotion
 
-    INPUT:  http://mini-plant.comsciproject.com/promotion **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
-            http://mini-plant.comsciproject.com/promotion?id=XX
-            http://mini-plmat.comsciproject.com/promotion?product_id=XX
+    INPUT:  http://mini-plant.comsciproject.com/promotion?available=true **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
+            http://mini-plant.comsciproject.com/promotion?id=XX&available=true
+            http://mini-plmat.comsciproject.com/promotion?product_id=XX&available=true
 
     OUPUT:
     {

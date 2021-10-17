@@ -42,14 +42,8 @@ const priceWithDiscountCalculate = (originalPrice, promotions) => {
 
 const reorganize = (items, then) => {
     const fetch = (i) => {
-        env.get({url: "/promotion?product_id=*", params: [items[i].pr_id], then: (p) => {
+        env.get({url: "/promotion?product_id=*&available=true", params: [items[i].pr_id], then: (p) => {
             const product = items[i];
-            const promotions = [];
-
-            for (const [key, val] of Object.entries(p.status == 1 ? p.data : []))
-                if (env.date.between(val.start, val.end, env.date.simple()))
-                    promotions.push(val);
-                    
 
             items[i] = {
                 id: product.pr_id,
@@ -60,7 +54,7 @@ const reorganize = (items, then) => {
                 colors: product.pr_colors != null ? JSON.parse(product.pr_colors) : [],
                 size: product.pr_size != null ? JSON.parse(product.pr_size) : [],
                 images: product.pr_imgsURL != null ? JSON.parse(product.pr_imgsURL) : [],
-                promotions: promotions,
+                promotions: p.data,
                 price: priceWithDiscountCalculate(product.pr_price, p)
             };
 
