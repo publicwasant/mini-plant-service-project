@@ -66,8 +66,6 @@ router.get('/', (req, res) => {
             return res.json(form.output);
         }
 
-        console.log(input.url);
-
         if (result.length > 0) {
             reorganize(input.url.available, result, (items) => {
                 form.output.status = 1;

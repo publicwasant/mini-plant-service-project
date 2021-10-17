@@ -11,7 +11,7 @@ router.post('/', token.auth((payload, done) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    const vat = env.validate(input.body, ["employee_id"]);
+    const vat = env.validate(input.body, ["customer_id", "employee_id"]);
 
     if (vat.valid) {
         const sqls = "SELECT SUM(oitem_price) AS total_price FROM orderitems WHERE oitem_order_id IS NULL";
@@ -48,8 +48,16 @@ router.post('/', token.auth((payload, done) => {
 
                     if (result.affectedRows > 0) {
                         const order_id = result.insertId;
-                        const sqld = "UPDATE orderitems SET oitem_order_id=? WHERE oitem_order_id IS ? AND oitem_customer_id=?";
-                        const valuesd = [order_id, null, input.body.customer_id];
+                        let sqld;
+                        let valuesd;
+
+                        if (input.body.customer_id) {
+                            sqld = "UPDATE orderitems SET oitem_order_id=? WHERE oitem_order_id IS ? AND oitem_customer_id=?"
+                            valuesd = [order_id, null, input.body.customer_id];
+                        } else {
+                            sqld = "UPDATE orderitems SET oitem_order_id=? WHERE oitem_order_id IS ? AND oitem_employee_id=?"
+                            valuesd = [order_id, null, input.body.employee_id];
+                        }
 
                         env.database.query(sqld, valuesd, (err, result) => {
                             if (err) {

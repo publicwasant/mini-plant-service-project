@@ -72,6 +72,16 @@
                     "status": null,
                     "image": null,
                     "shoprated": null
+                },
+                "employee": {
+                    "id": null,
+                    "username": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
                 }
             }],
             "shipment": {

@@ -794,10 +794,11 @@
 Functions
     1. ./order
     2. ./order/confirm
-    3. ./order/item
-    4. ./order/item/add
-    5. ./order/item/edit
-    6. ./order/item/remove
+    2. ./order/edit
+    4. ./order/item
+    5. ./order/item/add
+    6. ./order/item/edit
+    7. ./order/item/remove
 
 
 ** 26. ค้นหาข้อมูลการสั่งซื้อ
@@ -871,6 +872,16 @@ Functions
                 },
                 "customer": {
                     "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
+                },
+                "employee": {
+                    "id": null,
+                    "username": null,
                     "name": null,
                     "email": null,
                     "addr": null,
@@ -967,6 +978,16 @@ Functions
                 },
                 "customer": {
                     "id": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
+                },
+                "employee": {
+                    "id": null,
+                    "username": null,
                     "name": null,
                     "email": null,
                     "addr": null,
@@ -1070,6 +1091,16 @@ Functions
                     "phone": null,
                     "status": null,
                     "image": null
+                },
+                "employee": {
+                    "id": null,
+                    "username": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
                 }
             }],
             "shipment": {
@@ -1093,6 +1124,7 @@ Functions
             http://mini-plant.comsciproject.com/order/item?id=XX
             http://mini-plant.comsciproject.com/order/item?order_id=XX
             http://mini-plant.comsciproject.com/order/item?customer_id=XX
+            http://mini-plant.comsciproject.com/order/item?employee_id=XX
 
     OUTPUT:
     {
@@ -1140,6 +1172,16 @@ Functions
                 "phone": null,
                 "status": null,
                 "image": null
+            },
+            "employee": {
+                "id": null,
+                "username": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
             }
         }]
     }
@@ -1151,6 +1193,7 @@ Functions
     {
         "product_id": null,
         "customer_id": null,
+        "employee_id": null,
         "color": null,
         "size": null,
         "amount": null
@@ -1196,6 +1239,16 @@ Functions
             },
             "customer": {
                 "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "employee": {
+                "id": null,
+                "username": null,
                 "name": null,
                 "email": null,
                 "addr": null,
@@ -1257,6 +1310,16 @@ Functions
             },
             "customer": {
                 "id": null,
+                "name": null,
+                "email": null,
+                "addr": null,
+                "phone": null,
+                "status": null,
+                "image": null
+            },
+            "employee": {
+                "id": null,
+                "username": null,
                 "name": null,
                 "email": null,
                 "addr": null,
@@ -1366,6 +1429,16 @@ Functions
                     "status": null,
                     "image": null,
                     "shoprated": null
+                },
+                "employee": {
+                    "id": null,
+                    "username": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
                 }
             }],
             "shipment": {
@@ -1464,6 +1537,16 @@ Functions
                     "status": null,
                     "image": null,
                     "shoprated": null
+                },
+                "employee": {
+                    "id": null,
+                    "username": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
                 }
             }],
             "shipment": {
@@ -1702,6 +1785,16 @@ Functions
                     "status": null,
                     "image": null,
                     "shoprated": null
+                },
+                "employee": {
+                    "id": null,
+                    "username": null,
+                    "name": null,
+                    "email": null,
+                    "addr": null,
+                    "phone": null,
+                    "status": null,
+                    "image": null
                 }
             }
         }],

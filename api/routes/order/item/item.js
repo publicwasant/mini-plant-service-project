@@ -19,6 +19,11 @@ let alternate = (param) => {
             sql: "SELECT * FROM orderitems WHERE oitem_customer_id=?",
             values: [param.customer_id]
         };
+    } else if (param.employee_id) {
+        return {
+            sql: "SELECT * FROM orderitems WHERE oitem_employee_id=?",
+            values: [param.employee_id]
+        };
     } else {
         return {
             sql: "SELECT * FROM orderitems ORDER BY oitem_id DESC",
@@ -31,22 +36,25 @@ let reorganize = (items, then) => {
     let fetch = (ind) => {
         env.get({url: "/product?id=*", params: [items[ind].oitem_product_id], then: (product) => {
             env.get({url: "/user/customer?id=*", params: [items[ind].oitem_customer_id], then: (customer) => {
-                items[ind] = {
-                    id: items[ind].oitem_id,
-                    order_id: items[ind].oitem_order_id,
-                    color: items[ind].oitem_color,
-                    size: items[ind].oitem_size,
-                    amount: items[ind].oitem_amount,
-                    total_price: items[ind].oitem_price,
-                    product: product.data[0],
-                    customer: customer.data[0]
-                };
-
-                if (ind + 1 < items.length) {
-                    fetch(ind + 1);
-                } else {
-                    then(items);
-                }
+                env.get({url: "/user/employee?id=*", params: [items[ind].oitem_employee_id], then: (employee) => {
+                    items[ind] = {
+                        id: items[ind].oitem_id,
+                        order_id: items[ind].oitem_order_id,
+                        color: items[ind].oitem_color,
+                        size: items[ind].oitem_size,
+                        amount: items[ind].oitem_amount,
+                        total_price: items[ind].oitem_price,
+                        product: product.data[0],
+                        customer: customer.data[0],
+                        employee: employee.data[0]
+                    };
+    
+                    if (ind + 1 < items.length) {
+                        fetch(ind + 1);
+                    } else {
+                        then(items);
+                    }
+                }});
             }});
         }});
     };

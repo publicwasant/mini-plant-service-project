@@ -11,16 +11,17 @@ router.post('/', token.auth((payload, done) => {
     const form = env.form(__dirname + '/form.json');
     const input = env.input(req);
 
-    const vat = env.validate(input.body, []);
+    const vat = env.validate(input.body, ["customer_id", "employee_id"]);
 
     if (vat.valid) {
         env.get({url: "/product?id=*", params: [input.body.product_id], then: (product) => {
             if (product.status == 1) {
                 const total_price = product.data[0].price.actual * input.body.amount;
-                const sql = "INSERT INTO orderitems (oitem_product_id, oitem_customer_id, oitem_color, oitem_size, oitem_amount, oitem_price) VALUES ?";
+                const sql = "INSERT INTO orderitems (oitem_product_id, oitem_customer_id, oitem_employee_id, oitem_color, oitem_size, oitem_amount, oitem_price) VALUES ?";
                 const values = [[
                     input.body.product_id,
                     input.body.customer_id,
+                    input.body.employee_id,
                     input.body.color,
                     input.body.size,
                     input.body.amount,
