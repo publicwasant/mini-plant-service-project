@@ -667,8 +667,9 @@
     [GET]   http://mini-plant.comsciproject.com/product
 
     INPUT:  http://mini-plant.comsciproject.com/product?available=1
-            http://mini-plant.comsciproject.com/product?id=XX?available=1
-            http://mini-plant.comsciproject.com/product?key=XX?available=1
+            http://mini-plant.comsciproject.com/product?id=XX&available=1
+            http://mini-plant.comsciproject.com/product?key=XX&available=1
+            http://mini-plant.comsciproject.com/product?type=XX&available=1
 
     OUTPUT:
     {

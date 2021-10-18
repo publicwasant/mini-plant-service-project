@@ -1,7 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-let alternate = (param) => {
+const PRODUCT_TYPE = [
+    "กระถาง",
+    "หินตกแต่ง",
+    "การ์ด",
+    "ต้นไม้",
+    "สินค้าสำเร็จ"
+];
+
+const alternate = (param) => {
     if (param.id) {
         return {
             sql: "SELECT * FROM products WHERE pr_id=? ORDER BY pr_id DESC",
@@ -11,6 +19,11 @@ let alternate = (param) => {
         return {
             sql: "SELECT * FROM products WHERE pr_name LIKE ? OR pr_detail LIKE ? ORDER BY pr_id DESC",
             values: ["%" + param.key + "%", "%" + param.key + "%"]
+        };
+    } else if (param.type) {
+        return {
+            sql: "SELECT * FROM products WHERE pr_type=?",
+            values: [PRODUCT_TYPE.indexOf(param.type)]
         };
     } else {
         return {
