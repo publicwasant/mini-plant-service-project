@@ -15,13 +15,14 @@ router.put('/', token.auth((payload, done) => {
     const vat = env.validate(input.body, []);
 
     if (vat.valid) {
-        const sql = "UPDATE customers SET cus_email=?, cus_name=?, cus_addr=?, cus_phone=?, cus_imgURL=? WHERE cus_id=?";
+        const sql = "UPDATE customers SET cus_email=?, cus_name=?, cus_addr=?, cus_phone=?, cus_imgURL=?, cus_status=? WHERE cus_id=?";
         const values = [
             input.body.email,
             input.body.name,
             input.body.addr,
             input.body.phone,
             input.body.image,
+            input.body.status,
             input.body.id
         ];
 
