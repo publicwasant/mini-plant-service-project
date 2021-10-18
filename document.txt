@@ -666,9 +666,9 @@
 ** 23. ค้นหาข้อมูลสินค้า
     [GET]   http://mini-plant.comsciproject.com/product
 
-    INPUT:  http://mini-plant.comsciproject.com/product
-            http://mini-plant.comsciproject.com/product?id=XX
-            http://mini-plant.comsciproject.com/product?key=XX
+    INPUT:  http://mini-plant.comsciproject.com/product?available=1
+            http://mini-plant.comsciproject.com/product?id=XX?available=1
+            http://mini-plant.comsciproject.com/product?key=XX?available=1
 
     OUTPUT:
     {
@@ -689,6 +689,7 @@
                 "start": null,
                 "end": null,
                 "discount": null,
+                "name": null,
                 "detail": null,
                 "images": []
             }],
@@ -737,6 +738,7 @@
                 "start": null,
                 "end": null,
                 "discount": null,
+                "name": null,
                 "detail": null,
                 "images": []
             }],
@@ -785,6 +787,7 @@
                 "start": null,
                 "end": null,
                 "discount": null,
+                "name": null,
                 "detail": null,
                 "images": []
             }],
@@ -878,6 +881,7 @@ Functions
                         "start": null,
                         "end": null,
                         "discount": null,
+                        "name": null,
                         "detail": null,
                         "images": []
                     }],
@@ -984,6 +988,7 @@ Functions
                         "start": null,
                         "end": null,
                         "discount": null,
+                        "name": null,
                         "detail": null,
                         "images": []
                     }],
@@ -1091,6 +1096,7 @@ Functions
                         "start": null,
                         "end": null,
                         "discount": null,
+                        "name": null,
                         "detail": null,
                         "images": []
                     }],
@@ -1172,6 +1178,7 @@ Functions
                     "start": null,
                     "end": null,
                     "discount": null,
+                    "name": null,
                     "detail": null,
                     "images": []
                 }],
@@ -1245,6 +1252,7 @@ Functions
                     "start": null,
                     "end": null,
                     "discount": null,
+                    "name": null,
                     "detail": null,
                     "images": []
                 }],
@@ -1316,6 +1324,7 @@ Functions
                     "start": null,
                     "end": null,
                     "discount": null,
+                    "name": null,
                     "detail": null,
                     "images": []
                 }],
@@ -1428,6 +1437,7 @@ Functions
                         "start": null,
                         "end": null,
                         "discount": null,
+                        "name": null,
                         "detail": null,
                         "images": []
                     }],
@@ -1586,9 +1596,9 @@ Functions
 ** 35. ค้นหาข้อมูลโปรโมชั่น
     [GET] http://mini-plant.comsciproject.com/promotion
 
-    INPUT:  http://mini-plant.comsciproject.com/promotion?available=true **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
-            http://mini-plant.comsciproject.com/promotion?id=XX&available=true
-            http://mini-plmat.comsciproject.com/promotion?product_id=XX&available=true
+    INPUT:  http://mini-plant.comsciproject.com/promotion?available=1 **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
+            http://mini-plant.comsciproject.com/promotion?id=XX&available=1
+            http://mini-plmat.comsciproject.com/promotion?product_id=XX&available=1
 
     OUPUT:
     {
@@ -1600,6 +1610,7 @@ Functions
             "start": null,
             "end": null,
             "discount": null,
+            "name": null,
             "detail": null,
             "images": []
         }]
@@ -1614,6 +1625,7 @@ Functions
         "start": null,
         "end": null,
         "discount": null,
+        "name": null,
         "details": null,
         "images": [],
         "products_id": []
@@ -1629,6 +1641,7 @@ Functions
             "start": null,
             "end": null,
             "discount": null,
+            "name": null,
             "detail": null,
             "images": []
         }
@@ -1644,6 +1657,7 @@ Functions
         "start": null,
         "end": null,
         "discount": null,
+        "name": null,
         "details": null,
         "images": []
     }
@@ -1658,6 +1672,7 @@ Functions
             "start": null,
             "end": null,
             "discount": null,
+            "name": null,
             "detail": null,
             "images": []
         }
@@ -1691,6 +1706,7 @@ Functions
                 "start": null,
                 "end": null,
                 "discount": null,
+                "name": null,
                 "detail": null,
                 "images": []
             }],
@@ -1784,6 +1800,7 @@ Functions
                         "start": null,
                         "end": null,
                         "discount": null,
+                        "name": null,
                         "detail": null,
                         "images": []
                     }],

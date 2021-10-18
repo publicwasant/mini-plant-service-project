@@ -3,6 +3,7 @@
         "start": null,
         "end": null,
         "discount": null,
+        "name": null,
         "details": null,
         "images": [],
         "products_id": []
@@ -16,6 +17,7 @@
             "start": null,
             "end": null,
             "discount": null,
+            "name": null,
             "detail": null,
             "images": []
         }

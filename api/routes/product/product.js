@@ -40,12 +40,13 @@ const priceWithDiscountCalculate = (originalPrice, promotions) => {
     };
 };
 
-const reorganize = (items, then) => {
+const reorganize = (available, items, then) => {
+    let finalOut = [];
+
     const fetch = (i) => {
         env.get({url: "/promotion?product_id=*&available=true", params: [items[i].pr_id], then: (p) => {
             const product = items[i];
-
-            items[i] = {
+            const temp = {
                 id: product.pr_id,
                 name: product.pr_name,
                 detail: product.pr_detail,
@@ -58,10 +59,18 @@ const reorganize = (items, then) => {
                 price: priceWithDiscountCalculate(product.pr_price, p)
             };
 
+            if (available == 1) {
+                if (temp.status != 0) {
+                    finalOut.push(temp);
+                }
+            } else {
+                finalOut.push(temp);
+            }
+
             if (i + 1 < items.length) {
                 fetch(i + 1);
             } else {
-                then(items);
+                then(finalOut);
             }
         }});
     };
@@ -86,7 +95,7 @@ router.get('/', (req, res) => {
         }
 
         if (result.length > 0) {
-            reorganize(result, (items) => {
+            reorganize(input.url.available, result, (items) => {
                 form.output.status = 1;
                 form.output.descript = "พบข้อมูลแล้ว " + items.length + " รายการ";
                 form.output.error = null;

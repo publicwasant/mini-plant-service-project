@@ -11,8 +11,6 @@ const related_to_product = (token, promotion_id, products_id, then) => {
                 product_id: products_id[i], 
                 promotion_id: promotion_id
             }, then: (res) => {
-                console.log(res);
-
                 if (i + 1 < products_id.length) {
                     fetch(i + 1);
                 } else {
@@ -37,7 +35,7 @@ router.post('/', token.auth((payload, done) => {
 
     if (vat.valid) {
         const sql = "INSERT INTO promotions "
-            + "(promo_imgURL, promo_start, promo_end, promo_discount, promo_details) "
+            + "(promo_imgURL, promo_start, promo_end, promo_discount, promo_name, promo_details) "
             + "VALUES ?";
         
         const values = [[
@@ -45,6 +43,7 @@ router.post('/', token.auth((payload, done) => {
             input.body.start,
             input.body.end,
             input.body.discount,
+            input.body.name,
             input.body.details
         ]];
 

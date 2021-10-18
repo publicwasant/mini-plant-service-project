@@ -20,6 +20,7 @@ router.put('/', token.auth((payload, done) => {
             + "promo_start=?, "
             + "promo_end=?, "
             + "promo_discount=?, "
+            + "promo_name=?, "
             + "promo_details=? "
             + "WHERE promo_id=?";
         
@@ -28,6 +29,7 @@ router.put('/', token.auth((payload, done) => {
             input.body.start,
             input.body.end,
             input.body.discount,
+            input.body.name,
             input.body.details,
             input.body.id
         ];
