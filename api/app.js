@@ -22,6 +22,7 @@ app.use('/', require('./routes/index'));
 app.use('/user/login', require('./routes/user/login/login'));
 app.use('/user/logout', require('./routes/user/logout/logout'));
 app.use('/user/register', require('./routes/user/register/register'));
+app.use('/user/forget_password', require('./routes/user/forget_password/forget_password'));
 
 app.use('/user/customer', require('./routes/user/customer/customer'));
 app.use('/user/customer/reset_password', require('./routes/user/customer/reset_password/reset_password'));

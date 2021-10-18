@@ -240,6 +240,26 @@
         }
     }
 
+** 11. ลืมรหัสผ่าน
+    [PUT]  http://mini-plant.comsciproject.com/user/forget_password
+
+    INPUT: 
+    {
+        "email": null,
+        "new_password": null
+    }
+
+    OUTPUT: 
+    {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            status: null, --> 0=emp, 1=cus
+            id: null
+        }
+    }
+
 ** 11. ค้นหาข้อมูลร้านค้า
     [GET]   http://mini-plant.comsciproject.com/shop
 

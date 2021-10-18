@@ -18,7 +18,7 @@ router.put('/', token.auth((payload, done) => {
         + "shop_phone=?, "
         + "shop_owner=?, "
         + "shop_addr=?, "
-        + "shop_progile=?, "
+        + "shop_profile=?, "
         + "shop_imgsURL=? "
         + "WHERE shop_id=0"
 

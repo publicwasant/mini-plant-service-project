@@ -1,0 +1,15 @@
+{
+    "input": {
+        "email": null,
+        "new_password": null
+    },
+    "output": {
+        "status": null,
+        "descript": null,
+        "error": null,
+        "data": {
+            "status": null,
+            "id": null
+        }
+    }
+}
