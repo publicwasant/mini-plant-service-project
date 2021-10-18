@@ -1611,6 +1611,7 @@ Functions
     INPUT:  http://mini-plant.comsciproject.com/promotion?available=1 **ได้โปรโมชั่นทั้งหมด เรียงแบบ DESC
             http://mini-plant.comsciproject.com/promotion?id=XX&available=1
             http://mini-plmat.comsciproject.com/promotion?product_id=XX&available=1
+            http://mini-plmat.comsciproject.com/promotion?name=XX&available=1
 
     OUPUT:
     {

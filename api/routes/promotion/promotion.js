@@ -17,6 +17,9 @@ const alternate = (param) => {
                 + "WHERE pp_product_id=?) "
             + "ORDER BY promo_id DESC";
         result.values = [param.product_id];
+    } else if (param.name) {
+        result.sql = "SELECT * FROM promotions WHERE promo_name=? ORDER BY promo_id DESC";
+        result.values = [param.name];
     } else {
         result.sql = "SELECT * FROM promotions ORDER BY promo_id DESC";
         result.values = [];
@@ -39,7 +42,7 @@ const reorganize = (available, items, then) => {
                 name: val.promo_name,
                 detail: val.promo_details,
                 images: JSON.parse(val.promo_imgURL),
-                products_id: p.data != null ? p.data : []
+                products: p.data != null ? p.data : []
             };
 
             if (available == 1) {
