@@ -691,7 +691,8 @@
                 "discount": null,
                 "name": null,
                 "detail": null,
-                "images": []
+                "images": [],
+                "products_id": []
             }],
             "price": {
                 "original": null,
@@ -733,14 +734,15 @@
             "colors": [],
             "size": [],
             "images": [],
-            "promotion": [{
+            "promotions": [{
                 "id": null,
                 "start": null,
                 "end": null,
                 "discount": null,
                 "name": null,
                 "detail": null,
-                "images": []
+                "images": [],
+                "products_id": []
             }],
             "price": {
                 "original": null,
@@ -782,14 +784,15 @@
             "colors": [],
             "size": [],
             "images": [],
-            "promotion": [{
+            "promotions": [{
                 "id": null,
                 "start": null,
                 "end": null,
                 "discount": null,
                 "name": null,
                 "detail": null,
-                "images": []
+                "images": [],
+                "products_id": []
             }],
             "price": {
                 "original": null,
@@ -883,7 +886,8 @@ Functions
                         "discount": null,
                         "name": null,
                         "detail": null,
-                        "images": []
+                        "images": [],
+                        "products_id": []
                     }],
                     "price": {
                         "original": null,
@@ -990,7 +994,8 @@ Functions
                         "discount": null,
                         "name": null,
                         "detail": null,
-                        "images": []
+                        "images": [],
+                        "products_id": []
                     }],
                     "price": {
                         "original": null,
@@ -1098,7 +1103,8 @@ Functions
                         "discount": null,
                         "name": null,
                         "detail": null,
-                        "images": []
+                        "images": [],
+                        "products_id": []
                     }],
                     "price": {
                         "original": null,
@@ -1180,7 +1186,8 @@ Functions
                     "discount": null,
                     "name": null,
                     "detail": null,
-                    "images": []
+                    "images": [],
+                    "products_id": []
                 }],
                 "price": {
                     "original": null,
@@ -1254,7 +1261,8 @@ Functions
                     "discount": null,
                     "name": null,
                     "detail": null,
-                    "images": []
+                    "images": [],
+                    "products_id": []
                 }],
                 "price": {
                     "original": null,
@@ -1326,7 +1334,8 @@ Functions
                     "discount": null,
                     "name": null,
                     "detail": null,
-                    "images": []
+                    "images": [],
+                    "products_id": []
                 }],
                 "price": {
                     "original": null,
@@ -1439,7 +1448,8 @@ Functions
                         "discount": null,
                         "name": null,
                         "detail": null,
-                        "images": []
+                        "images": [],
+                        "products_id": []
                     }],
                     "price": {
                         "original": null,
@@ -1547,7 +1557,8 @@ Functions
                         "end": null,
                         "discount": null,
                         "detail": null,
-                        "images": []
+                        "images": [],
+                        "products_id": []
                     }],
                     "price": {
                         "original": null,
@@ -1612,7 +1623,8 @@ Functions
             "discount": null,
             "name": null,
             "detail": null,
-            "images": []
+            "images": [],
+            "products_id": []
         }]
     }
 
@@ -1643,7 +1655,8 @@ Functions
             "discount": null,
             "name": null,
             "detail": null,
-            "images": []
+            "images": [],
+            "products_id": []
         }
     }
 
@@ -1675,7 +1688,8 @@ Functions
             "discount": null,
             "name": null,
             "detail": null,
-            "images": []
+            "images": [],
+            "products_id": []
         }
     }
 
@@ -1709,7 +1723,8 @@ Functions
                 "discount": null,
                 "name": null,
                 "detail": null,
-                "images": []
+                "images": [],
+                "products_id": []
             }],
             "price": {
                 "original": null,
@@ -1803,7 +1818,8 @@ Functions
                         "discount": null,
                         "name": null,
                         "detail": null,
-                        "images": []
+                        "images": [],
+                        "products_id": []
                     }],
                     "price": {
                         "original": null,

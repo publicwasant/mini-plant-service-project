@@ -17,8 +17,8 @@ const alternate = (param) => {
         };
     } else if (param.key) {
         return {
-            sql: "SELECT * FROM products WHERE pr_name LIKE ? OR pr_type=? ORDER BY pr_id DESC",
-            values: ["%" + param.key + "%", PRODUCT_TYPE.indexOf(param.key)]
+            sql: "SELECT * FROM products WHERE pr_name LIKE ? OR pr_type LIKE ? ORDER BY pr_id DESC",
+            values: ["%" + param.key + "%", "%" + PRODUCT_TYPE.indexOf(param.key) + "%"]
         };
     } else {
         return {

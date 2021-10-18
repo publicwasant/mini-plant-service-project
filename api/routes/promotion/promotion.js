@@ -28,27 +28,37 @@ const alternate = (param) => {
 const reorganize = (available, items, then) => {
     const promotions = [];
 
-    for (const [key, val] of Object.entries(items)) {
-        const temp = {
-            id: val.promo_id,
-            start: val.promo_start,
-            end: val.promo_end,
-            discount: val.promo_discount,
-            name: val.promo_name,
-            detail: val.promo_details,
-            images: JSON.parse(val.promo_imgURL)
-        };
+    const fetch = (i) => {
+        env.get({url: "/promotion/related_to_product?promotion_id=*", params: [items[i].promo_id], then: (p) => {
+            const val = items[i];
+            const temp = {
+                id: val.promo_id,
+                start: val.promo_start,
+                end: val.promo_end,
+                discount: val.promo_discount,
+                name: val.promo_name,
+                detail: val.promo_details,
+                images: JSON.parse(val.promo_imgURL),
+                products_id: p.data != null ? p.data : []
+            };
 
-        if (available == 1) {
-            if (env.date.between(val.promo_start, val.promo_end, env.date.simple())) {
+            if (available == 1) {
+                if (env.date.between(val.promo_start, val.promo_end, env.date.simple())) {
+                    promotions.push(temp);
+                }
+            } else {
                 promotions.push(temp);
             }
-        } else {
-            promotions.push(temp);
-        }
-    }
 
-    then(promotions);
+            if (i + 1 < items.length) {
+                fetch(i + 1);
+            } else {
+                then(promotions);
+            }
+        }});
+    };
+
+    fetch(0);
 };
 
 router.get('/', (req, res) => {
