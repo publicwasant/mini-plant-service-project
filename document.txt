@@ -1660,7 +1660,8 @@ Functions
         "discount": null,
         "name": null,
         "details": null,
-        "images": []
+        "images": [],
+        "products_id": []
     }
 
     OUTPUT:

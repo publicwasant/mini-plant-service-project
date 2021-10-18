@@ -3,6 +3,28 @@ const router = express.Router();
 
 const token = require('./../../../../jwt_token');
 
+const related_to_product = (token, promotion_id, products_id, then) => {
+    const sql = "DELETE FROM promotions_related_to_products WHERE pp_promotion_id=?";
+    const values = [promotion_id];
+
+    const fetch = (i) => {
+        env.post({url: "/promotion/related_to_product/add", 
+            token: token,
+            body: {
+                product_id: products_id[i], 
+                promotion_id: promotion_id
+            }, then: (res) => {
+                if (i + 1 < products_id.length) {
+                    fetch(i + 1);
+                } else {
+                    then(promotion_id);
+                }
+        }});
+    };
+
+    env.database.query(sql, values, (err, result) => {fetch(0)});
+};
+
 router.put('/', token.auth((payload, done) => {
     payload.status == 0 ?
         token.verify(payload, (result) => {
@@ -45,14 +67,16 @@ router.put('/', token.auth((payload, done) => {
             }
 
             if (result.affectedRows > 0) {
-                env.get({url: "/promotion?id=*", params: [input.body.id], then: (p) => {
-                    form.output.status = 1;
-                    form.output.descript = "แก้ไขข้อมูลสำเร็จแล้ว";
-                    form.output.error = null;
-                    form.output.data = p.data[0];
-
-                    return res.json(form.output);
-                }});
+                related_to_product(input.header.authorization, input.body.id, input.body.products_id, (id) => {
+                    env.get({url: "/promotion?id=*", params: [id], then: (p) => {
+                        form.output.status = 1;
+                        form.output.descript = "แก้ไขข้อมูลสำเร็จแล้ว";
+                        form.output.error = null;
+                        form.output.data = p.data[0];
+    
+                        return res.json(form.output);
+                    }});
+                });
             } else {
                 form.output.status = 0;
                 form.output.descript = "แก้ไขข้อมูลไม่สำเร็จ!";
