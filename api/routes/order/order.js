@@ -14,6 +14,11 @@ const alternate = (param) => {
             sql: "SELECT * FROM orders WHERE cus_id=?",
             values: [param.customer_id]
         };
+    } else if (param.customer_name) {
+        return {
+            sql: "SELECT * FROM orders WHERE cus_id IN (SELECT cus_id FROM customers WHERE cus_name LIKE ?)",
+            values: ["%" + param.customer_name + "%"]
+        };
     } else if (param.employee_id) {
         return {
             sql: "SELECT * FROM orders WHERE emp_id=?",

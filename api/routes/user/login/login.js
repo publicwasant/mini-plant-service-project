@@ -4,8 +4,8 @@ const router = express.Router();
 const token = require('./../../../../jwt_token');
 
 const get = (key, then) => {
-    const sqlc = "SELECT cus_id, cus_password FROM customers WHERE cus_email=?";
-    const sqle = "SELECT emp_id, emp_password FROM employees WHERE emp_username=?";
+    const sqlc = "SELECT cus_id, cus_password FROM customers WHERE cus_email=? AND cus_status!=0";
+    const sqle = "SELECT emp_id, emp_password FROM employees WHERE emp_username=? AND emp_status!=0";
     const values = [key];
 
     return env.database.query(sqlc, values, (err, result) => {
