@@ -61,14 +61,11 @@ const reorganize = (time, token, items, then) => {
                         }
                     };
 
-                    console.log(time);
-                
-
                     if (time.from != null && time.to != null) {
                         if (env.date.between(time.from, time.to, temp.date))
                             finalOut.push(temp);
                     } else if (time.date != null) {
-                        if (env.date.equals(time.date, temp.date))
+                        if (env.date.over(temp.date, time.date))
                             finalOut.push(temp);
                     } else {
                         finalOut.push(temp);
@@ -108,7 +105,11 @@ router.get('/', token.auth((payload, done) => {
         }
 
         if (result.length > 0) {
-            reorganize({from: input.url.from, to: input.url.to}, input.header.authorization, result, (items) => {
+            reorganize({
+                from: input.url.from, 
+                to: input.url.to,
+                date: input.url.date
+            }, input.header.authorization, result, (items) => {
                 form.output.status = 1;
                 form.output.descript = 'พบข้อมูลแล้ว ' + items.length + ' รายการ';
                 form.output.data = items;

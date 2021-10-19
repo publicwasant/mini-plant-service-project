@@ -9,7 +9,7 @@ const nodemailer = require('nodemailer');
 const express = require('express');
 
 const app = require('./api/app');
-const config = JSON.parse(fs.readFileSync('./config.json'))['debug'];
+const config = JSON.parse(fs.readFileSync('./config.json'))['deploy'];
 
 global.env = {
     fs: fs,
@@ -64,7 +64,16 @@ global.env = {
             const dTo = new Date(to);
             const dDate = new Date(date);
 
+            dFrom.setDate(dFrom.getDate() - 1);
+            dTo.setDate(dTo.getDate() + 1);
+
             return (dDate <= dTo && dDate >= dFrom);
+        },
+        over: (from, date) => {
+            const dFrom = new Date(from);
+            const dDate = new Date(date);
+
+            return dDate >= dFrom;
         },
         equals: (date1, date2) => {
             const d1 = new Date(date1);

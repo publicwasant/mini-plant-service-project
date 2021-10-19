@@ -828,12 +828,24 @@ Functions
 
 
 ** 26. ค้นหาข้อมูลการสั่งซื้อ
-    [GET]   http://mini-plant.comsciproject.com/order?from=2021-05-25&to=2021-10-10
+    [GET]   http://mini-plant.comsciproject.com/order
     
     INPUT:  http://mini-plant.comsciproject.com/order?id=XX
-             http://mini-plant.comsciproject.com/order?customer_id=XX
-             http://mini-plant.comsciproject.com/order?customer_name=XX
-             http://mini-plant.comsciproject.com/order?employee_id=XX
+            http://mini-plant.comsciproject.com/order?customer_id=XX
+            http://mini-plant.comsciproject.com/order?customer_name=XX
+            http://mini-plant.comsciproject.com/order?employee_id=XX
+
+            ** with date [from - to]
+            http://mini-plant.comsciproject.com/order?id=XX?from=YYYY-MM-DD&to=YYYY-MM-DD
+            http://mini-plant.comsciproject.com/order?customer_id=XX&from=YYYY-MM-DD&to=YYYY-MM-DD
+            http://mini-plant.comsciproject.com/order?customer_name=XX&from=YYYY-MM-DD&to=YYYY-MM-DD
+            http://mini-plant.comsciproject.com/order?employee_id=XX&from=YYYY-MM-DD&to=YYYY-MM-DD
+
+            ** with date [>= date]
+            http://mini-plant.comsciproject.com/order?id=XX?date=YYYY-MM-DD
+            http://mini-plant.comsciproject.com/order?customer_id=XX&date=YYYY-MM-DD
+            http://mini-plant.comsciproject.com/order?customer_name=XX&date=YYYY-MM-DD
+            http://mini-plant.comsciproject.com/order?employee_id=XX&date=YYYY-MM-DD
     
     OUTPUT: 
     {
