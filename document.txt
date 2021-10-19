@@ -828,7 +828,7 @@ Functions
 
 
 ** 26. ค้นหาข้อมูลการสั่งซื้อ
-    [GET]   http://mini-plant.comsciproject.com/order
+    [GET]   http://mini-plant.comsciproject.com/order?from=2021-05-25&to=2021-10-10
     
     INPUT:  http://mini-plant.comsciproject.com/order?id=XX
              http://mini-plant.comsciproject.com/order?customer_id=XX

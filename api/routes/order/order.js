@@ -32,12 +32,15 @@ const alternate = (param) => {
     }
 }
 
-const reorganize = (token, items, then) => {
+const reorganize = (time, token, items, then) => {
+    const finalOut = [];
+
     const fetch = (ind) => {
         env.get({token: token, url: "/order/item?order_id=*", params: [items[ind].order_id], then: (orderitems) => {
             env.get({url: "/user/customer?id=*", params: [items[ind].cus_id], then: (customers) => {
                 env.get({url: "/user/employee?id=*", params: [items[ind].emp_id], then: (employees) => {
-                    items[ind] = {
+                    
+                    const temp = {
                         id: items[ind].order_id,
                         type: items[ind].order_type,
                         date: items[ind].order_date,
@@ -58,10 +61,23 @@ const reorganize = (token, items, then) => {
                         }
                     };
 
+                    console.log(time);
+                
+
+                    if (time.from != null && time.to != null) {
+                        if (env.date.between(time.from, time.to, temp.date))
+                            finalOut.push(temp);
+                    } else if (time.date != null) {
+                        if (env.date.equals(time.date, temp.date))
+                            finalOut.push(temp);
+                    } else {
+                        finalOut.push(temp);
+                    }
+
                     if (ind + 1 < items.length) {
                         fetch (ind + 1);
                     } else {
-                        then(items);
+                        then(finalOut);
                     }
                 }});
             }});
@@ -92,7 +108,7 @@ router.get('/', token.auth((payload, done) => {
         }
 
         if (result.length > 0) {
-            reorganize(input.header.authorization, result, (items) => {
+            reorganize({from: input.url.from, to: input.url.to}, input.header.authorization, result, (items) => {
                 form.output.status = 1;
                 form.output.descript = 'พบข้อมูลแล้ว ' + items.length + ' รายการ';
                 form.output.data = items;
